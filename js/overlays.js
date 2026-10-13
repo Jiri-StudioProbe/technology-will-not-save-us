@@ -2,16 +2,26 @@
    A = top bar and battery, B = loading dialog, C = cookie banner. */
 
 import { $, $$, root, reduce } from './util.js';
+import { roomColours } from './theme.js';
 
 /* ============ OVERLAY A: top bar (room label, battery, toast) + background colour per room ============ */
 export function initChrome({ onRoom }) {
   const rooms = $$('.room'), roomName = $('#roomName'), batt = $('#batt'), battPct = $('#battPct'), toast = $('#toast');
-  let toasted = false;
+  let toasted = false, current = 0;
+
+  /* The wall colour comes from the room's data attributes, per theme. */
+  function paint() {
+    const { bg, fg } = roomColours(rooms[current]);
+    gsap.to(document.body, { backgroundColor: bg, color: fg, duration: reduce ? 0 : .6, ease: 'power2.out', overwrite: 'auto' });
+  }
+  addEventListener('themechange', paint);
 
   function setRoom(i) {
     const r = rooms[i];
-    gsap.to(document.body, { backgroundColor: r.dataset.bg, color: r.dataset.fg, duration: reduce ? 0 : .6, ease: 'power2.out', overwrite: 'auto' });
-    roomName.textContent = 'Room ' + (i + 1) + ' of ' + rooms.length + ': ' + r.dataset.room;
+    current = i; paint();
+    const name = document.createElement('span'); /* the room's name drops away on narrow screens */
+    name.className = 'rn'; name.textContent = ': ' + r.dataset.room;
+    roomName.replaceChildren('Room ' + (i + 1) + ' of ' + rooms.length, name);
     onRoom(i);
   }
   /* Create these after the pinned rooms' triggers so their positions include the pin spacing. */

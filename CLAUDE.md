@@ -21,6 +21,7 @@ A tongue-in-cheek **web immersive exhibition** of Jiri's own photographs of "tec
 
 - 11-room site is live, built from the original prototype. Single page, plain HTML/CSS/ES modules, GSAP, no build step.
 - **Everything content-like is still placeholder:** photos are gradient placeholders (`file: null`), the two quotes (Kranzberg, Douglas Adams) are unverified, the artist's statement and wall-label text are placeholders.
+- **Two looks**, switched by the "Look:" button in Overlay A: `colour` (default, saturated walls) and `retro` (beige PC, DOS, Norton Commander, early Windows; Arial and Times New Roman, VT323 kept for system bits). Remembered in localStorage; `#retro` / `#colour` in the URL override it. Retro is a first pass: Jiri has not reviewed it yet.
 - The song `audio/sunset-for-the-subscribed.mp3` plays on by default behind a toggle. Its licence is **unconfirmed** (check the terms of the tool that made it before commercial use). Lyrics file (`content/song-lyrics.md`) not supplied yet.
 - `vignettes/` holds 19 transition experiments (P01 to P10 page, I01 to I09 image). **None are used on the page yet.**
 - Not done yet: storyboard table, real photos, verified quotes, transitions between rooms, per-photo deep links, colophon, mailing list or other call to action, custom domain.
@@ -36,6 +37,7 @@ js/content.js   reads content/*.json, builds Rooms 03, 04, 05, 06, 07, 08, 09
 js/overlays.js  Overlay A (top bar, battery, toast), B (loading dialog), C (cookie banner)
 js/rooms.js     one function per room (ROOM 01 to 11)
 js/sound.js     the song: gesture-gated, fades, loop dip, toggle
+js/theme.js     colour / retro look: data-theme on <html>, remembered, per-room wall colours
 js/util.js      $, $$, reduce, fine, splitWords
 content/        photos.json, quotes.json: the only place content lives
 audio/ fonts/ vendor/   song; Bricolage Grotesque, Instrument Serif, VT323; GSAP 3.15 + ScrollTrigger + Draggable
@@ -51,12 +53,13 @@ og.png favicon.svg .nojekyll .github/workflows/pages.yml
 - **Overlays A, B, C:** not rooms. A = top bar and battery (also holds the sound toggle), B = fake loading dialog, C = cookie banner.
 - **Photo N:** stable id of a photo slot in `photos.json`. Never renumber; add new ones at the end.
 - **P01 to P10 / I01 to I09:** page and image transition vignettes.
-- Dev flags: press **N** or add **`#rooms`** to show room tags and outlines; **`#skip`** bypasses the loading dialog; **`#room-07`** lands in that room after the dialog.
+- Dev flags: press **N** or add **`#rooms`** to show room tags and outlines; **`#skip`** bypasses the loading dialog; **`#room-07`** lands in that room after the dialog; **`#retro`** / **`#colour`** pick the look.
 - Every room carries a `ROOM NN` comment in HTML, CSS and JS. Keep that convention. If you add, remove or reorder rooms, renumber `id`, `data-n` and comments and update `SECTIONS.md` in the same change.
 
 ## Design principles
 
 - **Colour as a wall.** Each room has its own flat, saturated background (`data-bg`, `data-fg`) that the page animates between. Poster-like. No gradients (except the placeholder photos), glassmorphism or generic SaaS look.
+- **Two looks.** Every room carries both palettes: `data-bg` / `data-fg` (colour) and `data-bg-retro` / `data-fg-retro` (retro). Retro styles live in one `THEME: retro` block in `main.css`, keyed on `html[data-theme="retro"]`; shared rules use variables (`--ink`, `--accent`, `--display`, `--wall`, `--ui`, `--ds` display scale). New hard-coded colours or fonts need a retro counterpart. Retro: flat walls from a small set (case beige, Windows silver, desktop teal, Commander blue and cyan, DOS black), bevelled grey widgets, hard shadows, square corners, checkerboard placeholder photos.
 - **Type.** Bricolage Grotesque (display, body), Instrument Serif italic (quotes, wall labels), VT323 (anything pretending to be a system). Small, deliberate scale.
 - **Wall labels** are museum-style and deadpan: title, year, caption. Part of the joke.
 - **Photos are the point.** Never crop, tint, overlay or filter a photo so it hides what is wrong in it.

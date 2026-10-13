@@ -35,6 +35,7 @@
 <div class="chrome">
   <span id="roomName" aria-hidden="true">Room 1 of 11: The Entrance</span>
   <span class="chrome-r">
+    <button class="look" id="look" type="button" aria-pressed="false" aria-label="Retro look">Look: colour</button>
     <button class="sound" id="sound" type="button" aria-pressed="false" aria-label="Sound">Sound: off</button>
     <span class="batt" id="batt" aria-hidden="true"><i></i><b id="battPct" style="font-weight:400">100%</b></span>
   </span>
@@ -68,7 +69,7 @@
 <main id="main">
 
 <!-- ============ ROOM 01: The Entrance (autocorrecting title) ============ -->
-<div class="room" id="room-01" data-n="01" data-room="The Entrance" data-bg="#FFD93B" data-fg="#15120f">
+<div class="room" id="room-01" data-n="01" data-room="The Entrance" data-bg="#FFD93B" data-fg="#15120f" data-bg-retro="#DDD5BE" data-fg-retro="#111111">
   <section class="hero">
     <h1 id="title" aria-label="Technology will not save us."><span class="wd">Technology</span> <span class="wd">will</span> <span class="wd not">not</span> <span class="wd">save</span> <span class="wd">us.</span></h1>
     <p class="hero-sub">A photo exhibition of machines, mid-failure.</p>
@@ -78,7 +79,7 @@
 </div>
 
 <!-- ============ ROOM 02: Artist's statement (words light up) ============ -->
-<div class="room" id="room-02" data-n="02" data-room="Artist's statement" data-bg="#C9B6FF" data-fg="#15120f">
+<div class="room" id="room-02" data-n="02" data-room="Artist's statement" data-bg="#C9B6FF" data-fg="#15120f" data-bg-retro="#C0C0C0" data-fg-retro="#000000">
   <section class="statement">
     <p id="statementText">For years I have been photographing technology at its least dignified. The self-checkout that wants a word with you. The kiosk that rebooted in front of a queue. The smart thing that was, briefly, not. I never meant to collect them. They just kept happening. This is a small, free exhibition of those moments. No venue, no curator, no tickets. Just a link, which, with luck, still works.</p>
     <p class="note">[Placeholder text. Your real reason goes here.]</p>
@@ -86,7 +87,7 @@
 </div>
 
 <!-- ============ ROOM 03: The big one (photo grows to full bleed). Photo 1 ============ -->
-<div class="room" id="room-03" data-n="03" data-room="The big one" data-bg="#FF5A1F" data-fg="#15120f">
+<div class="room" id="room-03" data-n="03" data-room="The big one" data-bg="#FF5A1F" data-fg="#15120f" data-bg-retro="#000000" data-fg-retro="#C0C0C0">
   <section class="zoom" id="zoom">
     <p class="zoom-hint display" id="zoomHint" aria-hidden="true">Enhance.</p>
     <div class="zoom-img ph" id="zoomImg"></div>
@@ -95,7 +96,7 @@
 </div>
 
 <!-- ============ ROOM 04: Promise and delivery (before/after slider). Photo 2 ============ -->
-<div class="room" id="room-04" data-n="04" data-room="Promise and delivery" data-bg="#5B3DF5" data-fg="#ffffff">
+<div class="room" id="room-04" data-n="04" data-room="Promise and delivery" data-bg="#5B3DF5" data-fg="#ffffff" data-bg-retro="#008080" data-fg-retro="#ffffff">
   <section class="pair">
     <div class="pair-head">
       <h2 class="display">Expectation, then reality.</h2>
@@ -119,7 +120,7 @@
 </div>
 
 <!-- ============ ROOM 05: A reminder (quote card, words slam in). Quote q1 ============ -->
-<div class="room" id="room-05" data-n="05" data-room="A reminder" data-bg="#8FF0C4" data-fg="#15120f">
+<div class="room" id="room-05" data-n="05" data-room="A reminder" data-bg="#8FF0C4" data-fg="#15120f" data-bg-retro="#00AAAA" data-fg-retro="#000000">
   <section class="quote" id="q1">
     <blockquote class="qtext" id="q1t"></blockquote>
     <p class="qby"></p>
@@ -127,7 +128,7 @@
 </div>
 
 <!-- ============ ROOM 06: Do not touch (draggable collage). Photos 3 to 9 ============ -->
-<div class="room" id="room-06" data-n="06" data-room="Do not touch" data-bg="#8EC9FF" data-fg="#15120f">
+<div class="room" id="room-06" data-n="06" data-room="Do not touch" data-bg="#8EC9FF" data-fg="#15120f" data-bg-retro="#DDD5BE" data-fg-retro="#111111">
   <section class="collage" id="collage">
     <div class="sign" id="sign"><span id="signText">Please do not touch the exhibits.</span><small id="signSmall">Thank you for your cooperation.</small></div>
     <div class="cl-field" id="clField"></div>
@@ -135,7 +136,7 @@
 </div>
 
 <!-- ============ ROOM 07: The corridor (horizontal walk). Photos 10 to 15 ============ -->
-<div class="room" id="room-07" data-n="07" data-room="The corridor" data-bg="#FF9ACB" data-fg="#15120f">
+<div class="room" id="room-07" data-n="07" data-room="The corridor" data-bg="#FF9ACB" data-fg="#15120f" data-bg-retro="#C0C0C0" data-fg-retro="#000000">
   <section class="corridor" id="corridor">
     <div class="track" id="track">
       <div class="c-intro">
@@ -148,7 +149,7 @@
 </div>
 
 <!-- ============ ROOM 08: Please wait (quote card, buffering). Quote q2 ============ -->
-<div class="room" id="room-08" data-n="08" data-room="Please wait" data-bg="#FFFFFF" data-fg="#15120f">
+<div class="room" id="room-08" data-n="08" data-room="Please wait" data-bg="#FFFFFF" data-fg="#15120f" data-bg-retro="#0000AA" data-fg-retro="#ffffff">
   <section class="quote" id="q2">
     <blockquote class="qtext long" id="q2t"></blockquote>
     <p class="qby"></p>
@@ -156,7 +157,7 @@
 </div>
 
 <!-- ============ ROOM 09: Channel surfing (CRT with static). Photos 16 to 18 ============ -->
-<div class="room" id="room-09" data-n="09" data-room="Channel surfing" data-bg="#05140A" data-fg="#38FF7A">
+<div class="room" id="room-09" data-n="09" data-room="Channel surfing" data-bg="#05140A" data-fg="#38FF7A" data-bg-retro="#000000" data-fg-retro="#C0C0C0">
   <section class="crt" id="crt">
     <div class="tv">
       <div class="screen" id="screen">
@@ -172,7 +173,7 @@
 </div>
 
 <!-- ============ ROOM 10: Security check (fake CAPTCHA) ============ -->
-<div class="room" id="room-10" data-n="10" data-room="Security check" data-bg="#B8C0CC" data-fg="#15120f">
+<div class="room" id="room-10" data-n="10" data-room="Security check" data-bg="#B8C0CC" data-fg="#15120f" data-bg-retro="#D4D0C8" data-fg-retro="#000000">
   <section class="captcha">
     <div>
       <h2 class="display">Before you leave.</h2>
@@ -187,7 +188,7 @@
 </div>
 
 <!-- ============ ROOM 11: Exit (blue screen of death) ============ -->
-<div class="room" id="room-11" data-n="11" data-room="Exit" data-bg="#0F6FD6" data-fg="#ffffff">
+<div class="room" id="room-11" data-n="11" data-room="Exit" data-bg="#0F6FD6" data-fg="#ffffff" data-bg-retro="#0000AA" data-fg-retro="#ffffff">
   <section class="bsod" id="bsod">
     <div class="face" aria-hidden="true">:(</div>
     <p class="msg">Your exhibition ran into a problem and needs to restart. We are just collecting some error info, and then we will restart for you.</p>

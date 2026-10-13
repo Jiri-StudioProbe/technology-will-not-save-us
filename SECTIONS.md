@@ -6,7 +6,7 @@ If you add, remove or reorder rooms, renumber the `id`, `data-n` and comments, t
 ## Rooms
 
 The top bar always reads "Room N of M". Press **N** on the page, or add `#rooms` to the URL, to show room tags and outlines.
-Add `#skip` to bypass the loading dialog. Add `#room-07` (and so on) to land in a specific room after the loading dialog.
+Add `#skip` to bypass the loading dialog. Add `#retro` or `#colour` to pick the look (otherwise the last choice is remembered, default colour). Add `#room-07` (and so on) to land in a specific room after the loading dialog.
 
 | Room | id | Name | Idea | Content |
 |---|---|---|---|---|
@@ -26,7 +26,7 @@ Add `#skip` to bypass the loading dialog. Add `#room-07` (and so on) to land in 
 
 | Overlay | What |
 |---|---|
-| A | Top bar: room name, the sound toggle and a battery that drains as you scroll, plus the low-battery toast |
+| A | Top bar: room name, the look toggle (colour / retro), the sound toggle and a battery that drains as you scroll, plus the low-battery toast. On narrow screens the room name and "Look:" prefix drop away |
 | B | Loading dialog: sticks at 99%, then "stopped responding". Two identical "Continue anyway" buttons (the click is the gesture that lets the song start) |
 | C | Cookie banner: assumes consent if you keep scrolling. The Reject button runs away from a mouse |
 

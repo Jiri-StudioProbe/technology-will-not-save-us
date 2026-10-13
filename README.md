@@ -12,7 +12,7 @@ The page loads `content/*.json` with `fetch`, so it needs to be served over http
 python3 -m http.server 8000
 ```
 
-Then open http://localhost:8000/. Handy URL flags: `#skip` (no loading dialog), `#rooms` (show room tags), `#room-07` (land in a room).
+Then open http://localhost:8000/. Handy URL flags: `#skip` (no loading dialog), `#rooms` (show room tags), `#room-07` (land in a room), `#retro` / `#colour` (pick the look).
 
 ## Deploy
 
@@ -31,6 +31,7 @@ js/content.js     reads content/*.json and builds the photo and quote rooms
 js/overlays.js    Overlay A (top bar), B (loading dialog), C (cookie banner)
 js/rooms.js       one function per room
 js/sound.js       the song: gesture-gated playback, fades, loop dip
+js/theme.js       the colour / retro look switch
 content/          photos.json, quotes.json (the only place content lives)
 audio/            the song (starts only after a click, behind the sound toggle)
 fonts/ vendor/    Bricolage Grotesque, Instrument Serif, VT323; GSAP 3.15 with ScrollTrigger and Draggable

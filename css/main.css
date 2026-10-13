@@ -12,6 +12,10 @@
   --wall:"Instrument Serif",Georgia,"Times New Roman",serif;
   --sys:"VT323","Courier New",monospace;
   --ui:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --accent:#FFD93B;  /* the "not" stamp, the toast text */
+  --cap:#4a90e2;     /* CAPTCHA blue */
+  --bsod:#0f6fd6;    /* blue screen button text */
+  --ds:1;            /* display type scale: retro's Arial is wider than Bricolage Grotesque */
 }
 *,*::before,*::after{box-sizing:border-box}
 [hidden]{display:none!important}
@@ -46,13 +50,23 @@ button{font:inherit;color:inherit;cursor:pointer}
 .chrome{position:fixed;inset:0 0 auto 0;z-index:50;display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.9rem clamp(1rem,3vw,2rem);color:inherit;pointer-events:none;font:1.25rem/1 var(--sys);transition:opacity .3s}
 html.locked .chrome{opacity:0}
 .chrome-r{display:flex;align-items:center;gap:1rem;flex:none}
-.sound{pointer-events:auto;background:none;border:2px solid currentColor;border-radius:.25rem;padding:.2rem .5rem;font:1.15rem/1 var(--sys);color:inherit}
+#roomName{white-space:nowrap}
+@media (max-width:560px){
+  #roomName .rn{display:none}
+  .look .pre{display:none}
+  .chrome{gap:.5rem}
+  .chrome-r{gap:.5rem}
+  .sound,.look{padding:.15rem .35rem;font-size:1.05rem}
+}
+@media (max-width:380px){#battPct{display:none}}
+@media (max-width:340px){#roomName{display:none}.chrome{justify-content:flex-end}}
+.sound,.look{pointer-events:auto;background:none;border:2px solid currentColor;border-radius:.25rem;padding:.2rem .5rem;font:1.15rem/1 var(--sys);color:inherit}
 .batt{display:inline-flex;align-items:center;gap:.5rem;flex:none}
 .batt i{position:relative;display:block;width:2.3rem;height:1rem;border:2px solid currentColor;border-radius:3px}
 .batt i::before{content:"";position:absolute;inset:2px;background:currentColor;transform-origin:left;transform:scaleX(var(--lvl,1))}
 .batt i::after{content:"";position:absolute;right:-6px;top:2px;width:3px;height:6px;background:currentColor}
 .batt.low i::before{background:#ff3b30}
-.toast{position:fixed;top:3.4rem;left:0;right:0;margin:0 auto;width:fit-content;z-index:55;background:var(--ink);color:#FFD93B;font:1.3rem/1.2 var(--sys);padding:.7rem 1.1rem;max-width:calc(100vw - 2rem);text-align:center;box-shadow:0 .5rem 1.5rem rgba(0,0,0,.35)}
+.toast{position:fixed;top:3.4rem;left:0;right:0;margin:0 auto;width:fit-content;z-index:55;background:var(--ink);color:var(--accent);font:1.3rem/1.2 var(--sys);padding:.7rem 1.1rem;max-width:calc(100vw - 2rem);text-align:center;box-shadow:0 .5rem 1.5rem rgba(0,0,0,.35)}
 
 /* ===== OVERLAY B: loading dialog ===== */
 #boot{position:fixed;inset:0;z-index:100;background:#008080;display:grid;place-items:center;font:1.4rem/1.25 var(--sys);color:#000}
@@ -71,8 +85,8 @@ html.locked .chrome{opacity:0}
 
 /* ===== ROOM 01: The Entrance ===== */
 .hero{position:relative;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:6rem clamp(1.2rem,5vw,5rem) 5rem}
-#title{font-family:var(--display);font-weight:800;font-stretch:75%;font-size:clamp(4.6rem,13vw,13.5rem);line-height:.86;letter-spacing:-.035em;max-width:12em}
-#title .not{display:inline-block;background:var(--ink);color:#FFD93B;padding:0 .1em .04em;transform:rotate(-3deg);border-radius:.08em}
+#title{font-family:var(--display);font-weight:800;font-stretch:75%;font-size:calc(clamp(4.6rem,13vw,13.5rem) * var(--ds));line-height:.86;letter-spacing:-.035em;max-width:12em}
+#title .not{display:inline-block;background:var(--ink);color:var(--accent);padding:0 .1em .04em;transform:rotate(-3deg);border-radius:.08em}
 #title.typing .not{display:none}
 #title.typing .c{opacity:0}
 #title.typing .c.on{opacity:1}
@@ -94,13 +108,13 @@ html.locked .chrome{opacity:0}
 /* ===== ROOM 03: The big one ===== */
 .zoom{position:relative;height:100vh;height:100svh;overflow:hidden}
 .zoom-img{position:absolute;inset:0;clip-path:inset(31% 33% 31% 33% round .5rem)}
-.zoom-hint{position:absolute;top:11%;left:0;right:0;text-align:center;font-size:clamp(2.4rem,7vw,6rem)}
+.zoom-hint{position:absolute;top:11%;left:0;right:0;text-align:center;font-size:calc(clamp(2.4rem,7vw,6rem) * var(--ds))}
 .zoom-label{position:absolute;left:clamp(1rem,4vw,3rem);bottom:clamp(1.4rem,5vh,3rem);opacity:0}
 
 /* ===== ROOM 04: Promise and delivery ===== */
 .pair{min-height:100vh;padding:15vh clamp(1rem,5vw,5rem) 11vh;display:flex;flex-direction:column;align-items:center;gap:2.2rem}
 .pair-head{width:100%;max-width:1100px}
-.pair h2{font-size:clamp(2.8rem,8.5vw,8.5rem)}
+.pair h2{font-size:calc(clamp(2.8rem,8.5vw,8.5rem) * var(--ds))}
 .pair-sub{margin-top:1.2rem;font:italic 400 clamp(1.3rem,2.4vw,2rem)/1.15 var(--wall);max-width:30ch}
 .cmp{--p:50;position:relative;width:100%;max-width:1100px;aspect-ratio:16/9;overflow:hidden;border-radius:.35rem;box-shadow:0 1.6rem 4rem rgba(0,0,0,.4);cursor:ew-resize;user-select:none;-webkit-user-select:none;touch-action:pan-y}
 .cmp-layer{position:absolute;inset:0}
@@ -112,8 +126,8 @@ html.locked .chrome{opacity:0}
 
 /* ===== ROOMS 05 and 08: quote cards (shared styles) ===== */
 .quote{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:14vh clamp(1.2rem,6vw,6rem)}
-.qtext{font-family:var(--display);font-weight:800;font-stretch:75%;font-size:clamp(2.8rem,9.4vw,9.8rem);line-height:.9;letter-spacing:-.035em;max-width:13ch}
-.qtext.long{font-size:clamp(2.3rem,7.2vw,7.4rem);max-width:17ch}
+.qtext{font-family:var(--display);font-weight:800;font-stretch:75%;font-size:calc(clamp(2.8rem,9.4vw,9.8rem) * var(--ds));line-height:.9;letter-spacing:-.035em;max-width:13ch}
+.qtext.long{font-size:calc(clamp(2.3rem,7.2vw,7.4rem) * var(--ds));max-width:17ch}
 .qw{display:inline-block}
 .qby{margin-top:2.2rem;font:italic 400 clamp(1.4rem,2.4vw,2.1rem)/1.1 var(--wall)}
 .qarr{margin-top:1rem;font:1.5rem/1.2 var(--sys);opacity:.8}
@@ -144,7 +158,7 @@ html.locked .chrome{opacity:0}
 .corridor::after{content:"";position:absolute;left:0;right:0;bottom:0;height:13vh;background:rgba(0,0,0,.13);pointer-events:none}
 .track{display:flex;align-items:center;flex:none;gap:clamp(3.5rem,9vw,9rem);padding:0 14vw 0 8vw}
 .c-intro{flex:none;width:min(72vw,32rem)}
-.c-intro h2{font-size:clamp(3.4rem,10vw,9rem)}
+.c-intro h2{font-size:calc(clamp(3.4rem,10vw,9rem) * var(--ds))}
 .c-intro p{margin-top:1.4rem;font:italic 400 clamp(1.4rem,2.4vw,2rem)/1.15 var(--wall)}
 .frame{position:relative;flex:none}
 .frame .ph{height:var(--h);aspect-ratio:var(--ar);border:.55rem solid #fff;box-shadow:0 1.2rem 2.6rem rgba(0,0,0,.28)}
@@ -174,23 +188,23 @@ html.locked .chrome{opacity:0}
 
 /* ===== ROOM 10: Security check ===== */
 .captcha{min-height:100vh;display:grid;grid-template-columns:1fr minmax(18rem,26rem);gap:clamp(2rem,6vw,6rem);align-items:center;padding:14vh clamp(1.2rem,6vw,6rem)}
-.captcha h2{font-size:clamp(3rem,9vw,9rem)}
+.captcha h2{font-size:calc(clamp(3rem,9vw,9rem) * var(--ds))}
 .captcha-sub{margin-top:1.4rem;font:italic 400 clamp(1.4rem,2.4vw,2rem)/1.15 var(--wall);max-width:24ch}
 .cap-card{background:#fff;color:#202124;border-radius:.35rem;box-shadow:0 1.4rem 3.4rem rgba(0,0,0,.3);font:15px/1.35 var(--ui);overflow:hidden}
-.cap-head{background:#4a90e2;color:#fff;padding:1rem 1.1rem}
+.cap-head{background:var(--cap);color:#fff;padding:1rem 1.1rem}
 .cap-head small{display:block;opacity:.9;font-size:12px;margin-bottom:.15rem}
 .cap-head strong{display:block;font-size:24px;line-height:1.1;font-weight:700}
 .cap-head em{display:block;font-style:normal;font-size:12px;margin-top:.35rem;opacity:.9}
 .cap-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;padding:4px}
 .tile{position:relative;aspect-ratio:1;border:0;padding:0;font-size:inherit}
 .tile.ph::after{left:.4rem;bottom:.35rem;font-size:1rem}
-.tile .tick{position:absolute;top:6px;left:6px;width:22px;height:22px;border-radius:50%;background:#4a90e2;border:2px solid #fff;opacity:0;transform:scale(.3);transition:opacity .15s,transform .15s}
+.tile .tick{position:absolute;top:6px;left:6px;width:22px;height:22px;border-radius:50%;background:var(--cap);border:2px solid #fff;opacity:0;transform:scale(.3);transition:opacity .15s,transform .15s}
 .tile .tick::after{content:"";position:absolute;left:5px;top:2px;width:5px;height:9px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
-.tile[aria-pressed="true"]{box-shadow:inset 0 0 0 5px #4a90e2}
+.tile[aria-pressed="true"]{box-shadow:inset 0 0 0 5px var(--cap)}
 .tile[aria-pressed="true"] .tick{opacity:1;transform:none}
 .cap-foot{display:flex;align-items:center;justify-content:space-between;gap:.8rem;padding:.7rem 1rem 1rem}
 #capMsg{font-size:13px;min-height:2.6em;display:flex;align-items:center}
-.cap-go{flex:none;background:#4a90e2;color:#fff;border:0;border-radius:.25rem;padding:.6rem 1.2rem;font:700 13px var(--ui)}
+.cap-go{flex:none;background:var(--cap);color:#fff;border:0;border-radius:.25rem;padding:.6rem 1.2rem;font:700 13px var(--ui)}
 .cap-go[disabled]{opacity:.6;cursor:wait}
 @media (max-width:800px){.captcha{grid-template-columns:1fr}}
 
@@ -202,8 +216,48 @@ html.locked .chrome{opacity:0}
 .bsod .info{display:flex;gap:1.4rem;align-items:flex-start;margin-top:2.6rem;max-width:36rem;font-size:1.05rem;line-height:1.35}
 #qr{flex:none;width:7.6rem;height:7.6rem;image-rendering:pixelated;background:#fff;padding:.3rem}
 .bsod .info p+p{margin-top:.8rem}
+.bsod .info p{overflow-wrap:anywhere}
 .bsod .shop{margin-top:3rem;font:italic 400 clamp(1.4rem,2.4vw,2rem)/1.15 var(--wall);max-width:30ch}
-.bsod .restart{margin-top:2rem;background:#fff;color:#0f6fd6;border:0;padding:.8rem 1.6rem;font:600 1.1rem var(--display)}
+.bsod .restart{margin-top:2rem;background:#fff;color:var(--bsod);border:0;padding:.8rem 1.6rem;font:600 1.1rem var(--display)}
+
+/* ===== THEME: retro =====
+   The alternative to the colourful default. Beige PC case, MS-DOS, Norton Commander, Windows 3.1 / 95.
+   Switched by html[data-theme="retro"] (see js/theme.js). Wall colours per room live in data-bg-retro / data-fg-retro.
+   Palette: case beige #DDD5BE, Windows silver #C0C0C0, desktop teal #008080, Commander blue #0000AA and cyan #00AAAA, DOS black.
+   Type: Arial and Times New Roman; VT323 stays for anything pretending to be a system. */
+:root[data-theme="retro"]{
+  --ink:#000;
+  --accent:#FFFF55;
+  --cap:#000080;
+  --bsod:#0000AA;
+  --ds:.78;
+  --display:Arial,"Liberation Sans",Helvetica,sans-serif;
+  --wall:"Times New Roman","Liberation Serif",Times,serif;
+  --ui:Arial,"Liberation Sans",Helvetica,sans-serif;
+  --bevel:#fff #404040 #404040 #fff;
+}
+[data-theme="retro"] body{background:#DDD5BE}
+[data-theme="retro"] :is(.display,#title,.qtext,.sign){font-weight:700;font-stretch:100%}
+[data-theme="retro"] :is(.display,#title,.qtext){letter-spacing:-.025em;line-height:.95}
+[data-theme="retro"] .sign{letter-spacing:0}
+
+/* placeholder photos: the Windows 95 desktop checkerboard instead of a gradient */
+[data-theme="retro"] .ph{background:repeating-conic-gradient(#808080 0 25%,#a0a0a0 0 50%) 0 0/6px 6px}
+
+/* hard edges, hard shadows, bevels */
+[data-theme="retro"] :is(.label,.cmp,.toast,.cl .ph,.frame .ph){box-shadow:4px 4px 0 #000}
+[data-theme="retro"] .label{background:#FFFFE1;border:1px solid #000}
+[data-theme="retro"] .cmp{border-radius:0}
+[data-theme="retro"] .cmp-handle::after{border-radius:0;box-shadow:none;border:2px solid;border-color:var(--bevel);background:#c0c0c0}
+[data-theme="retro"] :is(.sound,.look){background:#c0c0c0;color:#000;border:2px solid;border-color:var(--bevel);border-radius:0;box-shadow:1px 1px 0 #000}
+[data-theme="retro"] :is(.sound,.look):active{border-color:#404040 #fff #fff #404040}
+[data-theme="retro"] .batt i{border-radius:0}
+[data-theme="retro"] :is(.cap-card,.cookie){background:#c0c0c0;color:#000;border:2px solid;border-color:var(--bevel);border-radius:0;box-shadow:2px 2px 0 #000}
+[data-theme="retro"] .cap-card{padding:2px}
+[data-theme="retro"] :is(.cap-go,.cookie button){background:#c0c0c0;color:#000;border:2px solid;border-color:var(--bevel);border-radius:0;font-weight:700}
+[data-theme="retro"] :is(.cap-go,.cookie button):active{border-color:#404040 #fff #fff #404040}
+[data-theme="retro"] .cookie .yes{outline:1px solid #000;outline-offset:-5px}
+[data-theme="retro"] .bsod .restart{border-radius:0}
 
 /* ===== DEV: room number tags. Press N to toggle, or open the page with #rooms ===== */
 .room-tag{display:none;position:sticky;top:3.4rem;height:0;z-index:70;pointer-events:none}

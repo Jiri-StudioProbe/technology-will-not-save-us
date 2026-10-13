@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P10 Diagonal wipe</title>
+<link rel="stylesheet" href="v.css">
+</head><body>
+<a id="back" href="index.html">← all</a>
+<div id="frame"></div>
+<div id="hud"></div>
+<script src="vendor/gsap.min.js"></script>
+<script src="v.js"></script>
+<script>
+V.init({id:"P10",title:"Diagonal wipe",kind:"pg",
+run(c){
+  const o={t:0},d=c.dir;
+  const set=()=>{const a=130*o.t,b=a-30;c.to.style.clipPath=d>0?`polygon(0 0,${a}% 0,${b}% 100%,0 100%)`:`polygon(100% 0,${100-a}% 0,${100-b}% 100%,100% 100%)`};
+  set();
+  return gsap.timeline()
+   .to(o,{t:1,duration:1,ease:'power2.inOut',onUpdate:set})
+   .to(c.from,{xPercent:-8*d,duration:1,ease:'power2.inOut'},0);
+}
+});
+</script>
+</body></html>

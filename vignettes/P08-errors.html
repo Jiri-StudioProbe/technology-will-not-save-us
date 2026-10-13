@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P08 Error-window cascade</title>
+<link rel="stylesheet" href="v.css">
+</head><body>
+<a id="back" href="index.html">← all</a>
+<div id="frame"></div>
+<div id="hud"></div>
+<script src="vendor/gsap.min.js"></script>
+<script src="v.js"></script>
+<script>
+V.init({id:"P08",title:"Error-window cascade",kind:"pg",hold:true,
+run(c){
+  const m=['Technology has stopped working.','Have you tried turning it off and on again?','Photo could not be developed.','Error 404: Utopia not found.','Are you sure? Yes / Yes','This exhibition will now restart.','Low battery. Please hold.'];
+  const w=c.mk(34,i=>({cls:'win',css:`left:${Math.random()*(c.W-290)}px;top:${Math.random()*(c.H-120)}px`,
+    html:`<b><span>⚠ Error ${100+i}</span><span>×</span></b><p>${m[i%m.length]}</p><button>OK</button>`}));
+  return gsap.timeline()
+   .fromTo(w,{autoAlpha:0,scale:.85},{autoAlpha:1,scale:1,duration:.08,stagger:.025})
+   .add(c.swap)
+   .to(w,{autoAlpha:0,duration:.05,stagger:{each:.02,from:'random'}},'+=.15');
+}
+});
+</script>
+</body></html>

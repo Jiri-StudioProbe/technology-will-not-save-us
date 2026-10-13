@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>I08 Print flip</title>
+<link rel="stylesheet" href="v.css">
+</head><body>
+<a id="back" href="index.html">← all</a>
+<div id="frame"></div>
+<div id="hud"></div>
+<script src="vendor/gsap.min.js"></script>
+<script src="v.js"></script>
+<script>
+V.init({id:"I08",title:"Print flip",kind:"img",hold:true,
+run(c){
+  const d=c.dir;
+  gsap.set(c.to,{rotationY:-90*d});
+  return gsap.timeline()
+   .to(c.from,{rotationY:90*d,filter:'brightness(.4)',duration:.5,ease:'power2.in'})
+   .add(c.swap)
+   .to(c.to,{rotationY:0,duration:.5,ease:'power2.out'});
+}
+});
+</script>
+</body></html>

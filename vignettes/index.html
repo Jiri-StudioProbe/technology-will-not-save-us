@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Transition vignettes</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;padding:1.2rem 1rem 4rem;font:16px/1.4 system-ui,sans-serif;background:#f4f1ea;color:#111;max-width:1200px;margin-inline:auto}
+h1{font-size:1.6rem;margin:.2rem 0} h2{margin:2rem 0 .6rem;font-size:1.1rem;text-transform:uppercase;letter-spacing:.08em}
+p.l{max-width:60ch;margin:.3rem 0} kbd{background:#fff;border:1px solid #bbb;border-radius:3px;padding:0 .3em;font-size:.85em}
+.g{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.card{display:block;color:inherit;text-decoration:none;background:#fff;border:2px solid #111;border-radius:6px;overflow:hidden}
+.card:hover{box-shadow:5px 5px 0 #111;transform:translate(-2px,-2px)}
+.pv{position:relative;aspect-ratio:16/10;background:#222;overflow:hidden}
+.pv iframe{position:absolute;left:0;top:0;width:1280px;height:800px;border:0;transform-origin:0 0;pointer-events:none}
+.tx{padding:.6rem .7rem .8rem;font-size:.92rem} .id{font:700 .8rem ui-monospace,Menlo,monospace;background:#111;color:#fff;padding:.1rem .35rem;border-radius:3px}
+.nt{color:#444;font-size:.85rem}
+</style></head><body>
+<h1>Transition vignettes</h1>
+<p class="l">Rough, one transition each, placeholders only. Tiles auto-play live. Click a card to open it full-size: <kbd>click</kbd>/<kbd>space</kbd> next, <kbd>←</kbd> back, <kbd>A</kbd> toggle auto-play, <kbd>Esc</kbd> back here. Refer to them by ID, e.g. “P06 for the TV room, I04 between photos”.</p>
+<h2>Page / room transitions (P)</h2>
+<div class="g">
+<a class="card" href="P01-bars.html" data-src="P01-bars.html?embed">
+  <div class="pv"><iframe tabindex="-1" title="" loading="lazy"></iframe></div>
+  <div class="tx"><span class="id">P01</span> <b>Curtain bars</b><br><span class="nt">Six bars drop, the room swaps behind them, bars lift. Punchy, classic.</span></div>
+</a>
+<a class="card" href="P02-iris.html" data-src="P02-iris.html?embed">
+  <div class="pv"><iframe tabindex="-1" title="" loading="lazy"></iframe></div>
+  <div class="tx"><span class="id">P02</span> <b>Iris from the click</b><br><span class="nt">New room opens as a circle from wherever you clicked (random point when auto-playing).</span></div>
+</a>
+<a class="card" href="P03-tiles.html" data-src="P03-tiles.html?embed">
+  <div class="pv"><iframe tabindex="-1" title="" loading="lazy"></iframe></div>
+  <div class="tx"><span class="id">P03</span> <b>Tile pop</b><br><span class="nt">60 squares pop in at random, swap behind them, pop out. Retro / pixel-y.</span></div>
+</a>
+<a class="card" href="P04-push.html" data-src="P04-push.html?embed">
+  <div class="pv"><iframe tabindex="-1" title="" loading="lazy"></iframe></div>
+  <div class="tx"><span class="id">P04</span> <b>Push + parallax</b><br><span class="nt">New room shoves the old one off sideways; the old one dims and lags behind.</span></div>
+</a>
+<a class="card" href="P05-zoom.html" data-src="P05-zoom.html?embed">
+  <div class="pv"><iframe tabindex="-1" title="" loading="lazy"></iframe></div>
+  <div class="tx"><span class="id">P05</span> <b>Zoom through</b><br><span class="nt">Dive into the old room (toward the click), the new one rushes in from far away.</span></div>
+</a>
+<a class="card" href="P06-crt.html" data-src="P06-crt.html?embed">
+  <div class="pv"><iframe tabindex="-1" title="" loading="lazy"></iframe></div>
+  <div class="tx"><span class="id">P06</span> <b>CRT off / on</b><br><span class="nt">Old room collapses to a line then a dot; new one switches on. Natural fit for the TV room.</span></div>
+</a>
+<a class="card" href="P07-glitch.html" data-src="P07-glitch.html?embed">
+  <div class="pv"><iframe tabindex="-1" title="" loading="lazy"></iframe></div>
+  <div class="tx"><span class="id">P07</span> <b>Glitch tear</b><br><span class="nt">Strips of the new room tear through an RGB-split, jittering old one.</span></div>
+</a>
+<a class="card" href="P08-errors.html" data-src="P08-errors.html?embed">
+  <div class="pv"><iframe tabindex="-1" title="" loading="lazy"></iframe></div>
+  <div class="tx"><span class="id">P08</span> <b>Error-window cascade</b><br><span class="nt">Win95-style error boxes carpet the screen, room swaps behind, boxes get dismissed. Very on-theme.</span></div>
+</a>
+<a class="card" href="P09-buffering.html" data-src="P09-buffering.html?embed">
+  <div class="pv"><iframe tabindex="-1" title="" loading="lazy"></iframe></div>
+  <div class="tx"><span class="id">P09</span> <b>Buffering… 99%</b><br><span class="nt">Old room greys out, spinner counts to 99%, sticks there for a while, hard cut. The delay is the joke.</span></div>
+</a>
+<a class="card" href="P10-diagonal.html" data-src="P10-diagonal.html?embed">
+  <div class="pv"><iframe tabindex="-1" title="" loading="lazy"></iframe></div>
+  <div class="tx"><span class="id">P10</span> <b>Diagonal wipe</b><br><span class="nt">Slanted edge sweeps across, old room drifts the other way. Direction follows next / back.</span></div>
+</a>
+</div>
+<h2>Image / photo transitions (I)</h2>
+<div class="g">
+<a class="card" href="I01-open-from-grid.html" data-src="I01-open-from-grid.html?embed">
+  <div class="pv"><iframe tabindex="-1" title="" loading="lazy"></iframe></div>
+  <div class="tx"><span class="id">I01</span> <b>Open from grid</b><br><span class="nt">Click a thumbnail: it grows to fill the frame, others recede. Click again to go back. (Hand-rolled FLIP.)</span></div>
+</a>
+<a class="card" href="I02-slices.html" data-src="I02-slices.html?embed">
+  <div class="pv"><iframe tabindex="-1" title="" loading="lazy"></iframe></div>
+  <div class="tx"><span class="id">I02</span> <b>Slices</b><br><span class="nt">Next photo arrives as 8 vertical strips sliding in from alternate directions.</span></div>
+</a>
+<a class="card" href="I03-pixelate.html" data-src="I03-pixelate.html?embed">
+  <div class="pv"><iframe tabindex="-1" title="" loading="lazy"></iframe></div>
+  <div class="tx"><span class="id">I03</span> <b>Pixelate</b><br><span class="nt">Photo pixelates down in power-of-two steps, swaps, resolves back up. Canvas, chunky and retro.</span></div>
+</a>
+<a class="card" href="I04-darkroom.html" data-src="I04-darkroom.html?embed">
+  <div class="pv"><iframe tabindex="-1" title="" loading="lazy"></iframe></div>
+  <div class="tx"><span class="id">I04</span> <b>Darkroom develop</b><br><span class="nt">Lights go out, red safelight, the next photo develops up out of blur and grey. Slow on purpose.</span></div>
+</a>
+<a class="card" href="I05-shutter.html" data-src="I05-shutter.html?embed">
+  <div class="pv"><iframe tabindex="-1" title="" loading="lazy"></iframe></div>
+  <div class="tx"><span class="id">I05</span> <b>Shutter + flash</b><br><span class="nt">Shutter blades snap shut, white flash, new photo as the flash fades. Quick, photographic.</span></div>
+</a>
+<a class="card" href="I06-toss.html" data-src="I06-toss.html?embed">
+  <div class="pv"><iframe tabindex="-1" title="" loading="lazy"></iframe></div>
+  <div class="tx"><span class="id">I06</span> <b>Toss the print</b><br><span class="nt">Top print gets flicked off to the side with a spin; next one settles underneath. Photos-on-a-table feel.</span></div>
+</a>
+<a class="card" href="I07-reveal.html" data-src="I07-reveal.html?embed">
+  <div class="pv"><iframe tabindex="-1" title="" loading="lazy"></iframe></div>
+  <div class="tx"><span class="id">I07</span> <b>Mask reveal, counter-scaled</b><br><span class="nt">New photo wipes up through a mask while its content scales down inside it. The &#x27;premium editorial&#x27; one.</span></div>
+</a>
+<a class="card" href="I08-flip.html" data-src="I08-flip.html?embed">
+  <div class="pv"><iframe tabindex="-1" title="" loading="lazy"></iframe></div>
+  <div class="tx"><span class="id">I08</span> <b>Print flip</b><br><span class="nt">Photo turns edge-on (3D), the next one turns up from the other side. Like turning a print over.</span></div>
+</a>
+<a class="card" href="I09-rack-focus.html" data-src="I09-rack-focus.html?embed">
+  <div class="pv"><iframe tabindex="-1" title="" loading="lazy"></iframe></div>
+  <div class="tx"><span class="id">I09</span> <b>Rack focus</b><br><span class="nt">Old photo defocuses while the new one pulls into focus. Gentle, cinematic, almost no motion.</span></div>
+</a>
+</div>
+<script>
+// load previews only while on screen (keeps CPU sane)
+const cs=[...document.querySelectorAll('.card')];
+const fit=()=>cs.forEach(c=>{const p=c.querySelector('.pv'),f=c.querySelector('iframe');f.style.transform='scale('+(p.clientWidth/1280)+')'});
+fit();addEventListener('resize',fit);
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
+  const io=new IntersectionObserver(es=>es.forEach(e=>{
+    const f=e.target.querySelector('iframe'),on=f.getAttribute('src')&&f.getAttribute('src')!=='about:blank';
+    if(e.isIntersecting&&!on)f.src=e.target.dataset.src;
+    else if(!e.isIntersecting&&on)f.src='about:blank';
+  }),{rootMargin:'100px'});
+  cs.forEach(c=>io.observe(c));
+}
+</script>
+</body></html>

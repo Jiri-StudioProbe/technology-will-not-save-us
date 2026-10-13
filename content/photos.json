@@ -1,0 +1,421 @@
+{
+  "_note": "One entry per photo. file:null means 'draw a gradient placeholder from placeholder{a,b}'. Keep ids stable (Photo N). width/height are the intrinsic pixel size.",
+  "photos": [
+    {
+      "id": 1,
+      "file": null,
+      "placeholder": {
+        "a": "#ffd93b",
+        "b": "#15120f"
+      },
+      "width": 1600,
+      "height": 1067,
+      "title": "Untitled (Kiosk, Rebooting)",
+      "place": "Somewhere, UK",
+      "year": 2019,
+      "medium": "Smartphone",
+      "caption": "Smartphone, on a bad day. Gift of the queue behind me.",
+      "alt": "Placeholder: a kiosk showing a reboot screen.",
+      "room": 3
+    },
+    {
+      "id": 2,
+      "file": null,
+      "placeholder": {
+        "a": "#ff5a1f",
+        "b": "#15120f"
+      },
+      "width": 1600,
+      "height": 900,
+      "title": "As Installed",
+      "place": "Somewhere, UK",
+      "year": 2020,
+      "medium": "Smartphone",
+      "caption": "What it actually did.",
+      "alt": "Placeholder: the real-life result.",
+      "room": 4,
+      "advertised": {
+        "file": null,
+        "placeholder": {
+          "a": "#8ff0c4",
+          "b": "#38b6ff"
+        },
+        "width": 1600,
+        "height": 900,
+        "caption": "As advertised, stock photo",
+        "alt": "Placeholder: the stock photo from the advertisement."
+      }
+    },
+    {
+      "id": 3,
+      "file": null,
+      "placeholder": {
+        "a": "#ffd93b",
+        "b": "#ff4f9a"
+      },
+      "width": 1600,
+      "height": 2000,
+      "title": "Smart plug, thinking",
+      "place": "Somewhere, UK",
+      "year": 2021,
+      "medium": "Smartphone",
+      "caption": "Placeholder caption.",
+      "alt": "Placeholder: smart plug, thinking.",
+      "room": 6,
+      "layout": {
+        "rotate": -6,
+        "drift": -12,
+        "left": "6%",
+        "top": "3%",
+        "width": "26vw",
+        "mobileLeft": "3%",
+        "mobileTop": "2%"
+      }
+    },
+    {
+      "id": 4,
+      "file": null,
+      "placeholder": {
+        "a": "#38b6ff",
+        "b": "#15120f"
+      },
+      "width": 1600,
+      "height": 1600,
+      "title": "Cash machine, out of cash",
+      "place": "Somewhere, UK",
+      "year": 2021,
+      "medium": "Smartphone",
+      "caption": "Placeholder caption.",
+      "alt": "Placeholder: cash machine, out of cash.",
+      "room": 6,
+      "layout": {
+        "rotate": 4,
+        "drift": 16,
+        "left": "38%",
+        "top": "0%",
+        "width": "19vw",
+        "mobileLeft": "53%",
+        "mobileTop": "7%"
+      }
+    },
+    {
+      "id": 5,
+      "file": null,
+      "placeholder": {
+        "a": "#ff9acb",
+        "b": "#ff5a1f"
+      },
+      "width": 1600,
+      "height": 1067,
+      "title": "Voice assistant, not understood",
+      "place": "Somewhere, UK",
+      "year": 2021,
+      "medium": "Smartphone",
+      "caption": "Placeholder caption.",
+      "alt": "Placeholder: voice assistant, not understood.",
+      "room": 6,
+      "layout": {
+        "rotate": -3,
+        "drift": -6,
+        "left": "63%",
+        "top": "9%",
+        "width": "28vw",
+        "mobileLeft": "3%",
+        "mobileTop": "22%"
+      }
+    },
+    {
+      "id": 6,
+      "file": null,
+      "placeholder": {
+        "a": "#c9b6ff",
+        "b": "#0f8b8d"
+      },
+      "width": 1600,
+      "height": 1067,
+      "title": "Update, restart required",
+      "place": "Somewhere, UK",
+      "year": 2021,
+      "medium": "Smartphone",
+      "caption": "Placeholder caption.",
+      "alt": "Placeholder: update, restart required.",
+      "room": 6,
+      "layout": {
+        "rotate": 5,
+        "drift": 12,
+        "left": "11%",
+        "top": "37%",
+        "width": "30vw",
+        "mobileLeft": "53%",
+        "mobileTop": "31%"
+      }
+    },
+    {
+      "id": 7,
+      "file": null,
+      "placeholder": {
+        "a": "#ff4f9a",
+        "b": "#ffd93b"
+      },
+      "width": 1600,
+      "height": 2133,
+      "title": "Lift, out of order",
+      "place": "Somewhere, UK",
+      "year": 2021,
+      "medium": "Smartphone",
+      "caption": "Placeholder caption.",
+      "alt": "Placeholder: lift, out of order.",
+      "room": 6,
+      "layout": {
+        "rotate": -8,
+        "drift": -16,
+        "left": "52%",
+        "top": "40%",
+        "width": "18vw",
+        "mobileLeft": "3%",
+        "mobileTop": "47%"
+      }
+    },
+    {
+      "id": 8,
+      "file": null,
+      "placeholder": {
+        "a": "#ff5a1f",
+        "b": "#5b3df5"
+      },
+      "width": 1600,
+      "height": 1600,
+      "title": "Printer, personally offended",
+      "place": "Somewhere, UK",
+      "year": 2021,
+      "medium": "Smartphone",
+      "caption": "Placeholder caption.",
+      "alt": "Placeholder: printer, personally offended.",
+      "room": 6,
+      "layout": {
+        "rotate": 6,
+        "drift": 8,
+        "left": "75%",
+        "top": "52%",
+        "width": "21vw",
+        "mobileLeft": "53%",
+        "mobileTop": "56%"
+      }
+    },
+    {
+      "id": 9,
+      "file": null,
+      "placeholder": {
+        "a": "#8ff0c4",
+        "b": "#2b6cff"
+      },
+      "width": 1600,
+      "height": 2000,
+      "title": "Robot vacuum, stuck on a sock",
+      "place": "Somewhere, UK",
+      "year": 2021,
+      "medium": "Smartphone",
+      "caption": "Placeholder caption.",
+      "alt": "Placeholder: robot vacuum, stuck on a sock.",
+      "room": 6,
+      "layout": {
+        "rotate": -4,
+        "drift": -10,
+        "left": "21%",
+        "top": "68%",
+        "width": "23vw",
+        "mobileLeft": "28%",
+        "mobileTop": "73%"
+      }
+    },
+    {
+      "id": 10,
+      "file": null,
+      "placeholder": {
+        "a": "#ffd93b",
+        "b": "#ff4f9a"
+      },
+      "width": 1600,
+      "height": 1067,
+      "title": "Smart Home No. 4 (Lights, Unresponsive)",
+      "place": "Somewhere, UK",
+      "year": 2021,
+      "medium": "Smartphone",
+      "caption": "LED, hubris.",
+      "alt": "Placeholder: smart home no. 4 (lights, unresponsive).",
+      "room": 7,
+      "layout": {
+        "heightVh": 56,
+        "offsetVh": -7
+      }
+    },
+    {
+      "id": 11,
+      "file": null,
+      "placeholder": {
+        "a": "#38b6ff",
+        "b": "#15120f"
+      },
+      "width": 1600,
+      "height": 2133,
+      "title": "Self-Checkout (Unexpected Item)",
+      "place": "Somewhere, UK",
+      "year": 2018,
+      "medium": "Smartphone",
+      "caption": "Retail, dignity removed.",
+      "alt": "Placeholder: self-checkout (unexpected item).",
+      "room": 7,
+      "layout": {
+        "heightVh": 62,
+        "offsetVh": 6
+      }
+    },
+    {
+      "id": 12,
+      "file": null,
+      "placeholder": {
+        "a": "#ff4f9a",
+        "b": "#ffd93b"
+      },
+      "width": 1600,
+      "height": 1600,
+      "title": "Full Bars, No Internet",
+      "place": "Somewhere, UK",
+      "year": 2020,
+      "medium": "Smartphone",
+      "caption": "Router, optimism.",
+      "alt": "Placeholder: full bars, no internet.",
+      "room": 7,
+      "layout": {
+        "heightVh": 42,
+        "offsetVh": -12
+      }
+    },
+    {
+      "id": 13,
+      "file": null,
+      "placeholder": {
+        "a": "#15120f",
+        "b": "#6a4dff"
+      },
+      "width": 1600,
+      "height": 1000,
+      "title": "Printer, Ongoing Jam",
+      "place": "Somewhere, UK",
+      "year": 2017,
+      "medium": "Smartphone",
+      "caption": "Toner, a long wait.",
+      "alt": "Placeholder: printer, ongoing jam.",
+      "room": 7,
+      "layout": {
+        "heightVh": 54,
+        "offsetVh": 4
+      }
+    },
+    {
+      "id": 14,
+      "file": null,
+      "placeholder": {
+        "a": "#c9b6ff",
+        "b": "#0f8b8d"
+      },
+      "width": 1600,
+      "height": 2000,
+      "title": "Update (1 of 1,204)",
+      "place": "Somewhere, UK",
+      "year": 2022,
+      "medium": "Smartphone",
+      "caption": "Laptop, three hours later.",
+      "alt": "Placeholder: update (1 of 1,204).",
+      "room": 7,
+      "layout": {
+        "heightVh": 64,
+        "offsetVh": -6
+      }
+    },
+    {
+      "id": 15,
+      "file": null,
+      "placeholder": {
+        "a": "#ff9acb",
+        "b": "#ff5a1f"
+      },
+      "width": 1600,
+      "height": 1067,
+      "title": "Fridge, Online",
+      "place": "Somewhere, UK",
+      "year": 2023,
+      "medium": "Smartphone",
+      "caption": "Appliance, cold comfort.",
+      "alt": "Placeholder: fridge, online.",
+      "room": 7,
+      "layout": {
+        "heightVh": 40,
+        "offsetVh": 8
+      }
+    },
+    {
+      "id": 16,
+      "file": null,
+      "placeholder": {
+        "a": "#ffd93b",
+        "b": "#ff4f9a"
+      },
+      "width": 1600,
+      "height": 1200,
+      "title": "Home shopping",
+      "place": "Somewhere, UK",
+      "year": 2019,
+      "medium": "Smartphone",
+      "caption": "Placeholder caption.",
+      "alt": "Placeholder: home shopping on a television.",
+      "room": 9,
+      "layout": {
+        "channel": 2,
+        "label": "Home shopping"
+      }
+    },
+    {
+      "id": 17,
+      "file": null,
+      "placeholder": {
+        "a": "#38b6ff",
+        "b": "#15120f"
+      },
+      "width": 1600,
+      "height": 1200,
+      "title": "Weather (unavailable)",
+      "place": "Somewhere, UK",
+      "year": 2019,
+      "medium": "Smartphone",
+      "caption": "Placeholder caption.",
+      "alt": "Placeholder: weather (unavailable) on a television.",
+      "room": 9,
+      "layout": {
+        "channel": 3,
+        "label": "Weather (unavailable)"
+      }
+    },
+    {
+      "id": 18,
+      "file": null,
+      "placeholder": {
+        "a": "#ff5a1f",
+        "b": "#5b3df5"
+      },
+      "width": 1600,
+      "height": 1200,
+      "title": "The Wi-Fi channel",
+      "place": "Somewhere, UK",
+      "year": 2019,
+      "medium": "Smartphone",
+      "caption": "Placeholder caption.",
+      "alt": "Placeholder: the wi-fi channel on a television.",
+      "room": 9,
+      "layout": {
+        "channel": 4,
+        "label": "The Wi-Fi channel"
+      }
+    }
+  ]
+}

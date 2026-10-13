@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P01 Curtain bars</title>
+<link rel="stylesheet" href="v.css">
+</head><body>
+<a id="back" href="index.html">← all</a>
+<div id="frame"></div>
+<div id="hud"></div>
+<script src="vendor/gsap.min.js"></script>
+<script src="v.js"></script>
+<script>
+V.init({id:"P01",title:"Curtain bars",kind:"pg",hold:true,
+run(c){
+  const N=6,col=['#111','#FF5A1F'];
+  const b=c.mk(N,i=>`left:${i*100/N}%;top:0;width:${100/N+.3}%;height:100%;background:${col[i%2]}`);
+  const st=c.dir>0?{each:.07}:{each:.07,from:'end'};
+  return gsap.timeline()
+   .fromTo(b,{scaleY:0,transformOrigin:'50% 0%'},{scaleY:1,duration:.5,ease:'power3.inOut',stagger:st})
+   .add(c.swap)
+   .set(b,{transformOrigin:'50% 100%'})
+   .to(b,{scaleY:0,duration:.5,ease:'power3.inOut',stagger:st});
+}
+});
+</script>
+</body></html>

@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P03 Tile pop</title>
+<link rel="stylesheet" href="v.css">
+</head><body>
+<a id="back" href="index.html">← all</a>
+<div id="frame"></div>
+<div id="hud"></div>
+<script src="vendor/gsap.min.js"></script>
+<script src="v.js"></script>
+<script>
+V.init({id:"P03",title:"Tile pop",kind:"pg",hold:true,
+run(c){
+  const cols=10,rows=6;
+  const t=c.mk(cols*rows,i=>`left:${(i%cols)*100/cols}%;top:${Math.floor(i/cols)*100/rows}%;width:${100/cols+.3}%;height:${100/rows+.3}%;background:#111`);
+  const st={each:.012,from:'random'};
+  return gsap.timeline()
+   .fromTo(t,{scale:0},{scale:1,duration:.3,ease:'back.out(2)',stagger:st})
+   .add(c.swap)
+   .to(t,{scale:0,duration:.3,ease:'power2.in',stagger:st});
+}
+});
+</script>
+</body></html>

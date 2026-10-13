@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Technology will not save us</title>
+<meta name="description" content="A photo exhibition of machines, mid-failure.">
+<meta name="theme-color" content="#FFD93B">
+
+<!-- Link previews. The absolute URLs below need updating when the custom domain arrives. -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Technology will not save us">
+<meta property="og:description" content="A photo exhibition of machines, mid-failure.">
+<meta property="og:url" content="https://jiri-studioprobe.github.io/technology-will-not-save-us/">
+<meta property="og:image" content="https://jiri-studioprobe.github.io/technology-will-not-save-us/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preload" href="fonts/bricolage-grotesque-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/vt323-regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/main.css">
+
+<script defer src="vendor/gsap.min.js"></script>
+<script defer src="vendor/ScrollTrigger.min.js"></script>
+<script defer src="vendor/Draggable.min.js"></script>
+<script type="module" src="js/main.js"></script>
+</head>
+<body>
+
+<noscript><div class="nojs"><p>This exhibition needs JavaScript, which is ironic.<br>Please enable it and try again.</p></div></noscript>
+
+<!-- ============ OVERLAY A: top bar (room label, battery) + low-battery toast ============ -->
+<div class="chrome" aria-hidden="true">
+  <span id="roomName">Room 1 of 11: The Entrance</span>
+  <span class="batt" id="batt"><i></i><b id="battPct" style="font-weight:400">100%</b></span>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<!-- ============ OVERLAY B: loading dialog (fake Windows-style error) ============ -->
+<div id="boot" role="dialog" aria-modal="true" aria-label="Loading">
+  <div class="boot-win">
+    <div class="boot-title"><span id="bootTitle">Technology will not save us.exe</span><span class="boot-x" aria-hidden="true">x</span></div>
+    <div class="boot-body">
+      <div id="bootLoad">
+        <p id="bootMsg">Loading exhibition…</p>
+        <div class="bar"><i id="bootBar"></i></div>
+        <p id="bootPct">0%</p>
+      </div>
+      <div id="bootErr" hidden>
+        <div class="err-row">
+          <div class="err-ico" aria-hidden="true">x</div>
+          <p>The exhibition has stopped responding.<br>Would you like to continue anyway?</p>
+        </div>
+        <div class="btnrow">
+          <button class="w95 boot-btn">Continue anyway</button>
+          <button class="w95 boot-btn">Continue anyway</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main id="main">
+
+<!-- ============ ROOM 01: The Entrance (autocorrecting title) ============ -->
+<div class="room" id="room-01" data-n="01" data-room="The Entrance" data-bg="#FFD93B" data-fg="#15120f">
+  <section class="hero">
+    <h1 id="title" aria-label="Technology will not save us."><span class="wd">Technology</span> <span class="wd">will</span> <span class="wd not">not</span> <span class="wd">save</span> <span class="wd">us.</span></h1>
+    <p class="hero-sub">A photo exhibition of machines, mid-failure.</p>
+    <p class="hero-hours">Opening hours: whenever the Wi-Fi allows.</p>
+    <p class="hero-cue">Scroll (if your mouse still works)</p>
+  </section>
+</div>
+
+<!-- ============ ROOM 02: Artist's statement (words light up) ============ -->
+<div class="room" id="room-02" data-n="02" data-room="Artist's statement" data-bg="#C9B6FF" data-fg="#15120f">
+  <section class="statement">
+    <p id="statementText">For years I have been photographing technology at its least dignified. The self-checkout that wants a word with you. The kiosk that rebooted in front of a queue. The smart thing that was, briefly, not. I never meant to collect them. They just kept happening. This is a small, free exhibition of those moments. No venue, no curator, no tickets. Just a link, which, with luck, still works.</p>
+    <p class="note">[Placeholder text. Your real reason goes here.]</p>
+  </section>
+</div>
+
+<!-- ============ ROOM 03: The big one (photo grows to full bleed). Photo 1 ============ -->
+<div class="room" id="room-03" data-n="03" data-room="The big one" data-bg="#FF5A1F" data-fg="#15120f">
+  <section class="zoom" id="zoom">
+    <p class="zoom-hint display" id="zoomHint" aria-hidden="true">Enhance.</p>
+    <div class="zoom-img ph" id="zoomImg"></div>
+    <aside class="label zoom-label" id="zoomLabel"></aside>
+  </section>
+</div>
+
+<!-- ============ ROOM 04: Promise and delivery (before/after slider). Photo 2 ============ -->
+<div class="room" id="room-04" data-n="04" data-room="Promise and delivery" data-bg="#5B3DF5" data-fg="#ffffff">
+  <section class="pair">
+    <div class="pair-head">
+      <h2 class="display">Expectation, then reality.</h2>
+      <p class="pair-sub">Drag the handle. It does what it says. Mostly.</p>
+    </div>
+    <div class="cmp" id="cmp" tabindex="0" role="slider" aria-label="Compare as advertised with as installed" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+      <div class="cmp-layer cmp-after ph" id="cmpAfter"></div>
+      <svg class="cmp-crack" viewBox="0 0 100 56" preserveAspectRatio="none" aria-hidden="true">
+        <g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" opacity=".85">
+          <path d="M82 0 L77 9 L81 16 L72 25 L76 32 L66 41 L70 56" stroke-width=".45"/>
+          <path d="M77 9 L68 11 L63 8" stroke-width=".3"/>
+          <path d="M72 25 L63 24 L58 28" stroke-width=".3"/>
+          <path d="M76 32 L86 34 L92 31" stroke-width=".3"/>
+          <path d="M81 16 L90 14 L96 18" stroke-width=".25"/>
+        </g>
+      </svg>
+      <div class="cmp-layer cmp-before ph" id="cmpBefore"></div>
+      <div class="cmp-handle"></div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ ROOM 05: A reminder (quote card, words slam in). Quote q1 ============ -->
+<div class="room" id="room-05" data-n="05" data-room="A reminder" data-bg="#8FF0C4" data-fg="#15120f">
+  <section class="quote" id="q1">
+    <blockquote class="qtext" id="q1t"></blockquote>
+    <p class="qby"></p>
+  </section>
+</div>
+
+<!-- ============ ROOM 06: Do not touch (draggable collage). Photos 3 to 9 ============ -->
+<div class="room" id="room-06" data-n="06" data-room="Do not touch" data-bg="#8EC9FF" data-fg="#15120f">
+  <section class="collage" id="collage">
+    <div class="sign" id="sign"><span id="signText">Please do not touch the exhibits.</span><small id="signSmall">Thank you for your cooperation.</small></div>
+    <div class="cl-field" id="clField"></div>
+  </section>
+</div>
+
+<!-- ============ ROOM 07: The corridor (horizontal walk). Photos 10 to 15 ============ -->
+<div class="room" id="room-07" data-n="07" data-room="The corridor" data-bg="#FF9ACB" data-fg="#15120f">
+  <section class="corridor" id="corridor">
+    <div class="track" id="track">
+      <div class="c-intro">
+        <h2 class="display">The corridor.</h2>
+        <p>Keep walking. They are all like this.</p>
+      </div>
+      <div class="c-end">That is all of them currently loaded.</div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ ROOM 08: Please wait (quote card, buffering). Quote q2 ============ -->
+<div class="room" id="room-08" data-n="08" data-room="Please wait" data-bg="#FFFFFF" data-fg="#15120f">
+  <section class="quote" id="q2">
+    <blockquote class="qtext long" id="q2t"></blockquote>
+    <p class="qby"></p>
+  </section>
+</div>
+
+<!-- ============ ROOM 09: Channel surfing (CRT with static). Photos 16 to 18 ============ -->
+<div class="room" id="room-09" data-n="09" data-room="Channel surfing" data-bg="#05140A" data-fg="#38FF7A">
+  <section class="crt" id="crt">
+    <div class="tv">
+      <div class="screen" id="screen">
+        <div class="ch bars on" data-n="CH 01" data-l="Test card"></div>
+        <div class="ch nosig" data-n="CH 05" data-l="No signal"><div><p>NO SIGNAL</p><p>Check the cable. Or accept it.</p></div></div>
+        <canvas class="noise" id="noise" width="160" height="120" aria-hidden="true"></canvas>
+        <div class="osd" id="osd" aria-hidden="true"><div id="osdCh">CH 01</div><div id="osdLbl">Test card</div></div>
+        <div class="scan"></div>
+      </div>
+      <div class="panel" aria-hidden="true"><i class="led"></i><span>Mark IV</span><span class="grow"></span><i class="knob"></i><i class="knob"></i></div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ ROOM 10: Security check (fake CAPTCHA) ============ -->
+<div class="room" id="room-10" data-n="10" data-room="Security check" data-bg="#B8C0CC" data-fg="#15120f">
+  <section class="captcha">
+    <div>
+      <h2 class="display">Before you leave.</h2>
+      <p class="captcha-sub">We need to confirm that you are not a robot. Robots are not the problem here, but we have to ask.</p>
+    </div>
+    <div class="cap-card">
+      <div class="cap-head"><small>Select all images with</small><strong>technology that works</strong><em>If there are none, click Verify</em></div>
+      <div class="cap-grid" id="capGrid"></div>
+      <div class="cap-foot"><div id="capMsg" role="status" aria-live="polite">Attempt 1</div><button class="cap-go" id="capGo">Verify</button></div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ ROOM 11: Exit (blue screen of death) ============ -->
+<div class="room" id="room-11" data-n="11" data-room="Exit" data-bg="#0F6FD6" data-fg="#ffffff">
+  <section class="bsod" id="bsod">
+    <div class="face" aria-hidden="true">:(</div>
+    <p class="msg">Your exhibition ran into a problem and needs to restart. We are just collecting some error info, and then we will restart for you.</p>
+    <p class="pct"><span id="bsPct">0</span>% complete</p>
+    <div class="info">
+      <canvas id="qr" width="25" height="25" aria-hidden="true"></canvas>
+      <div>
+        <p>For more information about this issue and possible fixes, visit your-domain.example/technology</p>
+        <p>If you call a support person, give them this info:<br>Stop code: TECHNOLOGY_WILL_NOT_SAVE_US</p>
+      </div>
+    </div>
+    <p class="shop">Exit through the gift shop. (Zine: coming soon. It will be printed on paper, which is also technology.)</p>
+    <button class="restart" id="restart">Restart exhibition</button>
+  </section>
+</div>
+
+</main>
+
+<!-- ============ OVERLAY C: cookie banner ============ -->
+<div class="cookie" id="cookie" role="dialog" aria-label="Cookies">
+  <p>This exhibition uses cookies. We are not sure why.</p>
+  <div class="row"><button class="yes" id="cookieYes">Accept</button><button id="cookieNo">Reject</button></div>
+</div>
+
+</body>
+</html>

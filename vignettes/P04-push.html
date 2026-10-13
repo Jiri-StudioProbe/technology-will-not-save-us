@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P04 Push + parallax</title>
+<link rel="stylesheet" href="v.css">
+</head><body>
+<a id="back" href="index.html">← all</a>
+<div id="frame"></div>
+<div id="hud"></div>
+<script src="vendor/gsap.min.js"></script>
+<script src="v.js"></script>
+<script>
+V.init({id:"P04",title:"Push + parallax",kind:"pg",
+run(c){
+  const d=c.dir;
+  return gsap.timeline({defaults:{duration:.9,ease:'power3.inOut'}})
+   .fromTo(c.to,{xPercent:100*d},{xPercent:0})
+   .to(c.from,{xPercent:-35*d,filter:'brightness(.55)'},0);
+}
+});
+</script>
+</body></html>

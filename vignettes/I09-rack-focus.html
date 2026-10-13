@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>I09 Rack focus</title>
+<link rel="stylesheet" href="v.css">
+</head><body>
+<a id="back" href="index.html">← all</a>
+<div id="frame"></div>
+<div id="hud"></div>
+<script src="vendor/gsap.min.js"></script>
+<script src="v.js"></script>
+<script>
+V.init({id:"I09",title:"Rack focus",kind:"img",
+run(c){
+  return gsap.timeline()
+   .to(c.from,{filter:'blur(24px)',scale:1.06,duration:.8,ease:'power2.in'})
+   .fromTo(c.to,{autoAlpha:0,filter:'blur(24px)',scale:1.06},{autoAlpha:1,filter:'blur(0px)',scale:1,duration:.9,ease:'power2.out'},.45);
+}
+});
+</script>
+</body></html>

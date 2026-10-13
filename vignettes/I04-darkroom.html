@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>I04 Darkroom develop</title>
+<link rel="stylesheet" href="v.css">
+</head><body>
+<a id="back" href="index.html">← all</a>
+<div id="frame"></div>
+<div id="hud"></div>
+<script src="vendor/gsap.min.js"></script>
+<script src="v.js"></script>
+<script>
+V.init({id:"I04",title:"Darkroom develop",kind:"img",
+run(c){
+  const ov=document.createElement('div');ov.className='safe';ov.textContent='developing…';c.add(ov);
+  return gsap.timeline()
+   .to(c.from,{filter:'brightness(0)',duration:.5})
+   .fromTo(ov,{opacity:0},{opacity:1,duration:.3},.2)
+   .fromTo(c.to,{opacity:0,filter:'blur(30px) contrast(.25) grayscale(1) brightness(1.7)'},{opacity:1,filter:'blur(0px) contrast(1) grayscale(0) brightness(1)',duration:2.4,ease:'power2.inOut'},.7)
+   .to(ov,{opacity:0,duration:.9},'-=1');
+}
+});
+</script>
+</body></html>

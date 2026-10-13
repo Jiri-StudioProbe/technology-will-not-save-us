@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>I02 Slices</title>
+<link rel="stylesheet" href="v.css">
+</head><body>
+<a id="back" href="index.html">← all</a>
+<div id="frame"></div>
+<div id="hud"></div>
+<script src="vendor/gsap.min.js"></script>
+<script src="v.js"></script>
+<script>
+V.init({id:"I02",title:"Slices",kind:"img",hold:true,
+run(c){
+  const N=8,cl=[];
+  for(let i=0;i<N;i++){const e=c.to.cloneNode(true);e.style.visibility='visible';e.style.zIndex=3;
+    e.style.clipPath=`inset(0 ${100-(i+1)*100/N}% 0 ${i*100/N}%)`;c.add(e);cl.push(e)}
+  return gsap.timeline()
+   .fromTo(cl,{yPercent:i=>i%2?-100:100},{yPercent:0,duration:.8,ease:'power3.inOut',stagger:.06})
+   .add(c.swap);
+}
+});
+</script>
+</body></html>

@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P06 CRT off / on</title>
+<link rel="stylesheet" href="v.css">
+</head><body>
+<a id="back" href="index.html">← all</a>
+<div id="frame"></div>
+<div id="hud"></div>
+<script src="vendor/gsap.min.js"></script>
+<script src="v.js"></script>
+<script>
+V.init({id:"P06",title:"CRT off / on",kind:"pg",hold:true,
+run(c){
+  return gsap.timeline()
+   .to(c.from,{scaleY:.006,filter:'brightness(4)',duration:.28,ease:'power4.in'})
+   .to(c.from,{scaleX:0,duration:.18,ease:'power2.in'})
+   .add(c.swap)
+   .set(c.to,{scaleX:0,scaleY:.006,filter:'brightness(4)'})
+   .to(c.to,{scaleX:1,duration:.2,ease:'power2.out'})
+   .to(c.to,{scaleY:1,filter:'brightness(1)',duration:.35,ease:'power3.out'});
+}
+});
+</script>
+</body></html>

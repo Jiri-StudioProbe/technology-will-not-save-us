@@ -1,0 +1,33 @@
+{
+  "_note": "Never invent or paraphrase a quote. 'buffer' is the final word(s) that get the buffering joke. 'arrived' is the one-line deadpan caption (not shown if empty).",
+  "quotes": [
+    {
+      "id": "q1",
+      "room": 5,
+      "status": "placeholder - verify before going live",
+      "text": "Technology is neither good nor bad; nor is it neutral.",
+      "person": "Melvin Kranzberg",
+      "role": "Historian of technology",
+      "year": 1986,
+      "source": "Presidential address, Society for the History of Technology, published in Technology and Culture",
+      "url": "",
+      "notes": "Kranzberg's first law. Placeholder: confirm exact wording and source before publishing.",
+      "arrived": "",
+      "buffer": ""
+    },
+    {
+      "id": "q2",
+      "room": 8,
+      "status": "placeholder - verify before going live",
+      "text": "We are stuck with technology when what we really want is just stuff that works.",
+      "person": "Douglas Adams",
+      "role": "Author",
+      "year": 1999,
+      "source": "Unverified. Possibly the Sunday Times column 'How to Stop Worrying and Learn to Love the Internet'.",
+      "url": "",
+      "notes": "Placeholder. Wording and source must be checked against the original before publishing.",
+      "arrived": "",
+      "buffer": "works."
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>I03 Pixelate</title>
+<link rel="stylesheet" href="v.css">
+</head><body>
+<a id="back" href="index.html">← all</a>
+<div id="frame"></div>
+<div id="hud"></div>
+<script src="vendor/gsap.min.js"></script>
+<script src="v.js"></script>
+<script>
+V.init({id:"I03",title:"Pixelate",kind:"img",
+custom(frame,{reduce}){
+  const D=reduce?0:1,W=640,H=400,pal=['#FFD93B','#C9B6FF','#8FF0C4'],L=['A','B','C'];
+  const cv=document.createElement('canvas');cv.width=W;cv.height=H;cv.style.cssText='width:100%;height:100%;display:block';frame.appendChild(cv);
+  const x=cv.getContext('2d'),tmp=document.createElement('canvas'),tx=tmp.getContext('2d');
+  const sc=pal.map((p,i)=>{const o=document.createElement('canvas');o.width=W;o.height=H;const g=o.getContext('2d');
+    g.fillStyle=p;g.fillRect(0,0,W,H);g.fillStyle='#111';g.font='800 300px system-ui';g.fillText(L[i],20,330);
+    g.lineWidth=4;g.strokeStyle='#111';g.strokeRect(220,50,340,300);g.beginPath();g.moveTo(220,50);g.lineTo(560,350);g.moveTo(560,50);g.lineTo(220,350);g.stroke();return o});
+  const draw=(s,px)=>{const w=Math.max(1,Math.round(W/px)),h=Math.max(1,Math.round(H/px));tmp.width=w;tmp.height=h;tx.drawImage(s,0,0,w,h);
+    x.imageSmoothingEnabled=false;x.clearRect(0,0,W,H);x.drawImage(tmp,0,0,w,h,0,0,W,H)};
+  let cur=0;draw(sc[0],1);
+  return (dir)=>{
+    const nx=(cur+dir+3)%3,st={l:0};
+    return gsap.timeline()
+     .to(st,{l:6,duration:.7*D,ease:'none',snap:{l:1},onUpdate:()=>draw(sc[cur],2**st.l)})
+     .add(()=>{cur=nx})
+     .to(st,{l:0,duration:.7*D,ease:'none',snap:{l:1},onUpdate:()=>draw(sc[cur],2**st.l)});
+  };
+}
+});
+</script>
+</body></html>

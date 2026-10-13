@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>I05 Shutter + flash</title>
+<link rel="stylesheet" href="v.css">
+</head><body>
+<a id="back" href="index.html">← all</a>
+<div id="frame"></div>
+<div id="hud"></div>
+<script src="vendor/gsap.min.js"></script>
+<script src="v.js"></script>
+<script>
+V.init({id:"I05",title:"Shutter + flash",kind:"img",hold:true,
+run(c){
+  const top=c.add(Object.assign(document.createElement('div'),{className:'blade'}));
+  const bot=c.add(Object.assign(document.createElement('div'),{className:'blade'}));
+  top.style.top=0;bot.style.bottom=0;
+  const fl=c.add(Object.assign(document.createElement('div'),{className:'flash'}));
+  return gsap.timeline()
+   .fromTo(top,{yPercent:-100},{yPercent:0,duration:.2,ease:'power3.in'})
+   .fromTo(bot,{yPercent:100},{yPercent:0,duration:.2,ease:'power3.in'},0)
+   .to(fl,{opacity:1,duration:.04})
+   .add(c.swap)
+   .set([top,bot],{autoAlpha:0})
+   .to(fl,{opacity:0,duration:.8,ease:'power2.out'});
+}
+});
+</script>
+</body></html>

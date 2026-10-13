@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>I01 Open from grid</title>
+<link rel="stylesheet" href="v.css">
+</head><body>
+<a id="back" href="index.html">← all</a>
+<div id="frame"></div>
+<div id="hud"></div>
+<script src="vendor/gsap.min.js"></script>
+<script src="v.js"></script>
+<script>
+V.init({id:"I01",title:"Open from grid",kind:"img",
+custom(frame,{reduce}){
+  const D=reduce?0:1,cls=['c0','c1','c2','c1','c2','c0'],lab=['A','B','C','B','C','A'];
+  const g=document.createElement('div');g.style.cssText='position:absolute;inset:0;display:grid;grid-template:repeat(2,1fr)/repeat(3,1fr);gap:10px;padding:10px';
+  frame.appendChild(g);
+  const th=cls.map((c,i)=>{const d=document.createElement('div');d.className='th '+c;d.innerHTML=`<div class="ph" data-cap="Photo ${lab[i]}${i+1}"></div>`;g.appendChild(d);return d});
+  let open=null,clone=null,n=0;
+  const rel=e=>{const a=e.getBoundingClientRect(),b=frame.getBoundingClientRect();return{left:a.left-b.left,top:a.top-b.top,width:a.width,height:a.height}};
+  return (dir,pt)=>{
+    if(open){
+      const r=rel(open),o=open,cl=clone;open=null;clone=null;
+      return gsap.timeline()
+       .to(cl,{...r,duration:.7*D,ease:'power3.inOut'})
+       .to(th.filter(t=>t!==o),{opacity:1,scale:1,duration:.4*D},0.2*D)
+       .add(()=>{o.style.visibility='';cl.remove()});
+    }
+    let t=pt&&pt.cx!=null?document.elementFromPoint(pt.cx,pt.cy):null;t=t&&t.closest&&t.closest('.th');
+    if(!t)t=th[(n++*2+1)%th.length];
+    const r=rel(t);open=t;
+    clone=t.cloneNode(true);clone.style.cssText=`position:absolute;z-index:5;left:${r.left}px;top:${r.top}px;width:${r.width}px;height:${r.height}px`;
+    frame.appendChild(clone);t.style.visibility='hidden';
+    return gsap.timeline()
+     .to(th.filter(x=>x!==t),{opacity:.15,scale:.94,duration:.4*D})
+     .to(clone,{left:0,top:0,width:frame.clientWidth,height:frame.clientHeight,duration:.7*D,ease:'power3.inOut'},0);
+  };
+}
+});
+</script>
+</body></html>

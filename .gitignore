@@ -1,0 +1,4 @@
+# Local-only: the working brief (contains personal context) and its source files
+Brief/
+CLAUDE.md
+.DS_Store

@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>I07 Mask reveal, counter-scaled</title>
+<link rel="stylesheet" href="v.css">
+</head><body>
+<a id="back" href="index.html">← all</a>
+<div id="frame"></div>
+<div id="hud"></div>
+<script src="vendor/gsap.min.js"></script>
+<script src="v.js"></script>
+<script>
+V.init({id:"I07",title:"Mask reveal, counter-scaled",kind:"img",
+run(c){
+  const a=c.to.querySelector('.in'),b=c.from.querySelector('.in');
+  return gsap.timeline({defaults:{duration:1,ease:'power3.inOut'}})
+   .fromTo(c.to,{clipPath:'inset(100% 0% 0% 0%)'},{clipPath:'inset(0% 0% 0% 0%)'})
+   .fromTo(a,{scale:1.5,yPercent:20},{scale:1,yPercent:0},0)
+   .to(b,{yPercent:-25,scale:1.1},0);
+}
+});
+</script>
+</body></html>

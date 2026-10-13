@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P09 Buffering… 99%</title>
+<link rel="stylesheet" href="v.css">
+</head><body>
+<a id="back" href="index.html">← all</a>
+<div id="frame"></div>
+<div id="hud"></div>
+<script src="vendor/gsap.min.js"></script>
+<script src="v.js"></script>
+<script>
+V.init({id:"P09",title:"Buffering… 99%",kind:"pg",hold:true,
+run(c){
+  const o=document.createElement('div');o.className='buf';o.innerHTML='<i></i><span>Buffering… 0%</span>';c.add(o);
+  const t=o.querySelector('span'),st={p:0};
+  return gsap.timeline()
+   .fromTo(o,{autoAlpha:0},{autoAlpha:1,duration:.2})
+   .to(c.from,{filter:'grayscale(1) brightness(.6)',duration:.3},0)
+   .to(st,{p:99,duration:1.1,ease:'power2.out',onUpdate:()=>t.textContent='Buffering… '+Math.round(st.p)+'%'})
+   .add(()=>t.textContent='Buffering… 99% (usually takes longer)','+=.5')
+   .to({}, {duration:.9})
+   .add(c.swap)
+   .to(o,{autoAlpha:0,duration:.15});
+}
+});
+</script>
+</body></html>

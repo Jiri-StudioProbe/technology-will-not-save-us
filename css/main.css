@@ -5,8 +5,8 @@
 @font-face{font-family:"Instrument Serif";src:url(../fonts/instrument-serif-regular.woff2) format("woff2");font-weight:400;font-style:normal;font-display:swap}
 @font-face{font-family:"Instrument Serif";src:url(../fonts/instrument-serif-italic.woff2) format("woff2");font-weight:400;font-style:italic;font-display:swap}
 @font-face{font-family:"VT323";src:url(../fonts/vt323-regular.woff2) format("woff2");font-weight:400;font-style:normal;font-display:swap}
-/* Retro's "system" font: the visitor's own Courier New, scaled down because VT323 is a much smaller face at the same size. */
-@font-face{font-family:"Retro Mono";src:local("Courier New"),local("CourierNewPSMT"),local("Liberation Mono"),local("Cousine");size-adjust:80%}
+/* Retro's "system" font: the visitor's own Courier New Bold (regular is too thin at small sizes), scaled down because VT323 is a much smaller face at the same size. */
+@font-face{font-family:"Retro Mono";src:local("Courier New Bold"),local("CourierNewPS-BoldMT"),local("Liberation Mono Bold"),local("LiberationMono-Bold"),local("Cousine Bold");font-weight:400 700;size-adjust:80%}
 
 :root{
   --ink:#15120f;
@@ -55,15 +55,8 @@ html.locked .chrome{opacity:0}
 #roomName{white-space:nowrap}
 @media (max-width:560px){
   #roomName .rn{display:none}
-  .look .pre{display:none}
-  .chrome{gap:.5rem}
-  .chrome-r{gap:.5rem}
-  .sound,.look{padding:.15rem .35rem;font-size:1.05rem}
+  .look,.sound{display:none} /* no room for them on a phone for the time being: to be solved */
 }
-@media (max-width:380px){#battPct{display:none}}
-@media (max-width:340px){#roomName{display:none}.chrome{justify-content:flex-end}}
-@media (max-width:430px){[data-theme="retro"] #battPct{display:none}} /* Courier New is wider than VT323 */
-@media (max-width:380px){[data-theme="retro"] #roomName{display:none}[data-theme="retro"] .chrome{justify-content:flex-end}}
 .sound,.look{pointer-events:auto;background:none;border:2px solid currentColor;border-radius:.25rem;padding:.2rem .5rem;font:1.15rem/1 var(--sys);color:inherit}
 .batt{display:inline-flex;align-items:center;gap:.5rem;flex:none}
 .batt i{position:relative;display:block;width:2.3rem;height:1rem;border:2px solid currentColor;border-radius:3px}
@@ -228,7 +221,7 @@ html.locked .chrome{opacity:0}
    The alternative to the colourful default. Beige PC case, MS-DOS, Norton Commander, Windows 3.1 / 95.
    Switched by html[data-theme="retro"] (see js/theme.js). Wall colours per room live in data-bg-retro / data-fg-retro.
    Palette: case beige #DDD5BE, Windows silver #C0C0C0, desktop teal #008080, Commander blue #0000AA and cyan #00AAAA, DOS black.
-   Type: Times New Roman for display and headings, Arial for body text, wall labels and dialog widgets, Courier New for anything pretending to be a system. */
+   Type: Times New Roman (regular) for display and headings, Arial for body text, wall labels and dialog widgets, Courier New Bold for anything pretending to be a system. */
 :root[data-theme="retro"]{
   --ink:#000;
   --accent:#FFFF55;
@@ -242,7 +235,7 @@ html.locked .chrome{opacity:0}
   --bevel:#fff #404040 #404040 #fff;
 }
 [data-theme="retro"] body{background:#DDD5BE}
-[data-theme="retro"] :is(.display,#title,.qtext,.sign){font-weight:700;font-stretch:100%}
+[data-theme="retro"] :is(.display,#title,.qtext,.sign){font-weight:400;font-stretch:100%}
 [data-theme="retro"] :is(.display,#title,.qtext){letter-spacing:-.025em;line-height:.95}
 [data-theme="retro"] .sign{letter-spacing:0}
 

@@ -26,7 +26,7 @@ Add `#skip` to bypass the loading dialog. Add `#retro` or `#colour` to pick the 
 
 | Overlay | What |
 |---|---|
-| A | Top bar: room name, the look toggle (colour / retro), the sound toggle and a battery that drains as you scroll, plus the low-battery toast. On narrow screens the room name and "Look:" prefix drop away |
+| A | Top bar: room name, the look toggle (colour / retro), the sound toggle and a battery that drains as you scroll, plus the low-battery toast. At 560px and below the text after "Room N of M" and both buttons are hidden for now (to be solved) |
 | B | Loading dialog: sticks at 99%, then "stopped responding". Two identical "Continue anyway" buttons (the click is the gesture that lets the song start) |
 | C | Cookie banner: assumes consent if you keep scrolling. The Reject button runs away from a mouse |
 

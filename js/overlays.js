@@ -56,7 +56,7 @@ export function initChrome({ onRoom }) {
 }
 
 /* ============ OVERLAY B: loading dialog ============ */
-export function initBoot({ onStart, onDone, onSound }) {
+export function initBoot({ onStart, onDone, onGesture }) {
   const boot = $('#boot'), win = $('.boot-win'), bootLoad = $('#bootLoad'), bootErr = $('#bootErr'), main = $('#main'), chrome = $('.chrome');
   const bar = $('#bootBar'), pctEl = $('#bootPct'), msg = $('#bootMsg'), title = $('#bootTitle');
   let tl;
@@ -88,8 +88,8 @@ export function initBoot({ onStart, onDone, onSound }) {
 
   function hide() { boot.style.visibility = 'hidden'; lock(false); }
 
-  function dismiss(e) {
-    onSound(e.currentTarget.dataset.sound === 'on'); /* sync: audio needs the click gesture */
+  function dismiss() {
+    onGesture(); /* sync: audio can only start inside the click */
     if (tl) tl.kill();
     const done = () => { hide(); onDone(); };
     if (reduce) { done(); return; }

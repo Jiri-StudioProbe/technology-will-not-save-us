@@ -30,7 +30,7 @@ async function start() {
   let chrome;
   const boot = initBoot({
     onStart: heroPrep,
-    onSound: sound.set,
+    onGesture: sound.start,
     onDone() { ScrollTrigger.refresh(); heroIntro(); cookie.later(); goToHashRoom(); }
   });
 
@@ -39,7 +39,7 @@ async function start() {
   chrome = initChrome({ onRoom: i => { if (i >= 2) cookie.assume(); } });
 
   document.fonts && document.fonts.ready.then(() => ScrollTrigger.refresh());
-  if (location.hash.includes('skip')) boot.skip();
+  if (location.hash.includes('skip')) { boot.skip(); sound.start(); }
   else { scrollTo(0, 0); boot.run(); }
 }
 

@@ -127,19 +127,30 @@ export function initCookie() {
     gsap.to(cookie, { yPercent: 160, autoAlpha: 0, duration: reduce ? 0 : .4, ease: 'power3.in' });
   }
   $('#cookieYes').addEventListener('click', close);
-  no.addEventListener('click', close);
 
-  /* The Reject button runs away, four times, from a mouse. Touch and keyboard get a straight answer. */
-  no.addEventListener('pointerenter', e => {
-    if (reduce || e.pointerType !== 'mouse' || flees >= 4) return;
+  /* The Reject button runs away four times: from a mouse as it approaches, from a finger or pen as it presses.
+     Keyboard (and anyone with reduced motion) gets a straight answer. */
+  let dodged = false;
+  function flee() {
+    if (reduce || flees >= 4) return false;
     flees++;
-    const r = no.getBoundingClientRect();
-    let dx = gsap.utils.random(-230, 230), dy = gsap.utils.random(-150, 40);
-    if (r.left + dx < 8 || r.right + dx > innerWidth - 8) dx = -dx;
-    if (r.top + dy < 64 || r.bottom + dy > innerHeight - 8) dy = -dy;
+    const r = no.getBoundingClientRect(), clamp = gsap.utils.clamp;
+    let dx = 0, dy = 0;
+    for (let i = 0; i < 8 && Math.hypot(dx, dy) < 100; i++) { /* stay on screen, and move far enough to matter */
+      dx = clamp(8 - r.left, innerWidth - 8 - r.right, gsap.utils.random(-230, 230));
+      dy = clamp(64 - r.top, innerHeight - 8 - r.bottom, gsap.utils.random(-150, 40));
+    }
     gsap.to(no, { x: gsap.getProperty(no, 'x') + dx, y: gsap.getProperty(no, 'y') + dy, duration: .25, ease: 'power2.out' });
     if (flees === 4) no.textContent = 'Fine';
+    return true;
+  }
+  no.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') flee(); });
+  no.addEventListener('pointerdown', e => {
+    if (e.pointerType === 'mouse') return;
+    dodged = flee();
+    setTimeout(() => { dodged = false; }, 600); /* the click that follows a dodged press is ignored */
   });
+  no.addEventListener('click', () => { if (dodged) dodged = false; else close(); });
 
   return {
     /* Appears a couple of seconds after the exhibition opens. */

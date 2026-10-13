@@ -28,7 +28,7 @@ Add `#skip` to bypass the loading dialog. Add `#retro` or `#colour` to pick the 
 |---|---|
 | A | Top bar: room name, the look toggle (colour / retro), the sound toggle and a battery that drains as you scroll, plus the low-battery toast. On narrow screens the room name and "Look:" prefix drop away |
 | B | Loading dialog: sticks at 99%, then "stopped responding". Two identical "Continue anyway" buttons (the click is the gesture that lets the song start) |
-| C | Cookie banner: assumes consent if you keep scrolling. The Reject button runs away from a mouse |
+| C | Cookie banner: assumes consent if you keep scrolling. The Reject button runs away four times, from a mouse or a tap |
 
 ## Photos and quotes
 

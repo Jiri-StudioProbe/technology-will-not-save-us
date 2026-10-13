@@ -45,6 +45,8 @@ button{font:inherit;color:inherit;cursor:pointer}
 /* ===== OVERLAY A: top bar ===== */
 .chrome{position:fixed;inset:0 0 auto 0;z-index:50;display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.9rem clamp(1rem,3vw,2rem);color:inherit;pointer-events:none;font:1.25rem/1 var(--sys);transition:opacity .3s}
 html.locked .chrome{opacity:0}
+.chrome-r{display:flex;align-items:center;gap:1rem;flex:none}
+.sound{pointer-events:auto;background:none;border:2px solid currentColor;border-radius:.25rem;padding:.2rem .5rem;font:1.15rem/1 var(--sys);color:inherit}
 .batt{display:inline-flex;align-items:center;gap:.5rem;flex:none}
 .batt i{position:relative;display:block;width:2.3rem;height:1rem;border:2px solid currentColor;border-radius:3px}
 .batt i::before{content:"";position:absolute;inset:2px;background:currentColor;transform-origin:left;transform:scaleX(var(--lvl,1))}

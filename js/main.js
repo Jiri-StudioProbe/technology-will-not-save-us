@@ -4,6 +4,7 @@
 import { $ } from './util.js';
 import { loadContent, renderContent } from './content.js';
 import { initChrome, initBoot, initCookie } from './overlays.js';
+import { initSound } from './sound.js';
 import { initRooms, heroPrep, heroIntro } from './rooms.js';
 
 history.scrollRestoration = 'manual'; /* always start at the entrance */
@@ -25,10 +26,11 @@ async function start() {
   renderContent(content);
   gsap.registerPlugin(ScrollTrigger, Draggable);
 
-  const cookie = initCookie();
+  const cookie = initCookie(), sound = initSound();
   let chrome;
   const boot = initBoot({
     onStart: heroPrep,
+    onSound: sound.set,
     onDone() { ScrollTrigger.refresh(); heroIntro(); cookie.later(); goToHashRoom(); }
   });
 

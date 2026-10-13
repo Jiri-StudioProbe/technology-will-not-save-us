@@ -26,8 +26,8 @@ Add `#skip` to bypass the loading dialog. Add `#room-07` (and so on) to land in 
 
 | Overlay | What |
 |---|---|
-| A | Top bar: room name and battery that drains as you scroll, plus the low-battery toast |
-| B | Loading dialog: sticks at 99%, then "stopped responding", two identical "Continue anyway" buttons |
+| A | Top bar: room name, the sound toggle and a battery that drains as you scroll, plus the low-battery toast |
+| B | Loading dialog: sticks at 99%, then "stopped responding". Two "Continue anyway" buttons: with sound, or no sound (this click is the gesture that lets the song start) |
 | C | Cookie banner: assumes consent if you keep scrolling. The Reject button runs away from a mouse |
 
 ## Photos and quotes
@@ -41,3 +41,7 @@ Add `#skip` to bypass the loading dialog. Add `#room-07` (and so on) to land in 
 
 `vignettes/` holds 19 standalone experiments. **P01 to P10** are page transitions, **I01 to I09** are image transitions.
 None are used in the page yet. Open `vignettes/index.html` to see them.
+
+## Sound
+
+`audio/sunset-for-the-subscribed.mp3` (about 3 min) loops behind the sound toggle in Overlay A. It never starts without a click, fades in over 2.5s, dips at the loop point, and pauses when the tab is hidden. `#skip` starts silent; the toggle turns it on.

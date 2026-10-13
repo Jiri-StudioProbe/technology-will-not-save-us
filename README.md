@@ -30,7 +30,9 @@ js/main.js        entry point: load content, build rooms, wire overlays
 js/content.js     reads content/*.json and builds the photo and quote rooms
 js/overlays.js    Overlay A (top bar), B (loading dialog), C (cookie banner)
 js/rooms.js       one function per room
+js/sound.js       the song: gesture-gated playback, fades, loop dip
 content/          photos.json, quotes.json (the only place content lives)
+audio/            the song (starts only after a click, behind the sound toggle)
 fonts/ vendor/    Bricolage Grotesque, Instrument Serif, VT323; GSAP 3.15 with ScrollTrigger and Draggable
 vignettes/        19 standalone transition experiments (not used yet)
 SECTIONS.md       room numbering and vocabulary

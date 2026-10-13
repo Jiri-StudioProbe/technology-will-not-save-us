@@ -56,12 +56,12 @@ export function initChrome({ onRoom }) {
 }
 
 /* ============ OVERLAY B: loading dialog ============ */
-export function initBoot({ onStart, onDone }) {
-  const boot = $('#boot'), win = $('.boot-win'), bootLoad = $('#bootLoad'), bootErr = $('#bootErr'), main = $('#main');
+export function initBoot({ onStart, onDone, onSound }) {
+  const boot = $('#boot'), win = $('.boot-win'), bootLoad = $('#bootLoad'), bootErr = $('#bootErr'), main = $('#main'), chrome = $('.chrome');
   const bar = $('#bootBar'), pctEl = $('#bootPct'), msg = $('#bootMsg'), title = $('#bootTitle');
   let tl;
 
-  const lock = on => { root.classList.toggle('locked', on); main.inert = on; };
+  const lock = on => { root.classList.toggle('locked', on); main.inert = on; chrome.inert = on; };
   const setBar = v => { bar.style.width = v + '%'; pctEl.textContent = Math.floor(v) + '%'; };
   function showErr() {
     bootLoad.hidden = true; bootErr.hidden = false;
@@ -88,7 +88,8 @@ export function initBoot({ onStart, onDone }) {
 
   function hide() { boot.style.visibility = 'hidden'; lock(false); }
 
-  function dismiss() {
+  function dismiss(e) {
+    onSound(e.currentTarget.dataset.sound === 'on'); /* sync: audio needs the click gesture */
     if (tl) tl.kill();
     const done = () => { hide(); onDone(); };
     if (reduce) { done(); return; }

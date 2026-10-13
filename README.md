@@ -16,7 +16,7 @@ Then open http://localhost:8000/. Handy URL flags: `#skip` (no loading dialog), 
 
 ## Deploy
 
-GitHub Pages serves the `main` branch from the repo root. Push to `main` and the site updates within a minute or two.
+GitHub Pages is set to deploy from GitHub Actions: `.github/workflows/pages.yml` publishes the repo root on every push to `main` (about a minute).
 `.nojekyll` stops Pages from processing the files, and every path in the site is relative so it also works from a custom domain.
 When a custom domain arrives, add a `CNAME` file and update the absolute URLs in the `og:` meta tags in `index.html`.
 

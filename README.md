@@ -27,6 +27,7 @@ index.html        the page: all rooms and overlays as markup
 404.html          the exhibition has stopped responding
 moved.html        a plain 301 page: where the Room 11 QR code leads (its link goes on to offline.html)
 offline.html      the offline dinosaur screen as a page
+reboot.html       sketch: a 1990s BIOS boot screen (not wired to the Restart button yet)
 css/main.css      all styles, sectioned by ROOM NN / OVERLAY X
 js/main.js        entry point: load content, build rooms, wire overlays
 js/content.js     reads content/*.json and builds the photo and quote rooms

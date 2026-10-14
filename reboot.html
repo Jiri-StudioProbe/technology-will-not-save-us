@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#000000">
+<title>Restarting…</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<style>
+/* SKETCH: a 1990s BIOS start-up screen. The real "Restart exhibition" button does not lead here yet.
+   Self-contained on purpose, and not themed: it is the machine starting up, not the exhibition.
+   #stay in the URL keeps it on screen at the end instead of moving on to the exhibition. */
+@font-face{font-family:"VT323";src:url(fonts/vt323-regular.woff2) format("woff2");font-weight:400;font-style:normal;font-display:swap}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:#000;color:#aaa}
+body{min-height:100vh;min-height:100svh;padding:clamp(.9rem,3vw,2rem) clamp(.9rem,3vw,2.4rem) 4rem;font:clamp(18px,2.5vw,27px)/1.2 "VT323","Courier New",monospace;cursor:default}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.top{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;flex-wrap:wrap-reverse;margin-bottom:.6rem}
+.logo{flex:none;display:block;width:clamp(120px,16vw,170px);height:auto;opacity:0}
+.logo.on{opacity:1}
+.l{white-space:pre-wrap;word-break:break-word;min-height:1.2em}
+.w{color:#fff}
+.bad{color:#ff5555}
+.cur{display:inline-block;width:.55em;height:.95em;margin-left:.15em;background:#aaa;vertical-align:-.12em;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.foot{position:fixed;left:clamp(.9rem,3vw,2.4rem);right:clamp(.9rem,3vw,2.4rem);bottom:clamp(.9rem,2.5vw,1.6rem);display:flex;justify-content:space-between;align-items:flex-end;gap:1rem}
+.foot p{margin:0}
+.skip{background:none;border:0;padding:0;color:#aaa;font:inherit;cursor:pointer;text-decoration:underline}
+.skip:focus-visible{outline:2px solid #fff;outline-offset:3px}
+@media (prefers-reduced-motion:reduce){.cur{animation:none}}
+</style>
+</head>
+<body>
+<p class="sr" role="status">The exhibition is restarting.</p>
+<noscript><p><a href="index.html" style="color:#fff">Continue to the exhibition</a></p></noscript>
+
+<div class="top">
+  <div id="head" class="l w" aria-hidden="true"></div>
+  <!-- A lookalike, not the real thing: a green star in a white box, with a promise on it. -->
+  <svg class="logo" id="logo" viewBox="0 0 150 56" aria-hidden="true">
+    <rect width="150" height="56" fill="#fff"/>
+    <polygon points="28.0,6.0 33.3,20.7 48.9,21.2 36.6,30.8 40.9,45.8 28.0,37.0 15.1,45.8 19.4,30.8 7.1,21.2 22.7,20.7" fill="#00a550"/>
+    <text x="58" y="26" font-family="Arial,Helvetica,sans-serif" font-size="19" font-weight="700" fill="#000">hope</text>
+    <text x="58" y="46" font-family="Arial,Helvetica,sans-serif" font-size="19" font-weight="700" fill="#000">star</text>
+  </svg>
+</div>
+<div id="out" aria-hidden="true"></div>
+
+<div class="foot">
+  <div>
+    <p id="del">Press DEL to enter SETUP</p>
+    <p>10/14/95-TWNSU-0001-HOPE</p>
+  </div>
+  <button class="skip" id="skip" type="button">Skip (Esc)</button>
+</div>
+
+<script>
+(function () {
+  var out = document.getElementById('out'), head = document.getElementById('head'), logo = document.getElementById('logo');
+  var quick = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var stay = location.hash.indexOf('stay') !== -1;
+  var skipped = false, finished = false, timer = 0;
+
+  function go() { if (!stay) location.replace('index.html'); }
+  function skip() { if (finished) { go(); return; } skipped = true; if (stay) return; go(); }
+  document.getElementById('skip').addEventListener('click', skip);
+  addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') skip();
+    if (e.key === 'Delete') {
+      var d = document.getElementById('del');
+      d.textContent = 'SETUP is locked. Please contact your administrator.';
+      clearTimeout(timer); timer = setTimeout(function () { d.textContent = 'Press DEL to enter SETUP'; }, 3500);
+    }
+  });
+
+  var sleep = function (ms) { return new Promise(function (r) { setTimeout(r, skipped || quick ? 0 : ms); }); };
+  function line(text, cls) {
+    var d = document.createElement('div'); d.className = 'l' + (cls ? ' ' + cls : ''); d.textContent = text;
+    out.appendChild(d); return d;
+  }
+  /* "Label ..... value": the label and dots appear, the machine thinks, then the answer. */
+  async function row(label, value, cls, think) {
+    var d = line((label + ' ').padEnd(19, '.') + ' ');
+    await sleep(think || 450);
+    d.textContent += value; if (cls) d.className += ' ' + cls;
+    await sleep(160);
+  }
+  async function memory() {
+    var d = line('Memory Test : 0K');
+    for (var k = 0; k < 640 && !skipped && !quick; k += 4 + (k >> 4)) { d.textContent = 'Memory Test : ' + Math.min(k, 640) + 'K'; await sleep(28); }
+    d.textContent = 'Memory Test : 640K OK'; await sleep(350);
+  }
+
+  async function run() {
+    await sleep(700);
+    head.textContent = 'Probable BIOS v1.01\n(C) 1994-1995 Technology Will Not Save Us, Ltd.';
+    logo.classList.add('on'); await sleep(900);
+    line('CPU         : Optimism, 66MHz'); await sleep(300);
+    await memory();
+    line('This product meets the Hope Star guidelines for energy efficiency. (It does not.)'); await sleep(700);
+    line('');
+    await row('Primary Master', 'Hope Drive 420MB');
+    await row('Primary Slave', 'None', '', 300);
+    await row('Floppy A', 'Disk not found', 'bad');
+    await row('Updates', '1,204 found', 'w', 900);
+    await row('NVRAM', 'Restored from optimism');
+    await row('Keyboard', 'Present', '', 250);
+    await row('Mouse', 'Not found. Moving on.', '', 600);
+    line(''); await sleep(500);
+    var d = line('Starting exhibition...'); d.className += ' w';
+    var cur = document.createElement('span'); cur.className = 'cur'; d.appendChild(cur);
+    finished = true;
+    await new Promise(function (r) { setTimeout(r, quick ? 2500 : skipped ? 0 : 1400); }); /* reduced motion: time to read it all */
+    go();
+  }
+  run();
+})();
+</script>
+</body>
+</html>

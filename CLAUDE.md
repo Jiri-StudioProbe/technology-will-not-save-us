@@ -23,7 +23,8 @@ A tongue-in-cheek **web immersive exhibition** of Jiri's own photographs of "tec
 - **Everything content-like is still placeholder:** photos are gradient placeholders (`file: null`), the two quotes (Kranzberg, Douglas Adams) are unverified, the artist's statement and wall-label text are placeholders.
 - **Two looks**, switched by the "Look:" button in Overlay A (the Look and Sound buttons are hidden at 560px and below for now, so on a phone use `#retro` / `#colour`; to be solved): `colour` (default, saturated walls) and `retro` (beige PC, DOS, Norton Commander, early Windows; Times New Roman regular for display, Arial for body, labels and dialog widgets, Courier New Bold for system bits). Remembered in localStorage; `#retro` / `#colour` in the URL override it. Retro is a first pass: Jiri has not reviewed it yet.
 - **Support agent (Overlay D):** a "Support" button bottom right, on screen from the end of the loading dialog onwards. Any question, typed or tapped, gets "I cannot let you do that, Dave.", then one of its own lines that run in circles. All copy is placeholder in `content/support.json`, for Jiri to review.
-- **Room 11:** the QR code is real and encodes `moved.html` (a plain "301 Moved Permanently" page whose link points back at itself). The stop code is set huge and fades out before the screen edge so it cannot be quoted.
+- **Room 11:** the QR code is real and encodes `moved.html` (a plain "301 Moved Permanently" page whose "here" link leads to the offline dinosaur, `offline.html`). The stop code is set huge and fades out before the screen edge so it cannot be quoted.
+- **Offline easter egg (Overlay E):** a tribute to the browser's offline page. "You're offline" with a pixel dinosaur that starts running on its own, never makes the hole, then tries again (Space, up arrow or a tap makes it hop, which does not help). It appears over the exhibition if the visitor's connection really drops and goes when it returns; `#offline` in the URL shows it on demand. `offline.html` is the same screen as a page of its own, and the "here" link on `moved.html` leads to it. Deliberately not themed (it is the browser interrupting). Drawn with a plain canvas loop, no animation library. Where else it could live (for example a TV channel in Room 09) is undecided.
 - The song `audio/sunset-for-the-subscribed.mp3` plays on by default behind a toggle. Its licence is **unconfirmed** (check the terms of the tool that made it before commercial use). Lyrics file (`content/song-lyrics.md`) not supplied yet.
 - `vignettes/` holds 19 transition experiments (P01 to P10 page, I01 to I09 image). **None are used on the page yet.**
 - Not done yet: storyboard table, real photos, verified quotes, transitions between rooms, per-photo deep links, colophon, mailing list or other call to action, custom domain.
@@ -33,14 +34,18 @@ A tongue-in-cheek **web immersive exhibition** of Jiri's own photographs of "tec
 ```
 index.html      all rooms and overlays as markup (rooms are empty shells where JSON fills them)
 404.html        self-contained "exhibition stopped responding" page
-moved.html      self-contained "301 Moved Permanently" page, the target of the Room 11 QR code
+moved.html      self-contained "301 Moved Permanently" page, the target of the Room 11 QR code; its link leads to offline.html
+offline.html    the "You're offline" dinosaur screen as a page (also Overlay E)
 css/main.css    all styles, sectioned by ROOM NN / OVERLAY X
+css/offline.css styles for the offline screen (shared by offline.html and Overlay E)
 js/main.js      entry: load content, build rooms, wire overlays, run the loading dialog
 js/content.js   reads content/*.json, builds Rooms 03, 04, 05, 06, 07, 08, 09
 js/overlays.js  Overlay A (top bar, battery, toast), B (loading dialog), C (cookie banner)
 js/rooms.js     one function per room (ROOM 01 to 11)
 js/sound.js     the song: gesture-gated, fades, loop dip, toggle
 js/support.js   Overlay D: the support agent
+js/offline.js   Overlay E: "You're offline" screen, real offline detection, #offline
+js/dino.js      the dinosaur game loop on a canvas (runs itself, always falls in the hole)
 js/theme.js     colour / retro look: data-theme on <html>, remembered, per-room wall colours
 js/util.js      $, $$, reduce, fine, splitWords
 content/        photos.json, quotes.json, support.json: the only place content lives
@@ -54,10 +59,10 @@ og.png favicon.svg .nojekyll .github/workflows/pages.yml
 ## Vocabulary (use the same words Jiri does)
 
 - **Room N / RN:** a full section, numbered 01 to 11. The top bar always shows "Room N of M".
-- **Overlays A, B, C, D:** not rooms. A = top bar and battery (also holds the look and sound toggles), B = fake loading dialog, C = cookie banner, D = support agent.
+- **Overlays A, B, C, D, E:** not rooms. A = top bar and battery (also holds the look and sound toggles), B = fake loading dialog, C = cookie banner, D = support agent, E = "You're offline" dinosaur screen.
 - **Photo N:** stable id of a photo slot in `photos.json`. Never renumber; add new ones at the end.
 - **P01 to P10 / I01 to I09:** page and image transition vignettes.
-- Dev flags: press **N** or add **`#rooms`** to show room tags and outlines; **`#skip`** bypasses the loading dialog; **`#room-07`** lands in that room after the dialog; **`#retro`** / **`#colour`** pick the look.
+- Dev flags: press **N** or add **`#rooms`** to show room tags and outlines; **`#skip`** bypasses the loading dialog; **`#room-07`** lands in that room after the dialog; **`#retro`** / **`#colour`** pick the look; **`#offline`** shows the offline dinosaur screen.
 - Every room carries a `ROOM NN` comment in HTML, CSS and JS. Keep that convention. If you add, remove or reorder rooms, renumber `id`, `data-n` and comments and update `SECTIONS.md` in the same change.
 
 ## Design principles

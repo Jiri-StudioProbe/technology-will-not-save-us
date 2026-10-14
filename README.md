@@ -12,7 +12,7 @@ The page loads `content/*.json` with `fetch`, so it needs to be served over http
 python3 -m http.server 8000
 ```
 
-Then open http://localhost:8000/. Handy URL flags: `#skip` (no loading dialog), `#rooms` (show room tags), `#room-07` (land in a room), `#retro` / `#colour` (pick the look).
+Then open http://localhost:8000/. Handy URL flags: `#skip` (no loading dialog), `#rooms` (show room tags), `#room-07` (land in a room), `#retro` / `#colour` (pick the look), `#offline` (show the offline dinosaur).
 
 ## Deploy
 
@@ -25,7 +25,8 @@ When a custom domain arrives, add a `CNAME` file and update the absolute URLs in
 ```
 index.html        the page: all rooms and overlays as markup
 404.html          the exhibition has stopped responding
-moved.html        a plain 301 page: where the Room 11 QR code leads
+moved.html        a plain 301 page: where the Room 11 QR code leads (its link goes on to offline.html)
+offline.html      the offline dinosaur screen as a page
 css/main.css      all styles, sectioned by ROOM NN / OVERLAY X
 js/main.js        entry point: load content, build rooms, wire overlays
 js/content.js     reads content/*.json and builds the photo and quote rooms
@@ -33,6 +34,7 @@ js/overlays.js    Overlay A (top bar), B (loading dialog), C (cookie banner)
 js/rooms.js       one function per room
 js/sound.js       the song: gesture-gated playback, fades, loop dip
 js/support.js     the support agent (Overlay D)
+js/offline.js     the offline screen and its dinosaur (Overlay E, js/dino.js)
 js/theme.js       the colour / retro look switch
 content/          photos.json, quotes.json, support.json (the only place content lives)
 audio/            the song (starts only after a click, behind the sound toggle)

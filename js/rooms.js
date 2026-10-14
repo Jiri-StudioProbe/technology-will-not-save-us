@@ -2,6 +2,7 @@
    With prefers-reduced-motion the scroll-driven rooms show their finished state instead. */
 
 import { $, $$, reduce, fine, splitWords } from './util.js';
+import { keepTheme } from './theme.js';
 
 /* ============ ROOM 01: hero autocorrect ============ */
 const heroBits = () => $$('.hero-sub,.hero-hours,.hero-cue');
@@ -252,13 +253,15 @@ function runBsod() {
     .to(o, { v: 99, duration: 1.8, ease: 'power1.in', onUpdate: set }).to(o, { v: 99, duration: 1.2 })
     .to(o, { v: 100, duration: .1, onUpdate: set });
 }
-function room11({ onRestart }) {
+function room11() {
   drawQr();
   if (reduce) runBsod();
   else ScrollTrigger.create({ trigger: '#bsod', start: 'top 60%', once: true, onEnter: runBsod });
-  $('#restart').addEventListener('click', () => { bsPct().textContent = '0'; scrollTo(0, 0); onRestart(); });
+  /* Restart leaves for the BIOS start-up screen (reboot.html), which ends back at index.html and the loading dialog.
+     replace, not assign: a restart should not add to the back-button history. */
+  $('#restart').addEventListener('click', () => { keepTheme(); location.replace('reboot.html'); });
 }
 
-export function initRooms(opts) {
-  room02(); room03(); room04(); room05(); room06(); room07(); room08(); room09(); room10(); room11(opts);
+export function initRooms() {
+  room02(); room03(); room04(); room05(); room06(); room07(); room08(); room09(); room10(); room11();
 }

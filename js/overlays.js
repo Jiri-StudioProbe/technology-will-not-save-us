@@ -61,8 +61,6 @@ export function initChrome({ onRoom }) {
   addEventListener('keydown', e => {
     if ((e.key === 'n' || e.key === 'N') && !e.metaKey && !e.ctrlKey && !e.altKey && !e.target.closest('input,textarea,button,[role=slider]')) root.classList.toggle('show-rooms');
   });
-
-  return { resetToast() { toasted = false; } };
 }
 
 /* ============ OVERLAY B: loading dialog ============ */

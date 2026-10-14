@@ -19,6 +19,9 @@ export function roomColours(room) {
 const remembered = () => { try { return localStorage.getItem(KEY); } catch { return null; } };
 const remember = t => { try { localStorage.setItem(KEY, t); } catch { /* private mode: fine */ } };
 
+/* Called when the visitor restarts: a look chosen with #retro in the URL survives the trip through reboot.html. */
+export const keepTheme = () => remember(root.dataset.theme);
+
 export function initTheme() {
   const btn = $('#look');
   const fromHash = THEMES.find(t => location.hash.includes(t));

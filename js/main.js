@@ -33,7 +33,6 @@ async function start() {
 
   const cookie = initCookie(), sound = initSound();
   initSupport(content.support);
-  let chrome;
   const boot = initBoot({
     onStart: heroPrep,
     onGesture: sound.start,
@@ -41,8 +40,8 @@ async function start() {
   });
 
   /* Rooms first, so the pinned rooms' scroll positions exist before the per-room triggers are measured. */
-  initRooms({ onRestart() { chrome.resetToast(); boot.run(); } });
-  chrome = initChrome({ onRoom: i => { if (i >= 2) cookie.assume(); } });
+  initRooms();
+  initChrome({ onRoom: i => { if (i >= 2) cookie.assume(); } });
 
   document.fonts && document.fonts.ready.then(() => ScrollTrigger.refresh());
   if (location.hash.includes('skip')) { boot.skip(); sound.start(); }

@@ -25,6 +25,7 @@ A tongue-in-cheek **web immersive exhibition** of Jiri's own photographs of "tec
 - **Support agent (Overlay D):** a "Support" button bottom right, on screen from the end of the loading dialog onwards. Any question, typed or tapped, gets "I cannot let you do that, Dave.", then one of its own lines that run in circles. All copy is placeholder in `content/support.json`, for Jiri to review.
 - **Room 11:** the QR code is real and encodes `moved.html` (a plain "301 Moved Permanently" page whose "here" link leads to the offline dinosaur, `offline.html`). The stop code is set huge and fades out before the screen edge so it cannot be quoted.
 - **Offline easter egg (Overlay E):** a tribute to the browser's offline page. "You're offline" with a pixel dinosaur that starts running on its own, never makes the hole, then tries again (Space, up arrow or a tap makes it hop, which does not help). It appears over the exhibition if the visitor's connection really drops and goes when it returns; `#offline` in the URL shows it on demand. `offline.html` is the same screen as a page of its own, and the "here" link on `moved.html` leads to it. Deliberately not themed (it is the browser interrupting). Drawn with a plain canvas loop, no animation library. Where else it could live (for example a TV channel in Room 09) is undecided.
+- **Reboot sketch:** `reboot.html` is a standalone 1990s BIOS start-up screen (memory test, drive detection, a "Hope Star" logo that is a lookalike rather than the real Energy Star mark, jokes about updates and optimism), then it moves on to `index.html`. **It is not wired to the Restart button in Room 11 yet**; Jiri wants to try it as a page first. Esc or the Skip link jumps ahead, DEL gives a joke, `#stay` keeps it on screen, reduced motion shows it all at once. Not themed.
 - The song `audio/sunset-for-the-subscribed.mp3` plays on by default behind a toggle. Its licence is **unconfirmed** (check the terms of the tool that made it before commercial use). Lyrics file (`content/song-lyrics.md`) not supplied yet.
 - `vignettes/` holds 19 transition experiments (P01 to P10 page, I01 to I09 image). **None are used on the page yet.**
 - Not done yet: storyboard table, real photos, verified quotes, transitions between rooms, per-photo deep links, colophon, mailing list or other call to action, custom domain.
@@ -36,6 +37,7 @@ index.html      all rooms and overlays as markup (rooms are empty shells where J
 404.html        self-contained "exhibition stopped responding" page
 moved.html      self-contained "301 Moved Permanently" page, the target of the Room 11 QR code; its link leads to offline.html
 offline.html    the "You're offline" dinosaur screen as a page (also Overlay E)
+reboot.html     sketch: a 1990s BIOS boot screen, not wired to the Restart button yet
 css/main.css    all styles, sectioned by ROOM NN / OVERLAY X
 css/offline.css styles for the offline screen (shared by offline.html and Overlay E)
 js/main.js      entry: load content, build rooms, wire overlays, run the loading dialog

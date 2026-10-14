@@ -20,7 +20,7 @@ Add `#skip` to bypass the loading dialog. Add `#offline` to show the offline din
 | 08 | `room-08` | Please wait | Quote streams in, last word buffers | quote `q2` |
 | 09 | `room-09` | Channel surfing | CRT with static, scroll changes channel (pinned) | Photos 16 to 18 |
 | 10 | `room-10` | Security check | Fake CAPTCHA that fails you twice | 9 placeholder tiles |
-| 11 | `room-11` | Exit | Blue screen, restart, gift shop. The QR code opens `moved.html` (the 301 page); the stop code fades off the screen | text |
+| 11 | `room-11` | Exit | Blue screen, restart (a BIOS boot sketch, `reboot.html`, exists but is not wired in), gift shop. The QR code opens `moved.html` (the 301 page); the stop code fades off the screen | text |
 
 ## Overlays (not rooms)
 

@@ -12,8 +12,10 @@ const el = (tag, cls, text) => {
 
 export async function loadContent() {
   const get = url => fetch(url).then(r => { if (!r.ok) throw new Error(url + ': ' + r.status); return r.json(); });
-  const [photos, quotes] = await Promise.all([get('content/photos.json'), get('content/quotes.json')]);
-  return { photos: photos.photos, quotes: quotes.quotes };
+  /* The support agent is optional: without its file the rest of the show still opens. */
+  const [photos, quotes, support] = await Promise.all([get('content/photos.json'), get('content/quotes.json'),
+    get('content/support.json').catch(err => { console.error(err); return null; })]);
+  return { photos: photos.photos, quotes: quotes.quotes, support };
 }
 
 /* Turn an empty .ph element into a photo. With no file it stays a labelled

@@ -20,7 +20,7 @@ Add `#skip` to bypass the loading dialog. Add `#retro` or `#colour` to pick the 
 | 08 | `room-08` | Please wait | Quote streams in, last word buffers | quote `q2` |
 | 09 | `room-09` | Channel surfing | CRT with static, scroll changes channel (pinned) | Photos 16 to 18 |
 | 10 | `room-10` | Security check | Fake CAPTCHA that fails you twice | 9 placeholder tiles |
-| 11 | `room-11` | Exit | Blue screen, restart, gift shop | text |
+| 11 | `room-11` | Exit | Blue screen, restart, gift shop. The QR code opens `moved.html` (the 301 page); the stop code fades off the screen | text |
 
 ## Overlays (not rooms)
 
@@ -29,6 +29,7 @@ Add `#skip` to bypass the loading dialog. Add `#retro` or `#colour` to pick the 
 | A | Top bar: room name, the look toggle (colour / retro), the sound toggle and a battery that drains as you scroll, plus the low-battery toast. At 560px and below the text after "Room N of M" and both buttons are hidden for now (to be solved) |
 | B | Loading dialog: sticks at 99%, then "stopped responding". Two identical "Continue anyway" buttons (the click is the gesture that lets the song start) |
 | C | Cookie banner: assumes consent if you keep scrolling. The Reject button runs away four times, from a mouse or a tap |
+| D | Support agent: a "Support" button bottom right, always on screen after the loading dialog. Every question gets "I cannot let you do that, Dave.", then a line from a loop. Copy in `content/support.json`. On narrow screens it rides above the cookie banner |
 
 ## Photos and quotes
 

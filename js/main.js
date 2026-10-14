@@ -6,6 +6,7 @@ import { loadContent, renderContent } from './content.js';
 import { initChrome, initBoot, initCookie } from './overlays.js';
 import { initSound } from './sound.js';
 import { initTheme } from './theme.js';
+import { initSupport } from './support.js';
 import { initRooms, heroPrep, heroIntro } from './rooms.js';
 
 history.scrollRestoration = 'manual'; /* always start at the entrance */
@@ -29,6 +30,7 @@ async function start() {
   gsap.registerPlugin(ScrollTrigger, Draggable);
 
   const cookie = initCookie(), sound = initSound();
+  initSupport(content.support);
   let chrome;
   const boot = initBoot({
     onStart: heroPrep,

@@ -215,8 +215,10 @@ function room10() {
 }
 
 /* ============ ROOM 11: blue screen ============ */
-function drawQr() { /* decorative, not a real code */
-  const c = $('#qr'), x = c.getContext('2d'), ink = '#0b3d91';
+/* The QR code is real: it encodes the address of moved.html, the 301 page. The encoder (vendor/qrcode.mjs) loads only
+   when this room is built; if that fails the code falls back to a decorative one. */
+function drawFakeQr(c) {
+  const x = c.getContext('2d'), ink = '#0b3d91';
   x.fillStyle = '#fff'; x.fillRect(0, 0, 25, 25); x.fillStyle = ink;
   let s = 7; const rnd = () => (s = (s * 16807) % 2147483647) / 2147483647;
   const inFinder = (i, j) => (i < 8 && j < 8) || (i > 16 && j < 8) || (i < 8 && j > 16);
@@ -224,6 +226,20 @@ function drawQr() { /* decorative, not a real code */
   [[0, 0], [18, 0], [0, 18]].forEach(([a, b]) => {
     x.fillStyle = ink; x.fillRect(a, b, 7, 7); x.fillStyle = '#fff'; x.fillRect(a + 1, b + 1, 5, 5); x.fillStyle = ink; x.fillRect(a + 2, b + 2, 3, 3);
   });
+}
+
+async function drawQr() {
+  const c = $('#qr');
+  try {
+    const { qrcode } = await import('../vendor/qrcode.mjs');
+    const qr = qrcode(0, 'L'); /* smallest version that fits: fewer, bigger squares */
+    qr.addData(new URL('moved.html', location.href).href); qr.make();
+    const n = qr.getModuleCount(), quiet = 2;
+    c.width = c.height = n + quiet * 2;
+    const x = c.getContext('2d');
+    x.fillStyle = '#fff'; x.fillRect(0, 0, c.width, c.height); x.fillStyle = '#0b3d91';
+    for (let r = 0; r < n; r++) for (let k = 0; k < n; k++) if (qr.isDark(r, k)) x.fillRect(k + quiet, r + quiet, 1, 1);
+  } catch (err) { console.error(err); drawFakeQr(c); }
 }
 
 const bsPct = () => $('#bsPct');

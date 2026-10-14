@@ -194,18 +194,37 @@
     <p class="msg">Your exhibition ran into a problem and needs to restart. We are just collecting some error info, and then we will restart for you.</p>
     <p class="pct"><span id="bsPct">0</span>% complete</p>
     <div class="info">
-      <canvas id="qr" width="25" height="25" aria-hidden="true"></canvas>
+      <a class="qr" href="moved.html" aria-label="QR code. It leads to a page about this issue."><canvas id="qr" width="25" height="25" aria-hidden="true"></canvas></a>
       <div>
         <p>For more information about this issue and possible fixes, visit your-domain.example/technology</p>
-        <p>If you call a support person, give them this info:<br>Stop code: TECHNOLOGY_WILL_NOT_SAVE_US</p>
+        <p>If you call a support person, give them this info:</p>
       </div>
     </div>
+    <p class="stopcode">Stop code: TECHNOLOGY_WILL_NOT_SAVE_US</p>
     <p class="shop">Exit through the gift shop. (Zine: coming soon. It will be printed on paper, which is also technology.)</p>
     <button class="restart" id="restart">Restart exhibition</button>
   </section>
 </div>
 
 </main>
+
+<!-- ============ OVERLAY D: support agent ============ -->
+<aside class="support" id="support" aria-label="Support">
+  <div class="sup-panel" id="supPanel" role="dialog" aria-label="Support chat" hidden>
+    <div class="sup-head">
+      <div><b>Support</b><small>Typically replies in a few seconds</small></div>
+      <button class="sup-x" id="supClose" type="button" aria-label="Close support chat">x</button>
+    </div>
+    <div class="sup-log" id="supLog" role="log" aria-live="polite"></div>
+    <div class="sup-chips" id="supChips"></div>
+    <form class="sup-form" id="supForm">
+      <label class="sr" for="supInput">Your question</label>
+      <input id="supInput" type="text" autocomplete="off" placeholder="Type your question">
+      <button type="submit">Send</button>
+    </form>
+  </div>
+  <button class="sup-fab" id="supFab" type="button" aria-expanded="false" aria-controls="supPanel">Support<span class="sup-badge" id="supBadge" aria-hidden="true">1</span></button>
+</aside>
 
 <!-- ============ OVERLAY C: cookie banner ============ -->
 <div class="cookie" id="cookie" role="dialog" aria-label="Cookies">

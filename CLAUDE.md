@@ -22,6 +22,8 @@ A tongue-in-cheek **web immersive exhibition** of Jiri's own photographs of "tec
 - 11-room site is live, built from the original prototype. Single page, plain HTML/CSS/ES modules, GSAP, no build step.
 - **Everything content-like is still placeholder:** photos are gradient placeholders (`file: null`), the two quotes (Kranzberg, Douglas Adams) are unverified, the artist's statement and wall-label text are placeholders.
 - **Two looks**, switched by the "Look:" button in Overlay A (the Look and Sound buttons are hidden at 560px and below for now, so on a phone use `#retro` / `#colour`; to be solved): `colour` (default, saturated walls) and `retro` (beige PC, DOS, Norton Commander, early Windows; Times New Roman regular for display, Arial for body, labels and dialog widgets, Courier New Bold for system bits). Remembered in localStorage; `#retro` / `#colour` in the URL override it. Retro is a first pass: Jiri has not reviewed it yet.
+- **Support agent (Overlay D):** a "Support" button bottom right, on screen from the end of the loading dialog onwards. Any question, typed or tapped, gets "I cannot let you do that, Dave.", then one of its own lines that run in circles. All copy is placeholder in `content/support.json`, for Jiri to review.
+- **Room 11:** the QR code is real and encodes `moved.html` (a plain "301 Moved Permanently" page whose link points back at itself). The stop code is set huge and fades out before the screen edge so it cannot be quoted.
 - The song `audio/sunset-for-the-subscribed.mp3` plays on by default behind a toggle. Its licence is **unconfirmed** (check the terms of the tool that made it before commercial use). Lyrics file (`content/song-lyrics.md`) not supplied yet.
 - `vignettes/` holds 19 transition experiments (P01 to P10 page, I01 to I09 image). **None are used on the page yet.**
 - Not done yet: storyboard table, real photos, verified quotes, transitions between rooms, per-photo deep links, colophon, mailing list or other call to action, custom domain.
@@ -31,16 +33,18 @@ A tongue-in-cheek **web immersive exhibition** of Jiri's own photographs of "tec
 ```
 index.html      all rooms and overlays as markup (rooms are empty shells where JSON fills them)
 404.html        self-contained "exhibition stopped responding" page
+moved.html      self-contained "301 Moved Permanently" page, the target of the Room 11 QR code
 css/main.css    all styles, sectioned by ROOM NN / OVERLAY X
 js/main.js      entry: load content, build rooms, wire overlays, run the loading dialog
 js/content.js   reads content/*.json, builds Rooms 03, 04, 05, 06, 07, 08, 09
 js/overlays.js  Overlay A (top bar, battery, toast), B (loading dialog), C (cookie banner)
 js/rooms.js     one function per room (ROOM 01 to 11)
 js/sound.js     the song: gesture-gated, fades, loop dip, toggle
+js/support.js   Overlay D: the support agent
 js/theme.js     colour / retro look: data-theme on <html>, remembered, per-room wall colours
 js/util.js      $, $$, reduce, fine, splitWords
-content/        photos.json, quotes.json: the only place content lives
-audio/ fonts/ vendor/   song; Bricolage Grotesque, Instrument Serif, VT323; GSAP 3.15 + ScrollTrigger + Draggable
+content/        photos.json, quotes.json, support.json: the only place content lives
+audio/ fonts/ vendor/   song; Bricolage Grotesque, Instrument Serif, VT323; GSAP 3.15 + ScrollTrigger + Draggable; qrcode-generator 2.0.4 (MIT, loaded only when Room 11 is built)
 vignettes/      standalone transition experiments
 og.png favicon.svg .nojekyll .github/workflows/pages.yml
 ```
@@ -50,7 +54,7 @@ og.png favicon.svg .nojekyll .github/workflows/pages.yml
 ## Vocabulary (use the same words Jiri does)
 
 - **Room N / RN:** a full section, numbered 01 to 11. The top bar always shows "Room N of M".
-- **Overlays A, B, C:** not rooms. A = top bar and battery (also holds the sound toggle), B = fake loading dialog, C = cookie banner.
+- **Overlays A, B, C, D:** not rooms. A = top bar and battery (also holds the look and sound toggles), B = fake loading dialog, C = cookie banner, D = support agent.
 - **Photo N:** stable id of a photo slot in `photos.json`. Never renumber; add new ones at the end.
 - **P01 to P10 / I01 to I09:** page and image transition vignettes.
 - Dev flags: press **N** or add **`#rooms`** to show room tags and outlines; **`#skip`** bypasses the loading dialog; **`#room-07`** lands in that room after the dialog; **`#retro`** / **`#colour`** pick the look.
@@ -119,6 +123,7 @@ GitHub Pages is set to **deploy from GitHub Actions**: `.github/workflows/pages.
 5. Colophon call to action: mailing list, prints, zine, visitor submissions, or something else.
 6. Song licence and whether to credit it on the page.
 7. A "send me yours" visitor wall (needs a backend and moderation; version 2).
+8. A dropshipping gift shop and a "buy me a coffee" link at the end (idea only: provider, products, where it sits and what personal data it exposes are all undecided; embeds would break the no-third-party-requests rule, plain links would not).
 
 ## Next sensible steps
 

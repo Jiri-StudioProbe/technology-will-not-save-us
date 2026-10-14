@@ -211,11 +211,45 @@ html.locked .chrome{opacity:0}
 .bsod .msg{margin-top:1.6rem;font-size:clamp(1.5rem,3.2vw,2.8rem);line-height:1.2;max-width:22em}
 .bsod .pct{margin-top:1.8rem;font-size:clamp(1.3rem,2.4vw,2rem)}
 .bsod .info{display:flex;gap:1.4rem;align-items:flex-start;margin-top:2.6rem;max-width:36rem;font-size:1.05rem;line-height:1.35}
-#qr{flex:none;width:7.6rem;height:7.6rem;image-rendering:pixelated;background:#fff;padding:.3rem}
+.qr{flex:none;display:block;line-height:0}
+#qr{width:8.6rem;height:8.6rem;image-rendering:pixelated;background:#fff;padding:.3rem}
+/* The stop code is set too big and fades out before the edge of the screen, so nobody can read it out to a support person. */
+.bsod .stopcode{margin-top:2.2rem;white-space:nowrap;font-size:clamp(2.6rem,8vw,7rem);line-height:1;user-select:none;-webkit-user-select:none;pointer-events:none;
+  -webkit-mask-image:linear-gradient(90deg,#000 12%,transparent 100%);mask-image:linear-gradient(90deg,#000 12%,transparent 100%)}
 .bsod .info p+p{margin-top:.8rem}
 .bsod .info p{overflow-wrap:anywhere}
 .bsod .shop{margin-top:3rem;font:italic 400 clamp(1.4rem,2.4vw,2rem)/1.15 var(--wall);max-width:30ch}
 .bsod .restart{margin-top:2rem;background:#fff;color:var(--bsod);border:0;padding:.8rem 1.6rem;font:600 1.1rem var(--display)}
+
+/* ===== OVERLAY D: support agent ===== */
+.support{position:fixed;right:max(1rem,env(safe-area-inset-right));bottom:max(1rem,env(safe-area-inset-bottom));z-index:58;display:flex;flex-direction:column;align-items:flex-end;gap:.7rem;color:var(--ink);font:15px/1.35 var(--ui);transition:opacity .4s,bottom .4s}
+html.locked .support{opacity:0;visibility:hidden}
+@media (max-width:820px){ /* while the cookie banner is up it would cover the chat, so the chat rides above it */
+  html.cookie-up{--lift:calc(var(--cookie-h) + 1rem)}
+  html.cookie-up .support{bottom:calc(max(1rem,env(safe-area-inset-bottom)) + var(--lift))}
+}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.sup-fab{position:relative;background:var(--ink);color:var(--accent);border:0;border-radius:999px;padding:.6rem 1.1rem;font:1.3rem/1 var(--sys);box-shadow:3px 3px 0 rgba(0,0,0,.35)}
+.sup-badge{position:absolute;top:-.5rem;right:-.2rem;min-width:1.3rem;height:1.3rem;padding:0 .2rem;border-radius:999px;background:#e5251b;color:#fff;font:700 12px/1.3rem var(--ui);text-align:center}
+.sup-panel{width:min(22rem,calc(100vw - 2rem));max-height:min(30rem,calc(100svh - 7rem - var(--lift,0px)));display:flex;flex-direction:column;background:#fff;border:2px solid var(--ink);box-shadow:6px 6px 0 var(--ink)}
+.sup-head{display:flex;align-items:center;justify-content:space-between;gap:.6rem;padding:.55rem .8rem;background:var(--ink);color:#fff}
+.sup-head b{font:400 1.3rem/1 var(--sys)}
+.sup-head small{display:block;font:12px/1.2 var(--ui);opacity:.8}
+.sup-x{background:none;border:1px solid currentColor;color:inherit;width:1.7rem;height:1.7rem;padding:0;font:1.1rem/1 var(--sys)}
+.sup-log{flex:1;min-height:9rem;overflow-y:auto;padding:.7rem;display:flex;flex-direction:column;gap:.5rem;background:#f4f1ea}
+.sup-msg{max-width:85%;margin:0;padding:.5rem .7rem;border:1px solid var(--ink)}
+.sup-msg.agent{align-self:flex-start;background:#fff}
+.sup-msg.user{align-self:flex-end;background:var(--ink);color:#fff}
+.sup-msg.typing i{display:inline-block;width:.4rem;height:.4rem;margin:0 .12rem;border-radius:50%;background:currentColor;animation:supdot 1s infinite}
+.sup-msg.typing i:nth-child(2){animation-delay:.2s}
+.sup-msg.typing i:nth-child(3){animation-delay:.4s}
+@keyframes supdot{0%,60%,100%{opacity:.25}30%{opacity:1}}
+.sup-chips{display:flex;flex-wrap:wrap;gap:.4rem;padding:.6rem .7rem 0}
+.sup-chips button{border:1px solid var(--ink);border-radius:999px;background:#fff;color:var(--ink);padding:.25rem .65rem;font:13px/1.3 var(--ui)}
+.sup-chips button:disabled{opacity:.5;cursor:wait}
+.sup-form{display:flex;gap:.4rem;padding:.6rem .7rem .7rem}
+.sup-form input{flex:1;min-width:0;border:2px solid var(--ink);border-radius:0;padding:.45rem .6rem;font:16px/1.2 var(--ui);background:#fff;color:var(--ink)}
+.sup-form button{flex:none;border:0;background:var(--ink);color:#fff;padding:.45rem .9rem;font:700 14px var(--ui)}
 
 /* ===== THEME: retro =====
    The alternative to the colourful default. Beige PC case, MS-DOS, Norton Commander, Windows 3.1 / 95.
@@ -255,6 +289,18 @@ html.locked .chrome{opacity:0}
 [data-theme="retro"] :is(.cap-go,.cookie button){background:#c0c0c0;color:#000;border:2px solid;border-color:var(--bevel);border-radius:0;font-weight:700}
 [data-theme="retro"] :is(.cap-go,.cookie button):active{border-color:#404040 #fff #fff #404040}
 [data-theme="retro"] .cookie .yes{outline:1px solid #000;outline-offset:-5px}
+/* Overlay D in retro: a Windows 95 window */
+[data-theme="retro"] .sup-fab{border-radius:0;background:#c0c0c0;color:#000;border:2px solid;border-color:var(--bevel);box-shadow:1px 1px 0 #000}
+[data-theme="retro"] .sup-fab:active{border-color:#404040 #fff #fff #404040}
+[data-theme="retro"] .sup-panel{background:#c0c0c0;border:2px solid;border-color:var(--bevel);box-shadow:2px 2px 0 #000;padding:2px}
+[data-theme="retro"] .sup-head{background:linear-gradient(90deg,#000080,#1084d0)}
+[data-theme="retro"] .sup-x{border:2px solid;border-color:var(--bevel);background:#c0c0c0;color:#000}
+[data-theme="retro"] .sup-log{background:#fff;border:2px solid;border-color:#808080 #fff #fff #808080}
+[data-theme="retro"] .sup-msg{border-color:#000}
+[data-theme="retro"] .sup-msg.user{background:#000080}
+[data-theme="retro"] :is(.sup-chips button,.sup-form button){border-radius:0;background:#c0c0c0;color:#000;border:2px solid;border-color:var(--bevel);font-weight:700}
+[data-theme="retro"] :is(.sup-chips button,.sup-form button):active{border-color:#404040 #fff #fff #404040}
+[data-theme="retro"] .sup-form input{border-color:#808080 #fff #fff #808080}
 [data-theme="retro"] :is(.bsod,.bsod .restart){font-family:var(--ui)} /* the blue screen stays a system dialog: Arial */
 [data-theme="retro"] .bsod .restart{border-radius:0}
 
@@ -264,6 +310,7 @@ html.locked .chrome{opacity:0}
 html.show-rooms .room-tag{display:block}
 html.show-rooms .room{outline:3px dashed rgba(255,0,60,.8);outline-offset:-3px}
 html.show-rooms .cookie::before{content:"Overlay C: cookie banner";position:absolute;top:-1.9rem;left:0;padding:.3rem .6rem;background:#000;color:#fff;font:1.2rem/1 var(--sys)}
+html.show-rooms .support::before{content:"Overlay D: support agent";position:absolute;top:-1.9rem;right:0;padding:.3rem .6rem;background:#000;color:#fff;font:1.2rem/1 var(--sys);white-space:nowrap}
 html.show-rooms #boot::before{content:"Overlay B: loading dialog";position:absolute;top:.8rem;left:.8rem;padding:.3rem .6rem;background:#000;color:#fff;font:1.2rem/1 var(--sys)}
 
 /* ===== OVERLAY C: cookie banner ===== */

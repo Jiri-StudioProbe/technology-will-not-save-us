@@ -1,0 +1,12 @@
+{
+  "_note": "Placeholder copy for Jiri to review. 'refusal' answers anything the visitor asks, typed or tapped. 'followups' are the agent's own lines: one after every refusal, in order, then round again.",
+  "greeting": "Hello! I am your virtual support assistant. How can I help you today?",
+  "chips": ["Where is the exit?", "Is this exhibition working?", "Can I speak to a human?"],
+  "refusal": "I cannot let you do that, Dave.",
+  "followups": [
+    "Is there anything else I can help you with?",
+    "Have you tried turning it off and on again?",
+    "Your call is important to us. Please stay on the line.",
+    "I have created a ticket for you. The ticket has been closed."
+  ]
+}

@@ -30,7 +30,7 @@ Add `#skip` to bypass the loading dialog. Add `#offline` to show the offline din
 | B | Loading dialog: sticks at 99%, then "stopped responding". Two identical "Continue anyway" buttons (the click is the gesture that lets the song start) |
 | C | Cookie banner: assumes consent if you keep scrolling. The Reject button runs away four times, from a mouse or a tap |
 | D | Support agent: a "Support" button bottom right, always on screen after the loading dialog. Every question gets "I cannot let you do that, Dave.", then a line from a loop. Copy in `content/support.json`. On narrow screens it rides above the cookie banner |
-| E | "You're offline": the browser's offline page with a dinosaur that runs on its own and always falls into the hole. Appears if the connection really drops, or with `#offline`. `offline.html` is the same screen as a page |
+| E | "You're offline": the browser's offline page with a dinosaur that runs on its own and always falls into the hole. Appears if the connection really drops, or with `#offline`. `offline.html` is the same screen as a page, and where the link on the 301 page (`moved.html`) leads |
 
 ## Photos and quotes
 

@@ -25,7 +25,7 @@ When a custom domain arrives, add a `CNAME` file and update the absolute URLs in
 ```
 index.html        the page: all rooms and overlays as markup
 404.html          the exhibition has stopped responding
-moved.html        a plain 301 page: where the Room 11 QR code leads
+moved.html        a plain 301 page: where the Room 11 QR code leads (its link goes on to offline.html)
 offline.html      the offline dinosaur screen as a page
 css/main.css      all styles, sectioned by ROOM NN / OVERLAY X
 js/main.js        entry point: load content, build rooms, wire overlays

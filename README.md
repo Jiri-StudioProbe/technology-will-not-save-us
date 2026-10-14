@@ -12,7 +12,7 @@ The page loads `content/*.json` with `fetch`, so it needs to be served over http
 python3 -m http.server 8000
 ```
 
-Then open http://localhost:8000/. Handy URL flags: `#skip` (no loading dialog), `#rooms` (show room tags), `#room-07` (land in a room), `#retro` / `#colour` (pick the look), `#offline` (show the offline dinosaur).
+Then open http://localhost:8000/. Handy URL flags: `#skip` (no loading dialog), `#rooms` (show room tags), `#room-07` (land in a room), `#offline` (show the offline dinosaur).
 
 ## Deploy
 
@@ -37,10 +37,9 @@ js/rooms.js       one function per room
 js/sound.js       the song: gesture-gated playback, fades, loop dip
 js/support.js     the support agent (Overlay D)
 js/offline.js     the offline screen and its dinosaur (Overlay E, js/dino.js)
-js/theme.js       the colour / retro look switch
 content/          photos.json, quotes.json, support.json (the only place content lives)
 audio/            the song (starts only after a click, behind the sound toggle)
-fonts/ vendor/    Bricolage Grotesque, Instrument Serif, VT323; GSAP 3.15 with ScrollTrigger and Draggable
+fonts/ vendor/    VT323 (reboot.html only); GSAP 3.15 with ScrollTrigger and Draggable
 vignettes/        19 standalone transition experiments (not used yet)
 SECTIONS.md       room numbering and vocabulary
 ```

@@ -2,7 +2,6 @@
    With prefers-reduced-motion the scroll-driven rooms show their finished state instead. */
 
 import { $, $$, reduce, fine, splitWords } from './util.js';
-import { keepTheme } from './theme.js';
 
 /* ============ ROOM 01: hero autocorrect ============ */
 const heroBits = () => $$('.hero-sub,.hero-hours,.hero-cue');
@@ -179,19 +178,15 @@ function room09() {
 
 /* ============ ROOM 10: captcha ============ */
 const CAPTCHA_THINGS = ['toaster', 'phone', 'fridge', 'kettle', 'router', 'watch', 'printer', 'lamp', 'laptop'];
-const CAPTCHA_COLOURS = [['#ff5a1f', '#5b3df5'], ['#ffd93b', '#ff4f9a'], ['#8ff0c4', '#2b6cff'], ['#15120f', '#6a4dff'], ['#ff9acb', '#ff5a1f'],
-  ['#38b6ff', '#15120f'], ['#c9b6ff', '#0f8b8d'], ['#ff4f9a', '#ffd93b'], ['#ff5a1f', '#5b3df5']];
-
 function room10() {
   const grid = $('#capGrid'), msg = $('#capMsg'), go = $('#capGo');
   let attempts = 0;
   function buildGrid() {
-    grid.replaceChildren(...gsap.utils.shuffle(CAPTCHA_THINGS.slice()).map((name, i) => {
+    grid.replaceChildren(...gsap.utils.shuffle(CAPTCHA_THINGS.slice()).map(name => {
       const tile = document.createElement('button'), tick = document.createElement('i');
       tile.className = 'tile ph'; tick.className = 'tick';
       tile.setAttribute('aria-pressed', 'false'); tile.setAttribute('aria-label', name);
       tile.dataset.cap = name;
-      tile.style.setProperty('--a', CAPTCHA_COLOURS[i][0]); tile.style.setProperty('--b', CAPTCHA_COLOURS[i][1]);
       tile.append(tick);
       return tile;
     }));
@@ -259,7 +254,7 @@ function room11() {
   else ScrollTrigger.create({ trigger: '#bsod', start: 'top 60%', once: true, onEnter: runBsod });
   /* Restart leaves for the BIOS start-up screen (reboot.html), which ends back at index.html and the loading dialog.
      replace, not assign: a restart should not add to the back-button history. */
-  $('#restart').addEventListener('click', () => { keepTheme(); location.replace('reboot.html'); });
+  $('#restart').addEventListener('click', () => location.replace('reboot.html'));
 }
 
 export function initRooms() {

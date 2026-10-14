@@ -21,11 +21,11 @@ A tongue-in-cheek **web immersive exhibition** of Jiri's own photographs of "tec
 
 - 11-room site is live, built from the original prototype. Single page, plain HTML/CSS/ES modules, GSAP, no build step.
 - **Everything content-like is still placeholder:** photos are gradient placeholders (`file: null`), the two quotes (Kranzberg, Douglas Adams) are unverified, the artist's statement and wall-label text are placeholders.
-- **Two looks**, switched by the "Look:" button in Overlay A (the Look and Sound buttons are hidden at 560px and below for now, so on a phone use `#retro` / `#colour`; to be solved): `colour` (default, saturated walls) and `retro` (beige PC, DOS, Norton Commander, early Windows; Times New Roman regular for display, Arial for body, labels and dialog widgets, Courier New Bold for system bits). Remembered in localStorage; `#retro` / `#colour` in the URL override it. Retro is a first pass: Jiri has not reviewed it yet.
+- **The look is a beige PC:** MS-DOS, Norton Commander, early Windows. Times New Roman regular for display, Arial for body text, labels and dialog widgets, Courier New Bold for system bits (all the visitor's own fonts, nothing downloaded). Jiri chose it over the earlier colourful look, which has been removed along with the look switch. Details under Design principles.
 - **Support agent (Overlay D):** a "Support" button bottom right, on screen from the end of the loading dialog onwards. Any question, typed or tapped, gets "I cannot let you do that, Dave.", then one of its own lines that run in circles. All copy is placeholder in `content/support.json`, for Jiri to review.
 - **Room 11:** the QR code is real and encodes `moved.html` (a plain "301 Moved Permanently" page whose "here" link leads to the offline dinosaur, `offline.html`). The stop code is set huge and fades out before the screen edge so it cannot be quoted.
 - **Offline easter egg (Overlay E):** a tribute to the browser's offline page. "You're offline" with a pixel dinosaur that starts running on its own, never makes the hole, then tries again (Space, up arrow or a tap makes it hop, which does not help). It appears over the exhibition if the visitor's connection really drops and goes when it returns; `#offline` in the URL shows it on demand. `offline.html` is the same screen as a page of its own, and the "here" link on `moved.html` leads to it. Deliberately not themed (it is the browser interrupting). Drawn with a plain canvas loop, no animation library. Where else it could live (for example a TV channel in Room 09) is undecided.
-- **Reboot:** the "Restart exhibition" button in Room 11 leads to `reboot.html`, a 1990s BIOS start-up screen (memory test, drive detection, a "Hope Star" logo that is a lookalike rather than the real Energy Star mark, jokes about updates and optimism), which then moves on to `index.html` and the loading dialog. Esc or the Skip link jumps ahead, DEL gives a joke, `#stay` keeps it on screen, reduced motion shows it all at once. Not themed. Restart also remembers the current look, so one chosen with `#retro` survives. The exact lines are still to be worked out with Jiri.
+- **Reboot:** the "Restart exhibition" button in Room 11 leads to `reboot.html`, a 1990s BIOS start-up screen (memory test, drive detection, a "Hope Star" logo that is a lookalike rather than the real Energy Star mark, jokes about updates and optimism), which then moves on to `index.html` and the loading dialog. Esc or the Skip link jumps ahead, DEL gives a joke, `#stay` keeps it on screen, reduced motion shows it all at once. Not themed. The exact lines are still to be worked out with Jiri.
 - The song `audio/sunset-for-the-subscribed.mp3` plays on by default behind a toggle. Its licence is **unconfirmed** (check the terms of the tool that made it before commercial use). Lyrics file (`content/song-lyrics.md`) not supplied yet.
 - `vignettes/` holds 19 transition experiments (P01 to P10 page, I01 to I09 image). **None are used on the page yet.**
 - Everything still to finish is in `TODO.md`: known problems, content, decisions, build and quality passes.
@@ -49,10 +49,9 @@ js/sound.js     the song: gesture-gated, fades, loop dip, toggle
 js/support.js   Overlay D: the support agent
 js/offline.js   Overlay E: "You're offline" screen, real offline detection, #offline
 js/dino.js      the dinosaur game loop on a canvas (runs itself, always falls in the hole)
-js/theme.js     colour / retro look: data-theme on <html>, remembered, per-room wall colours
 js/util.js      $, $$, reduce, fine, splitWords
 content/        photos.json, quotes.json, support.json: the only place content lives
-audio/ fonts/ vendor/   song; Bricolage Grotesque, Instrument Serif, VT323; GSAP 3.15 + ScrollTrigger + Draggable; qrcode-generator 2.0.4 (MIT, loaded only when Room 11 is built)
+audio/ fonts/ vendor/   song; VT323 (reboot.html only); GSAP 3.15 + ScrollTrigger + Draggable; qrcode-generator 2.0.4 (MIT, loaded only when Room 11 is built)
 vignettes/      standalone transition experiments
 og.png favicon.svg .nojekyll .github/workflows/pages.yml
 ```
@@ -62,17 +61,16 @@ og.png favicon.svg .nojekyll .github/workflows/pages.yml
 ## Vocabulary (use the same words Jiri does)
 
 - **Room N / RN:** a full section, numbered 01 to 11. The top bar always shows "Room N of M".
-- **Overlays A, B, C, D, E:** not rooms. A = top bar and battery (also holds the look and sound toggles), B = fake loading dialog, C = cookie banner, D = support agent, E = "You're offline" dinosaur screen.
+- **Overlays A, B, C, D, E:** not rooms. A = top bar and battery (also holds the sound toggle), B = fake loading dialog, C = cookie banner, D = support agent, E = "You're offline" dinosaur screen.
 - **Photo N:** stable id of a photo slot in `photos.json`. Never renumber; add new ones at the end.
 - **P01 to P10 / I01 to I09:** page and image transition vignettes.
-- Dev flags: press **N** or add **`#rooms`** to show room tags and outlines; **`#skip`** bypasses the loading dialog; **`#room-07`** lands in that room after the dialog; **`#retro`** / **`#colour`** pick the look; **`#offline`** shows the offline dinosaur screen.
+- Dev flags: press **N** or add **`#rooms`** to show room tags and outlines; **`#skip`** bypasses the loading dialog; **`#room-07`** lands in that room after the dialog; **`#offline`** shows the offline dinosaur screen.
 - Every room carries a `ROOM NN` comment in HTML, CSS and JS. Keep that convention. If you add, remove or reorder rooms, renumber `id`, `data-n` and comments and update `SECTIONS.md` in the same change.
 
 ## Design principles
 
-- **Colour as a wall.** Each room has its own flat, saturated background (`data-bg`, `data-fg`) that the page animates between. Poster-like. No gradients (except the placeholder photos), glassmorphism or generic SaaS look.
-- **Two looks.** Every room carries both palettes: `data-bg` / `data-fg` (colour) and `data-bg-retro` / `data-fg-retro` (retro). Retro styles live in one `THEME: retro` block in `main.css`, keyed on `html[data-theme="retro"]`; shared rules use variables (`--ink`, `--accent`, `--display`, `--wall`, `--ui`, `--ds` display scale). New hard-coded colours or fonts need a retro counterpart. Retro type is swapped relative to colour (`--display` Times New Roman regular, `--wall` and `--ui` Arial, `--sys` Courier New Bold via a scaled `Retro Mono` @font-face). Retro: flat walls from a small set (case beige, Windows silver, desktop teal, Commander blue and cyan, DOS black), bevelled grey widgets, hard shadows, square corners, checkerboard placeholder photos.
-- **Type.** Bricolage Grotesque (display, body), Instrument Serif italic (quotes, wall labels), VT323 (anything pretending to be a system). Small, deliberate scale.
+- **Colour as a wall.** Each room has its own flat background (`data-bg`, `data-fg` on the room in `index.html`) that the page animates between, taken from a small palette: case beige `#DDD5BE`, Windows silver `#C0C0C0`, desktop teal `#008080`, Commander blue `#0000AA` and cyan `#00AAAA`, DOS black. Poster-like, but old-computer: bevelled grey widgets (`--bevel`), hard 4px shadows, square corners, a Windows 95 checkerboard where a photo will go. No gradients (except title bars and the placeholder), glassmorphism, rounded corners or generic SaaS look. A new hard-coded colour should come from this palette.
+- **Type.** `--display` Times New Roman regular (display and headings, scaled by `--ds`), `--wall` and `--ui` Arial (body, wall labels, dialog widgets), `--sys` Courier New Bold via the scaled `Retro Mono` @font-face (anything pretending to be a system). VT323 is used only by `reboot.html`. Small, deliberate scale.
 - **Wall labels** are museum-style and deadpan: title, year, caption. Part of the joke.
 - **Photos are the point.** Never crop, tint, overlay or filter a photo so it hides what is wrong in it.
 - **One idea per room.** If a room needs explaining it is too complicated.
@@ -84,7 +82,7 @@ og.png favicon.svg .nojekyll .github/workflows/pages.yml
 
 - **Never invent or paraphrase a quote.** If unsure of exact wording and source, ask. No apocryphal quotes (for example the Gates "640K" line). Every quote needs a reliable source in `quotes.json`. Quote theme: confident predictions that technology would improve lives, and what arrived. Less US-centric, include women, not Silicon Valley wild predictions. Layout: quote, attribution, optional one-line deadpan "what arrived" caption (`arrived` field).
 - **Photos:** Jiri supplies originals. Resize to **WebP about 1600px on the long edge** (plus a smaller thumbnail size), strip EXIF including GPS, sensible filenames. Flag any recognisable face, number plate, house number or visible brand. **Do not publish photos until Jiri confirms.** Every photo needs an explicit `width`, `height` and meaningful `alt`. Lazy-load below the fold.
-- `photos.json` entry shape: `id, file, placeholder{a,b}, width, height, title, place, year, medium, caption, alt, room, layout{...}`. Rooms render from the JSON, so adding or reordering photos should not need code changes.
+- `photos.json` entry shape: `id, file, width, height, title, place, year, medium, caption, alt, room, layout{...}`. Rooms render from the JSON, so adding or reordering photos should not need code changes.
 - **Artist's statement (Room 02)** is placeholder. Jiri writes or approves the real one. Do not rewrite it unasked.
 
 ## Sound

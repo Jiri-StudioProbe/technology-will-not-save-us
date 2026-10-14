@@ -5,13 +5,11 @@ import { $ } from './util.js';
 import { loadContent, renderContent } from './content.js';
 import { initChrome, initBoot, initCookie } from './overlays.js';
 import { initSound } from './sound.js';
-import { initTheme } from './theme.js';
 import { initSupport } from './support.js';
 import { initOffline } from './offline.js';
 import { initRooms, heroPrep, heroIntro } from './rooms.js';
 
 history.scrollRestoration = 'manual'; /* always start at the entrance */
-initTheme();
 
 /* Deep links: index.html#room-07 lands in Room 07 once the loading dialog is dismissed. */
 function goToHashRoom() {

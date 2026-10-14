@@ -5,7 +5,6 @@ The working list. Tick things off here, and keep `CLAUDE.md` ("Current state" an
 
 ## 1. Known problems (small, real)
 
-- [ ] **C** On phones (560px and below) the Look and Sound buttons are hidden, so a phone visitor cannot mute the song or switch the look. `CLAUDE.md` says the sound toggle must always be visible. Needs a proper small-screen top bar.
 - [ ] **C** Room 09 with reduced motion shows only the first photo channel; the other two photos cannot be reached.
 - [ ] **C** The 4.3MB song starts downloading on page load (`preload="auto"`). On a phone that blows the first-load budget (about 1.5MB). Fetch it on the loading-dialog click instead.
 - [ ] **C** `content/photos.json` has `"place": "Somewhere, UK"` on every photo. The file is public and the rule is no location. Drop the field or the country.
@@ -14,7 +13,7 @@ The working list. Tick things off here, and keep `CLAUDE.md` ("Current state" an
 
 ## 2. Content (the exhibition is still mostly placeholder)
 
-- [ ] **J** Photos: 18 gradient placeholders; target about 20 to 30 real ones. Pipeline when they arrive: WebP about 1600px on the long edge plus a thumbnail, EXIF and GPS stripped, sensible filenames, width, height and real alt text. Flag any face, number plate, house number or visible brand. **Nothing is published until Jiri confirms.**
+- [ ] **J** Photos: 18 checkerboard placeholders; target about 20 to 30 real ones. Pipeline when they arrive: WebP about 1600px on the long edge plus a thumbnail, EXIF and GPS stripped, sensible filenames, width, height and real alt text. Flag any face, number plate, house number or visible brand. **Nothing is published until Jiri confirms.**
 - [ ] **J** Photo titles, years, captions and wall labels (all "Placeholder caption" or draft jokes today).
 - [ ] **J** Quotes: both are placeholders. Kranzberg needs exact wording and source; the Douglas Adams line has no confirmed source. Need reliable, non-apocryphal quotes: confident predictions that technology would improve lives, and what arrived. Less US-centric, include women. Add the one-line "what arrived" caption where it earns its place.
 - [ ] **J** Artist's statement (Room 02): placeholder. Jiri writes or approves the real one.
@@ -30,7 +29,6 @@ The working list. Tick things off here, and keep `CLAUDE.md` ("Current state" an
 - [ ] **J** Which transitions go where (19 experiments in `vignettes/`, none used yet).
 - [ ] **J** The ending: colophon and call to action (mailing list, prints, zine, a gift shop, "buy me a coffee", a visitor wall). Plain outbound links keep the no-third-party-requests rule; embeds would break it. Decide what personal data any shop or coffee page would expose.
 - [ ] **J** Where else the offline dinosaur could live (for example a TV channel in Room 09), if anywhere.
-- [ ] **J** Review the retro look (first pass, never reviewed), and decide whether it stays as a permanent option.
 
 ## 4. Build
 
@@ -46,7 +44,7 @@ The working list. Tick things off here, and keep `CLAUDE.md` ("Current state" an
 
 - [ ] **C** Walk every room at desktop and about 390px, with reduced motion, and check the console. (Done piecemeal while building; never as one full pass.)
 - [ ] **J+C** Real devices: Safari on iOS (audio, pinned rooms, the Support chat keyboard), Firefox, Chrome on Android. So far only headless Chromium.
-- [ ] **C** Accessibility: keyboard order, visible focus, contrast in both looks, screen-reader pass over the fake dialogs (loading dialog, cookie banner, Support chat, offline screen), alt text once photos exist.
+- [ ] **C** Accessibility: keyboard order, visible focus, contrast, screen-reader pass over the fake dialogs (loading dialog, cookie banner, Support chat, offline screen), alt text once photos exist.
 - [ ] **C** Performance on a throttled network: first load under about 1.5MB before photos, no layout shift, lazy-loaded images, 60fps scrolling on a mid-range phone.
 - [ ] **C** Check the live site after each deploy (my sandbox cannot reach it).
 - [ ] **J** Final read-through of every word for tone: deadpan, dry, British; never smug, ranty or preachy.
@@ -54,4 +52,4 @@ The working list. Tick things off here, and keep `CLAUDE.md` ("Current state" an
 
 ## Done recently
 
-Retro look and switch; cookie Reject dodges taps as well as the mouse; real QR code to the 301 page; fading stop code; Support agent; offline dinosaur; BIOS reboot screen, now behind the Restart button.
+The retro look is now the only look (colour look and switch removed); Sound toggle back on phones; cookie Reject dodges taps as well as the mouse; real QR code to the 301 page; fading stop code; Support agent; offline dinosaur; BIOS reboot screen, now behind the Restart button.

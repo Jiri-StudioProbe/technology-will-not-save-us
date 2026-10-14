@@ -7,6 +7,7 @@ import { initChrome, initBoot, initCookie } from './overlays.js';
 import { initSound } from './sound.js';
 import { initTheme } from './theme.js';
 import { initSupport } from './support.js';
+import { initOffline } from './offline.js';
 import { initRooms, heroPrep, heroIntro } from './rooms.js';
 
 history.scrollRestoration = 'manual'; /* always start at the entrance */
@@ -24,6 +25,7 @@ async function start() {
   catch (err) {
     console.error(err);
     $('#bootMsg').textContent = 'Could not load the exhibition. Serve this folder over http (see README) and reload.';
+    initOffline();
     return;
   }
   renderContent(content);
@@ -45,6 +47,7 @@ async function start() {
   document.fonts && document.fonts.ready.then(() => ScrollTrigger.refresh());
   if (location.hash.includes('skip')) { boot.skip(); sound.start(); }
   else { scrollTo(0, 0); boot.run(); }
+  initOffline(); /* last, so the loading dialog's own locking is already in place */
 }
 
 start();

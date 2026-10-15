@@ -1,0 +1,37 @@
+{
+  "_note": "Placeholder copy for Jiri to review. An item with no url (it must start with https://) shows as out of stock with a disabled button. Fill in 'url' with the dropshipping storefront page for the T-shirt and the poster, and with the monzo.me address for the tip. 'price' is optional and is shown as written.",
+  "heading": "Exit through the gift shop.",
+  "note": "Zine: coming soon. It will be printed on paper, which is also technology.",
+  "items": [
+    {
+      "id": "tshirt",
+      "title": "T-shirt",
+      "blurb": "Wear the problem. Cotton, not smart.",
+      "alt": "Placeholder for the T-shirt mock-up.",
+      "price": "",
+      "url": "",
+      "button": "Buy",
+      "soldOut": "Out of stock"
+    },
+    {
+      "id": "poster",
+      "title": "Poster",
+      "blurb": "Suitable for framing. Not suitable for the cloud.",
+      "alt": "Placeholder for the poster mock-up.",
+      "price": "",
+      "url": "",
+      "button": "Buy",
+      "soldOut": "Out of stock"
+    },
+    {
+      "id": "tip",
+      "title": "Tip me",
+      "blurb": "A small tip, through a Monzo payment page. You choose the amount.",
+      "alt": "Placeholder for the tip jar.",
+      "price": "",
+      "url": "",
+      "button": "Tip me",
+      "soldOut": "Tips unavailable"
+    }
+  ]
+}

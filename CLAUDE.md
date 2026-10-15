@@ -65,7 +65,7 @@ og.png favicon.svg .nojekyll .github/workflows/pages.yml
 ## Vocabulary (use the same words Jiri does)
 
 - **Room N / RN:** a full section, numbered 01 to 12. The top bar always shows "Room N of M".
-- **Overlays A, B, C, D, E:** not rooms. A = top bar and battery (also holds the sound toggle), B = fake loading dialog, C = cookie banner, D = support agent, E = "You're offline" dinosaur screen.
+- **Overlays A, B, C, D, E:** not rooms. A = top bar and battery (also holds the sound toggle, a speaker icon), B = fake loading dialog, C = cookie banner, D = support agent, E = "You're offline" dinosaur screen.
 - **Photo N:** stable id of a photo slot in `photos.json`. Never renumber; add new ones at the end.
 - **P01 to P10 / I01 to I09:** page and image transition vignettes.
 - Dev flags: press **N** or add **`#rooms`** to show room tags and outlines; **`#skip`** bypasses the loading dialog; **`#room-07`** lands in that room after the dialog; **`#offline`** shows the offline dinosaur screen.

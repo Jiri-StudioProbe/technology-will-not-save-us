@@ -19,8 +19,8 @@ export function initSound() {
 
   const paint = () => {
     const playing = !audio.paused;
-    btn.textContent = 'Sound: ' + (playing ? 'on' : 'off');
     btn.setAttribute('aria-pressed', playing);
+    btn.title = playing ? 'Sound on' : 'Sound off'; /* the icon is the label; this is its tooltip */
   };
   audio.addEventListener('play', paint);
   audio.addEventListener('pause', paint);

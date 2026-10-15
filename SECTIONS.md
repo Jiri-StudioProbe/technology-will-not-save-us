@@ -29,7 +29,7 @@ After Room 12 comes the **footer**, which is not a room: the Restart exhibition 
 
 | Overlay | What |
 |---|---|
-| A | Top bar: room name, the sound toggle and a battery that drains as you scroll, plus the low-battery toast. On a phone it shortens: no room name after "Room N of M" at 560px and below, no battery percentage at 380px and below, no "Room N of M" at 340px and below |
+| A | Top bar: room name, the sound toggle (a speaker icon, with waves when the song plays and a cross when it does not) and a battery that drains as you scroll, plus the low-battery toast. On a phone the room name after "Room N of M" drops away (560px and below) |
 | B | Loading dialog: sticks at 99%, then "stopped responding". Two identical "Continue anyway" buttons (the click is the gesture that lets the song start) |
 | C | Cookie banner: assumes consent if you keep scrolling. The Reject button runs away four times, from a mouse or a tap |
 | D | Support agent: a "Support" button bottom right, always on screen after the loading dialog. Every question gets "I cannot let you do that, Dave.", then a line from a loop. Copy in `content/support.json`. On narrow screens it rides above the cookie banner |

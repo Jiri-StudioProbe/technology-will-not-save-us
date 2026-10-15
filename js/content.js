@@ -19,10 +19,8 @@ export async function loadContent() {
 }
 
 /* Turn an empty .ph element into a photo. With no file it stays a labelled
-   gradient placeholder. With a file it becomes a lazy-loaded <img>. */
+   checkerboard placeholder. With a file it becomes a lazy-loaded <img>. */
 function fillPhoto(box, p, cap) {
-  box.style.setProperty('--a', p.placeholder.a);
-  box.style.setProperty('--b', p.placeholder.b);
   if (p.file) {
     const img = new Image();
     Object.assign(img, { src: p.file, alt: p.alt, width: p.width, height: p.height, loading: 'lazy', decoding: 'async' });

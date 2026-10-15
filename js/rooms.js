@@ -178,19 +178,15 @@ function room09() {
 
 /* ============ ROOM 10: captcha ============ */
 const CAPTCHA_THINGS = ['toaster', 'phone', 'fridge', 'kettle', 'router', 'watch', 'printer', 'lamp', 'laptop'];
-const CAPTCHA_COLOURS = [['#ff5a1f', '#5b3df5'], ['#ffd93b', '#ff4f9a'], ['#8ff0c4', '#2b6cff'], ['#15120f', '#6a4dff'], ['#ff9acb', '#ff5a1f'],
-  ['#38b6ff', '#15120f'], ['#c9b6ff', '#0f8b8d'], ['#ff4f9a', '#ffd93b'], ['#ff5a1f', '#5b3df5']];
-
 function room10() {
   const grid = $('#capGrid'), msg = $('#capMsg'), go = $('#capGo');
   let attempts = 0;
   function buildGrid() {
-    grid.replaceChildren(...gsap.utils.shuffle(CAPTCHA_THINGS.slice()).map((name, i) => {
+    grid.replaceChildren(...gsap.utils.shuffle(CAPTCHA_THINGS.slice()).map(name => {
       const tile = document.createElement('button'), tick = document.createElement('i');
       tile.className = 'tile ph'; tick.className = 'tick';
       tile.setAttribute('aria-pressed', 'false'); tile.setAttribute('aria-label', name);
       tile.dataset.cap = name;
-      tile.style.setProperty('--a', CAPTCHA_COLOURS[i][0]); tile.style.setProperty('--b', CAPTCHA_COLOURS[i][1]);
       tile.append(tick);
       return tile;
     }));
@@ -252,13 +248,15 @@ function runBsod() {
     .to(o, { v: 99, duration: 1.8, ease: 'power1.in', onUpdate: set }).to(o, { v: 99, duration: 1.2 })
     .to(o, { v: 100, duration: .1, onUpdate: set });
 }
-function room11({ onRestart }) {
+function room11() {
   drawQr();
   if (reduce) runBsod();
   else ScrollTrigger.create({ trigger: '#bsod', start: 'top 60%', once: true, onEnter: runBsod });
-  $('#restart').addEventListener('click', () => { bsPct().textContent = '0'; scrollTo(0, 0); onRestart(); });
+  /* Restart leaves for the BIOS start-up screen (reboot.html), which ends back at index.html and the loading dialog.
+     replace, not assign: a restart should not add to the back-button history. */
+  $('#restart').addEventListener('click', () => location.replace('reboot.html'));
 }
 
-export function initRooms(opts) {
-  room02(); room03(); room04(); room05(); room06(); room07(); room08(); room09(); room10(); room11(opts);
+export function initRooms() {
+  room02(); room03(); room04(); room05(); room06(); room07(); room08(); room09(); room10(); room11();
 }

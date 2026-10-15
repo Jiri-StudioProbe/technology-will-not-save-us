@@ -6,7 +6,7 @@ If you add, remove or reorder rooms, renumber the `id`, `data-n` and comments, t
 ## Rooms
 
 The top bar always reads "Room N of M". Press **N** on the page, or add `#rooms` to the URL, to show room tags and outlines.
-Add `#skip` to bypass the loading dialog. Add `#offline` to show the offline dinosaur screen. Add `#retro` or `#colour` to pick the look (otherwise the last choice is remembered, default colour). Add `#room-07` (and so on) to land in a specific room after the loading dialog.
+Add `#skip` to bypass the loading dialog. Add `#offline` to show the offline dinosaur screen. Add `#room-07` (and so on) to land in a specific room after the loading dialog.
 
 | Room | id | Name | Idea | Content |
 |---|---|---|---|---|
@@ -20,13 +20,13 @@ Add `#skip` to bypass the loading dialog. Add `#offline` to show the offline din
 | 08 | `room-08` | Please wait | Quote streams in, last word buffers | quote `q2` |
 | 09 | `room-09` | Channel surfing | CRT with static, scroll changes channel (pinned) | Photos 16 to 18 |
 | 10 | `room-10` | Security check | Fake CAPTCHA that fails you twice | 9 placeholder tiles |
-| 11 | `room-11` | Exit | Blue screen, restart (a BIOS boot sketch, `reboot.html`, exists but is not wired in), gift shop. The QR code opens `moved.html` (the 301 page); the stop code fades off the screen | text |
+| 11 | `room-11` | Exit | Blue screen, restart (leads to the BIOS boot screen, `reboot.html`, then back to the loading dialog), gift shop. The QR code opens `moved.html` (the 301 page); the stop code fades off the screen | text |
 
 ## Overlays (not rooms)
 
 | Overlay | What |
 |---|---|
-| A | Top bar: room name, the look toggle (colour / retro), the sound toggle and a battery that drains as you scroll, plus the low-battery toast. At 560px and below the text after "Room N of M" and both buttons are hidden for now (to be solved) |
+| A | Top bar: room name, the sound toggle and a battery that drains as you scroll, plus the low-battery toast. On a phone it shortens: no room name after "Room N of M" at 560px and below, no battery percentage at 380px and below, no "Room N of M" at 340px and below |
 | B | Loading dialog: sticks at 99%, then "stopped responding". Two identical "Continue anyway" buttons (the click is the gesture that lets the song start) |
 | C | Cookie banner: assumes consent if you keep scrolling. The Reject button runs away four times, from a mouse or a tap |
 | D | Support agent: a "Support" button bottom right, always on screen after the loading dialog. Every question gets "I cannot let you do that, Dave.", then a line from a loop. Copy in `content/support.json`. On narrow screens it rides above the cookie banner |
@@ -36,7 +36,7 @@ Add `#skip` to bypass the loading dialog. Add `#offline` to show the offline din
 
 - **Photo N** is the stable id of a photo slot in `content/photos.json`. Never renumber; add new photos at the end.
 - Each photo has a `room`. Rooms read from the JSON, so reordering or adding photos needs no code change (a new room does).
-- `file: null` draws a gradient placeholder. Set `file` to a real WebP path (about 1600px long edge, EXIF stripped) to swap in the photo.
+- `file: null` draws a checkerboard placeholder. Set `file` to a real WebP path (about 1600px long edge, EXIF stripped) to swap in the photo.
 - Quotes live in `content/quotes.json`, one per quote room. Never invent or paraphrase a quote.
 
 ## Transitions

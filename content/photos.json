@@ -1,13 +1,9 @@
 {
-  "_note": "One entry per photo. file:null means 'draw a gradient placeholder from placeholder{a,b}'. Keep ids stable (Photo N). width/height are the intrinsic pixel size.",
+  "_note": "One entry per photo. file:null means 'draw a checkerboard placeholder'. Keep ids stable (Photo N). width/height are the intrinsic pixel size.",
   "photos": [
     {
       "id": 1,
       "file": null,
-      "placeholder": {
-        "a": "#ffd93b",
-        "b": "#15120f"
-      },
       "width": 1600,
       "height": 1067,
       "title": "Untitled (Kiosk, Rebooting)",
@@ -21,10 +17,6 @@
     {
       "id": 2,
       "file": null,
-      "placeholder": {
-        "a": "#ff5a1f",
-        "b": "#15120f"
-      },
       "width": 1600,
       "height": 900,
       "title": "As Installed",
@@ -36,10 +28,6 @@
       "room": 4,
       "advertised": {
         "file": null,
-        "placeholder": {
-          "a": "#8ff0c4",
-          "b": "#38b6ff"
-        },
         "width": 1600,
         "height": 900,
         "caption": "As advertised, stock photo",
@@ -49,10 +37,6 @@
     {
       "id": 3,
       "file": null,
-      "placeholder": {
-        "a": "#ffd93b",
-        "b": "#ff4f9a"
-      },
       "width": 1600,
       "height": 2000,
       "title": "Smart plug, thinking",
@@ -75,10 +59,6 @@
     {
       "id": 4,
       "file": null,
-      "placeholder": {
-        "a": "#38b6ff",
-        "b": "#15120f"
-      },
       "width": 1600,
       "height": 1600,
       "title": "Cash machine, out of cash",
@@ -101,10 +81,6 @@
     {
       "id": 5,
       "file": null,
-      "placeholder": {
-        "a": "#ff9acb",
-        "b": "#ff5a1f"
-      },
       "width": 1600,
       "height": 1067,
       "title": "Voice assistant, not understood",
@@ -127,10 +103,6 @@
     {
       "id": 6,
       "file": null,
-      "placeholder": {
-        "a": "#c9b6ff",
-        "b": "#0f8b8d"
-      },
       "width": 1600,
       "height": 1067,
       "title": "Update, restart required",
@@ -153,10 +125,6 @@
     {
       "id": 7,
       "file": null,
-      "placeholder": {
-        "a": "#ff4f9a",
-        "b": "#ffd93b"
-      },
       "width": 1600,
       "height": 2133,
       "title": "Lift, out of order",
@@ -179,10 +147,6 @@
     {
       "id": 8,
       "file": null,
-      "placeholder": {
-        "a": "#ff5a1f",
-        "b": "#5b3df5"
-      },
       "width": 1600,
       "height": 1600,
       "title": "Printer, personally offended",
@@ -205,10 +169,6 @@
     {
       "id": 9,
       "file": null,
-      "placeholder": {
-        "a": "#8ff0c4",
-        "b": "#2b6cff"
-      },
       "width": 1600,
       "height": 2000,
       "title": "Robot vacuum, stuck on a sock",
@@ -231,10 +191,6 @@
     {
       "id": 10,
       "file": null,
-      "placeholder": {
-        "a": "#ffd93b",
-        "b": "#ff4f9a"
-      },
       "width": 1600,
       "height": 1067,
       "title": "Smart Home No. 4 (Lights, Unresponsive)",
@@ -252,10 +208,6 @@
     {
       "id": 11,
       "file": null,
-      "placeholder": {
-        "a": "#38b6ff",
-        "b": "#15120f"
-      },
       "width": 1600,
       "height": 2133,
       "title": "Self-Checkout (Unexpected Item)",
@@ -273,10 +225,6 @@
     {
       "id": 12,
       "file": null,
-      "placeholder": {
-        "a": "#ff4f9a",
-        "b": "#ffd93b"
-      },
       "width": 1600,
       "height": 1600,
       "title": "Full Bars, No Internet",
@@ -294,10 +242,6 @@
     {
       "id": 13,
       "file": null,
-      "placeholder": {
-        "a": "#15120f",
-        "b": "#6a4dff"
-      },
       "width": 1600,
       "height": 1000,
       "title": "Printer, Ongoing Jam",
@@ -315,10 +259,6 @@
     {
       "id": 14,
       "file": null,
-      "placeholder": {
-        "a": "#c9b6ff",
-        "b": "#0f8b8d"
-      },
       "width": 1600,
       "height": 2000,
       "title": "Update (1 of 1,204)",
@@ -336,10 +276,6 @@
     {
       "id": 15,
       "file": null,
-      "placeholder": {
-        "a": "#ff9acb",
-        "b": "#ff5a1f"
-      },
       "width": 1600,
       "height": 1067,
       "title": "Fridge, Online",
@@ -357,10 +293,6 @@
     {
       "id": 16,
       "file": null,
-      "placeholder": {
-        "a": "#ffd93b",
-        "b": "#ff4f9a"
-      },
       "width": 1600,
       "height": 1200,
       "title": "Home shopping",
@@ -378,10 +310,6 @@
     {
       "id": 17,
       "file": null,
-      "placeholder": {
-        "a": "#38b6ff",
-        "b": "#15120f"
-      },
       "width": 1600,
       "height": 1200,
       "title": "Weather (unavailable)",
@@ -399,10 +327,6 @@
     {
       "id": 18,
       "file": null,
-      "placeholder": {
-        "a": "#ff5a1f",
-        "b": "#5b3df5"
-      },
       "width": 1600,
       "height": 1200,
       "title": "The Wi-Fi channel",

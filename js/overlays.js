@@ -2,23 +2,15 @@
    A = top bar and battery, B = loading dialog, C = cookie banner. */
 
 import { $, $$, root, reduce } from './util.js';
-import { roomColours } from './theme.js';
 
 /* ============ OVERLAY A: top bar (room label, battery, toast) + background colour per room ============ */
 export function initChrome({ onRoom }) {
   const rooms = $$('.room'), roomName = $('#roomName'), batt = $('#batt'), battPct = $('#battPct'), toast = $('#toast');
-  let toasted = false, current = 0;
-
-  /* The wall colour comes from the room's data attributes, per theme. */
-  function paint() {
-    const { bg, fg } = roomColours(rooms[current]);
-    gsap.to(document.body, { backgroundColor: bg, color: fg, duration: reduce ? 0 : .6, ease: 'power2.out', overwrite: 'auto' });
-  }
-  addEventListener('themechange', paint);
+  let toasted = false;
 
   function setRoom(i) {
-    const r = rooms[i];
-    current = i; paint();
+    const r = rooms[i]; /* the wall colour comes from the room's data-bg and data-fg */
+    gsap.to(document.body, { backgroundColor: r.dataset.bg, color: r.dataset.fg, duration: reduce ? 0 : .6, ease: 'power2.out', overwrite: 'auto' });
     const name = document.createElement('span'); /* the room's name drops away on narrow screens */
     name.className = 'rn'; name.textContent = ': ' + r.dataset.room;
     roomName.replaceChildren('Room ' + (i + 1) + ' of ' + rooms.length, name);
@@ -61,8 +53,6 @@ export function initChrome({ onRoom }) {
   addEventListener('keydown', e => {
     if ((e.key === 'n' || e.key === 'N') && !e.metaKey && !e.ctrlKey && !e.altKey && !e.target.closest('input,textarea,button,[role=slider]')) root.classList.toggle('show-rooms');
   });
-
-  return { resetToast() { toasted = false; } };
 }
 
 /* ============ OVERLAY B: loading dialog ============ */

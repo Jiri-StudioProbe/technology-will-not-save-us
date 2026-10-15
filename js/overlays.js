@@ -11,9 +11,12 @@ export function initChrome({ onRoom }) {
   function setRoom(i) {
     const r = rooms[i]; /* the wall colour comes from the room's data-bg and data-fg */
     gsap.to(document.body, { backgroundColor: r.dataset.bg, color: r.dataset.fg, duration: reduce ? 0 : .6, ease: 'power2.out', overwrite: 'auto' });
-    const name = document.createElement('span'); /* the room's name drops away on narrow screens */
-    name.className = 'rn'; name.textContent = ': ' + r.dataset.room;
-    roomName.replaceChildren('Room ' + (i + 1) + ' of ' + rooms.length, name);
+    if (r.dataset.label) roomName.textContent = r.dataset.label; /* the Foyer is just "Foyer", not "Room 1 of 12" */
+    else {
+      const name = document.createElement('span'); /* the room's name drops away on narrow screens */
+      name.className = 'rn'; name.textContent = ': ' + r.dataset.room;
+      roomName.replaceChildren('Room ' + (i + 1) + ' of ' + rooms.length, name);
+    }
     onRoom(i);
   }
   /* Create these after the pinned rooms' triggers so their positions include the pin spacing. */

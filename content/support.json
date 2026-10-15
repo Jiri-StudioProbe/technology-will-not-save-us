@@ -1,8 +1,9 @@
 {
-  "_note": "Placeholder copy for Jiri to review. 'refusal' answers anything the visitor asks, typed or tapped. 'followups' are the agent's own lines: one after every refusal, in order, then round again.",
+  "_note": "Placeholder copy for Jiri to review. 'refusal' answers anything the visitor asks, typed or tapped. 'followups' are the agent's own lines: one after every refusal, in order, then round again. 'codeReply' is what the agent says when the visitor gives it the error code from the blue screen: a stand-in until the special experience exists.",
   "greeting": "Hello! I am your virtual support assistant. How can I help you today?",
   "chips": ["Where is the exit?", "Is this exhibition working?", "Can I speak to a human?"],
   "refusal": "I cannot let you do that, Dave.",
+  "codeReply": "Thank you. Please hold.",
   "followups": [
     "Is there anything else I can help you with?",
     "Have you tried turning it off and on again?",

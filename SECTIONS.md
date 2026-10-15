@@ -5,12 +5,12 @@ If you add, remove or reorder rooms, renumber the `id`, `data-n` and comments, t
 
 ## Rooms
 
-The top bar always reads "Room N of M". Press **N** on the page, or add `#rooms` to the URL, to show room tags and outlines.
+The top bar reads "Room N of M", except in Room 01, the Foyer, where it reads just "Foyer". Press **N** on the page, or add `#rooms` to the URL, to show room tags and outlines.
 Add `#skip` to bypass the loading dialog. Add `#offline` to show the offline dinosaur screen. Add `#room-07` (and so on) to land in a specific room after the loading dialog.
 
 | Room | id | Name | Idea | Content |
 |---|---|---|---|---|
-| 01 | `room-01` | The Entrance | Title autocorrects itself, "not" stamps in | text |
+| 01 | `room-01` | Foyer | Title autocorrects itself, "not" stamps in | text |
 | 02 | `room-02` | Artist's statement | Words light up as you scroll | placeholder text |
 | 03 | `room-03` | The big one | Photo grows to full bleed (pinned) | Photo 1 |
 | 04 | `room-04` | Promise and delivery | Before / after slider, wiggles on entry | Photo 2 (+ advertised version) |
@@ -20,7 +20,7 @@ Add `#skip` to bypass the loading dialog. Add `#offline` to show the offline din
 | 08 | `room-08` | Please wait | Quote streams in, last word buffers | quote `q2` |
 | 09 | `room-09` | Channel surfing | CRT with static, scroll changes channel (pinned) | Photos 16 to 18 |
 | 10 | `room-10` | Security check | Fake CAPTCHA that fails you twice | 9 placeholder tiles |
-| 11 | `room-11` | Exit | Blue screen. The QR code opens `moved.html` (the 301 page); the stop code fades off the screen | text |
+| 11 | `room-11` | Exit | Blue screen. The QR code opens `moved.html` (the 301 page); the blue screen ends in a long error code that runs over two rows and can be pasted into the support chat (the agent then stops refusing; a special experience is still to come) | text |
 | 12 | `room-12` | Gift shop | Plain white. Three cards: T-shirt, poster, tip. "Out of stock" until a link is set | `content/shop.json` |
 
 After Room 12 comes the **footer**, which is not a room: the Restart exhibition button (leads to the BIOS boot screen, `reboot.html`, then back to the loading dialog) and a link to the guest book (`guestbook.html`: unmoderated, every message becomes Lorem Ipsum, kept only in the visitor's own browser).
@@ -29,10 +29,10 @@ After Room 12 comes the **footer**, which is not a room: the Restart exhibition 
 
 | Overlay | What |
 |---|---|
-| A | Top bar: room name, the sound toggle and a battery that drains as you scroll, plus the low-battery toast. On a phone it shortens: no room name after "Room N of M" at 560px and below, no battery percentage at 380px and below, no "Room N of M" at 340px and below |
+| A | Top bar: room name, the sound toggle (a speaker icon, with waves when the song plays and a cross when it does not) and a battery that drains as you scroll, plus the low-battery toast. On a phone the room name after "Room N of M" drops away (560px and below) |
 | B | Loading dialog: sticks at 99%, then "stopped responding". Two identical "Continue anyway" buttons (the click is the gesture that lets the song start) |
 | C | Cookie banner: assumes consent if you keep scrolling. The Reject button runs away four times, from a mouse or a tap |
-| D | Support agent: a "Support" button bottom right, always on screen after the loading dialog. Every question gets "I cannot let you do that, Dave.", then a line from a loop. Copy in `content/support.json`. On narrow screens it rides above the cookie banner |
+| D | Support agent: a "?" button (labelled "Support" for screen readers) bottom right, always on screen after the loading dialog. Every question gets "I cannot let you do that, Dave.", then a line from a loop. Copy in `content/support.json`. On narrow screens it rides above the cookie banner |
 | E | "You're offline": the browser's offline page with a dinosaur that runs on its own and always falls into the hole. Appears if the connection really drops, or with `#offline`. `offline.html` is the same screen as a page, and where the link on the 301 page (`moved.html`) leads |
 
 ## Photos and quotes

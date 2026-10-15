@@ -25,7 +25,10 @@ A tongue-in-cheek **web immersive exhibition** of Jiri's own photographs of "tec
 - **Support agent (Overlay D):** a "Support" button bottom right, on screen from the end of the loading dialog onwards. Any question, typed or tapped, gets "I cannot let you do that, Dave.", then one of its own lines that run in circles. All copy is placeholder in `content/support.json`, for Jiri to review.
 - **Room 11:** the QR code is real and encodes `moved.html` (a plain "301 Moved Permanently" page whose "here" link leads to the offline dinosaur, `offline.html`). The stop code is set huge and fades out before the screen edge so it cannot be quoted.
 - **Offline easter egg (Overlay E):** a tribute to the browser's offline page. "You're offline" with a pixel dinosaur that starts running on its own, never makes the hole, then tries again (Space, up arrow or a tap makes it hop, which does not help). It appears over the exhibition if the visitor's connection really drops and goes when it returns; `#offline` in the URL shows it on demand. `offline.html` is the same screen as a page of its own, and the "here" link on `moved.html` leads to it. Deliberately not themed (it is the browser interrupting). Drawn with a plain canvas loop, no animation library. Where else it could live (for example a TV channel in Room 09) is undecided.
-- **Reboot:** the "Restart exhibition" button in Room 11 leads to `reboot.html`, a 1990s BIOS start-up screen (memory test, drive detection, a "Hope Star" logo that is a lookalike rather than the real Energy Star mark, jokes about updates and optimism), which then moves on to `index.html` and the loading dialog. Esc or the Skip link jumps ahead, DEL gives a joke, `#stay` keeps it on screen, reduced motion shows it all at once. Not themed. The exact lines are still to be worked out with Jiri.
+- **Room 12, the gift shop** (plain white, `data-bg` `#FFFFFF`): three cards built from `content/shop.json` (T-shirt and poster, both to be dropshipped, and a "Tip me" card that will open a Monzo payment page). A card with no `https://` address yet shows as "Out of stock" with a disabled button, so nothing half-built is clickable; the links, prices and mock-ups are not supplied yet. All copy is placeholder. The old "Exit through the gift shop" line (with the zine joke) now lives here.
+- **Footer** (not a room, after Room 12): the "Restart exhibition" button and a link to the guest book. More may go here; undecided.
+- **Guest book** (`guestbook.html`): a plain, self-contained old-style page that says it is completely unmoderated and lets anyone save a message, which is turned into Lorem Ipsum word for word as it is saved. There is no server: entries live only in the visitor's own browser (localStorage), so nobody else ever sees them. Its "Return to the exhibition" link goes to `index.html#skip&room-12`.
+- **Reboot:** the "Restart exhibition" button in the footer leads to `reboot.html`, a 1990s BIOS start-up screen (memory test, drive detection, a "Hope Star" logo that is a lookalike rather than the real Energy Star mark, jokes about updates and optimism), which then moves on to `index.html` and the loading dialog. Esc or the Skip link jumps ahead, DEL gives a joke, `#stay` keeps it on screen, reduced motion shows it all at once. Not themed. The exact lines are still to be worked out with Jiri.
 - The song `audio/sunset-for-the-subscribed.mp3` plays on by default behind a toggle. Its licence is **unconfirmed** (check the terms of the tool that made it before commercial use). Lyrics file (`content/song-lyrics.md`) not supplied yet.
 - `vignettes/` holds 19 transition experiments (P01 to P10 page, I01 to I09 image). **None are used on the page yet.**
 - Everything still to finish is in `TODO.md`: known problems, content, decisions, build and quality passes.
@@ -37,20 +40,21 @@ index.html      all rooms and overlays as markup (rooms are empty shells where J
 404.html        self-contained "exhibition stopped responding" page
 moved.html      self-contained "301 Moved Permanently" page, the target of the Room 11 QR code; its link leads to offline.html
 offline.html    the "You're offline" dinosaur screen as a page (also Overlay E)
-reboot.html     a 1990s BIOS boot screen: where the Room 11 Restart button leads, then on to index.html
+guestbook.html  the guest book: unmoderated, and every message becomes Lorem Ipsum (linked from the footer)
+reboot.html     a 1990s BIOS boot screen: where the footer's Restart button leads, then on to index.html
 TODO.md         everything still to finish, by who needs to act
 css/main.css    all styles, sectioned by ROOM NN / OVERLAY X
 css/offline.css styles for the offline screen (shared by offline.html and Overlay E)
 js/main.js      entry: load content, build rooms, wire overlays, run the loading dialog
-js/content.js   reads content/*.json, builds Rooms 03, 04, 05, 06, 07, 08, 09
+js/content.js   reads content/*.json, builds Rooms 03, 04, 05, 06, 07, 08, 09 and 12
 js/overlays.js  Overlay A (top bar, battery, toast), B (loading dialog), C (cookie banner)
-js/rooms.js     one function per room (ROOM 01 to 11)
+js/rooms.js     one function per room (ROOM 01 to 11), plus the footer
 js/sound.js     the song: gesture-gated, fades, loop dip, toggle
 js/support.js   Overlay D: the support agent
 js/offline.js   Overlay E: "You're offline" screen, real offline detection, #offline
 js/dino.js      the dinosaur game loop on a canvas (runs itself, always falls in the hole)
 js/util.js      $, $$, reduce, fine, splitWords
-content/        photos.json, quotes.json, support.json: the only place content lives
+content/        photos.json, quotes.json, support.json, shop.json: the only place content lives
 audio/ fonts/ vendor/   song; VT323 (reboot.html only); GSAP 3.15 + ScrollTrigger + Draggable; qrcode-generator 2.0.4 (MIT, loaded only when Room 11 is built)
 vignettes/      standalone transition experiments
 og.png favicon.svg .nojekyll .github/workflows/pages.yml
@@ -60,7 +64,7 @@ og.png favicon.svg .nojekyll .github/workflows/pages.yml
 
 ## Vocabulary (use the same words Jiri does)
 
-- **Room N / RN:** a full section, numbered 01 to 11. The top bar always shows "Room N of M".
+- **Room N / RN:** a full section, numbered 01 to 12. The top bar always shows "Room N of M".
 - **Overlays A, B, C, D, E:** not rooms. A = top bar and battery (also holds the sound toggle), B = fake loading dialog, C = cookie banner, D = support agent, E = "You're offline" dinosaur screen.
 - **Photo N:** stable id of a photo slot in `photos.json`. Never renumber; add new ones at the end.
 - **P01 to P10 / I01 to I09:** page and image transition vignettes.
@@ -129,7 +133,7 @@ GitHub Pages is set to **deploy from GitHub Actions**: `.github/workflows/pages.
 5. Colophon call to action: mailing list, prints, zine, visitor submissions, or something else.
 6. Song licence and whether to credit it on the page.
 7. A "send me yours" visitor wall (needs a backend and moderation; version 2).
-8. A dropshipping gift shop and a "buy me a coffee" link at the end (idea only: provider, products, where it sits and what personal data it exposes are all undecided; embeds would break the no-third-party-requests rule, plain links would not).
+8. The gift shop's details: which dropshipping provider and storefront, the products' mock-ups and prices, and the `monzo.me` address (a Monzo link exposes the account username, and Monzo is UK-only, so it hints at a location and possibly a name: Jiri's call under the no-personal-data rule). Items link out in a new tab with `rel="noopener noreferrer"`; embeds or widgets would break the no-third-party-requests rule.
 
 ## Next sensible steps
 

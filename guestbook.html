@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="robots" content="noindex">
+<title>Guest book</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<style>
+/* Self-contained on purpose, and deliberately plain: an old-fashioned guest book, in the browser's own default style.
+   There is no server. Nothing you write leaves your browser, which is the only place it is ever kept. */
+body{margin:8px auto;padding:0 .75em 2em;max-width:42em;background:#fff;color:#000;font:16px/1.3 "Times New Roman",Times,serif}
+h1{margin:.67em 0;font-size:2em}
+h2{margin:1em 0 .5em;font-size:1.3em}
+p{margin:1em 0}
+label{display:block}
+input,textarea{box-sizing:border-box;width:100%;max-width:30em;font:inherit}
+button{font:inherit}
+a{color:#00e}
+a:visited{color:#551a8b}
+hr{margin:1.2em 0;border:0;border-top:1px solid #999;border-bottom:1px solid #fff;height:0}
+.entry{margin:0 0 1.1em}
+.entry b{font-weight:bold}
+.entry small{color:#555}
+.fine{font-size:.85em;color:#555}
+</style>
+</head>
+<body>
+<h1>Guest book</h1>
+<p>This guest book is completely unmoderated. Say whatever you like.</p>
+
+<form id="form">
+  <p><label for="who">Your name (optional)</label><input id="who" name="who" maxlength="40" autocomplete="off"></p>
+  <p><label for="msg">Your message</label><textarea id="msg" name="msg" rows="5" maxlength="500" required></textarea></p>
+  <p><button type="submit">Save message</button></p>
+</form>
+<p id="status" role="status"></p>
+
+<hr>
+<h2>Entries</h2>
+<div id="list"></div>
+<p class="fine">Messages may be edited for clarity.</p>
+<hr>
+<p><a href="index.html#skip&amp;room-12">Return to the exhibition</a></p>
+
+<script>
+(function () {
+  var KEY = 'twnsu-guestbook';
+  var WORDS = ('lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ' +
+    'ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat duis aute irure dolor in ' +
+    'reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur excepteur sint occaecat cupidatat non proident sunt in ' +
+    'culpa qui officia deserunt mollit anim id est laborum').split(' ');
+
+  /* Every word of the message becomes the next word of the lorem ipsum, keeping the punctuation and the capitals at the start of a sentence. */
+  function lorem(text) {
+    var out = [], startOfSentence = true, i = 0;
+    text.trim().split(/\s+/).slice(0, 120).forEach(function (token) {
+      var tail = (token.match(/[.,!?;:…]+$/) || [''])[0], w = WORDS[i++ % WORDS.length];
+      if (startOfSentence) w = w.charAt(0).toUpperCase() + w.slice(1);
+      startOfSentence = /[.!?…]$/.test(tail);
+      out.push(w + tail);
+    });
+    return out.join(' ');
+  }
+
+  function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+  function save(list) { try { localStorage.setItem(KEY, JSON.stringify(list)); } catch (e) { /* private mode: it just will not be kept */ } }
+
+  var list = document.getElementById('list');
+  function show(entries) {
+    list.textContent = '';
+    if (!entries.length) { var p = document.createElement('p'); p.textContent = 'No entries yet. Be the first.'; list.appendChild(p); return; }
+    entries.slice().reverse().forEach(function (e) {
+      var d = document.createElement('div'), b = document.createElement('b'), s = document.createElement('small'), p = document.createElement('div');
+      d.className = 'entry'; b.textContent = e.who || 'Anonymous'; s.textContent = ' wrote on ' + e.date + ':'; p.textContent = e.text;
+      d.appendChild(b); d.appendChild(s); d.appendChild(p); list.appendChild(d);
+    });
+  }
+
+  var entries = load();
+  show(entries);
+  document.getElementById('form').addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var msg = document.getElementById('msg').value, who = document.getElementById('who').value.trim();
+    if (!msg.trim()) return;
+    entries.push({ who: who, date: new Date().toLocaleDateString('en-GB'), text: lorem(msg) });
+    entries = entries.slice(-50);
+    save(entries); show(entries);
+    document.getElementById('msg').value = '';
+    document.getElementById('status').textContent = 'Your message has been saved.';
+  });
+})();
+</script>
+</body>
+</html>

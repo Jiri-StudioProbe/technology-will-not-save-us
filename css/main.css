@@ -80,6 +80,8 @@ html.locked .chrome{opacity:0}
 .btnrow{display:flex;gap:.8rem;justify-content:center;margin-top:1.3rem;flex-wrap:wrap}
 .w95{background:#c0c0c0;border:2px solid;border-color:#fff #404040 #404040 #fff;padding:.25rem 1.2rem;min-width:9rem;font:1.4rem/1.2 var(--sys)}
 .w95:active{border-color:#404040 #fff #fff #404040}
+a.w95{display:inline-block;color:#000;text-decoration:none;text-align:center}
+.w95:disabled{color:#808080;text-shadow:1px 1px 0 #fff;cursor:not-allowed}
 .w95:focus-visible{outline:1px dotted #000;outline-offset:-6px}
 
 /* ===== ROOM 01: The Entrance ===== */
@@ -221,8 +223,23 @@ html.locked .chrome{opacity:0}
   -webkit-mask-image:linear-gradient(90deg,#000 12%,transparent 100%);mask-image:linear-gradient(90deg,#000 12%,transparent 100%)}
 .bsod .info p+p{margin-top:.8rem}
 .bsod .info p{overflow-wrap:anywhere}
-.bsod .shop{margin-top:3rem;font:italic 400 clamp(1.4rem,2.4vw,2rem)/1.15 var(--wall);max-width:30ch}
-.bsod .restart{margin-top:2rem;background:#fff;color:var(--bsod);border:0;padding:.8rem 1.6rem;font:600 1.1rem var(--ui)}
+
+/* ===== ROOM 12: Gift shop ===== */
+.shop{padding:14vh clamp(1.2rem,6vw,6rem) 12vh}
+.shop h2{font-size:calc(clamp(3rem,9vw,8.5rem) * var(--ds));max-width:11em}
+.shop-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(1.4rem,3vw,2.6rem);max-width:1100px;margin-top:3.2rem}
+@media (max-width:800px){.shop-grid{grid-template-columns:1fr;max-width:26rem}}
+.item{display:flex;flex-direction:column;background:#fff;border:1px solid #000;box-shadow:4px 4px 0 #000}
+.item .ph{aspect-ratio:4/5}
+.item-body{display:flex;flex-direction:column;gap:.55rem;flex:1;padding:1rem 1.1rem 1.2rem}
+.item h3{font:400 1.8rem/1.1 var(--display)}
+.item p{font:1.05rem/1.35 var(--wall)}
+.item .price{font:1.25rem/1 var(--sys)}
+.item .w95{margin-top:auto;width:100%}
+.shop-note{margin-top:2.6rem;font:italic 400 clamp(1.3rem,2.2vw,1.8rem)/1.15 var(--wall);max-width:34ch}
+
+/* ===== FOOTER ===== */
+.foot{display:flex;flex-wrap:wrap;align-items:center;gap:1rem;padding:1.3rem clamp(1.2rem,6vw,6rem) 1.6rem;background:#c0c0c0;color:#000;border-top:2px solid #fff}
 
 /* ===== OVERLAY D: support agent ===== */
 .support{position:fixed;right:max(1rem,env(safe-area-inset-right));bottom:max(1rem,env(safe-area-inset-bottom));z-index:58;display:flex;flex-direction:column;align-items:flex-end;gap:.7rem;color:var(--ink);font:15px/1.35 var(--ui);transition:opacity .4s,bottom .4s}

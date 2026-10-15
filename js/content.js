@@ -12,10 +12,11 @@ const el = (tag, cls, text) => {
 
 export async function loadContent() {
   const get = url => fetch(url).then(r => { if (!r.ok) throw new Error(url + ': ' + r.status); return r.json(); });
-  /* The support agent is optional: without its file the rest of the show still opens. */
-  const [photos, quotes, support] = await Promise.all([get('content/photos.json'), get('content/quotes.json'),
-    get('content/support.json').catch(err => { console.error(err); return null; })]);
-  return { photos: photos.photos, quotes: quotes.quotes, support };
+  /* The support agent and the gift shop are optional: without their files the rest of the show still opens. */
+  const optional = url => get(url).catch(err => { console.error(err); return null; });
+  const [photos, quotes, support, shop] = await Promise.all([get('content/photos.json'), get('content/quotes.json'),
+    optional('content/support.json'), optional('content/shop.json')]);
+  return { photos: photos.photos, quotes: quotes.quotes, support, shop };
 }
 
 /* Turn an empty .ph element into a photo. With no file it stays a labelled
@@ -110,8 +111,32 @@ function quoteRoom(q, id) {
   if (q.arrived) sec.append(el('p', 'qarr', q.arrived));
 }
 
-export function renderContent({ photos, quotes }) {
+/* ROOM 12: the gift shop. An item with no https address yet is "out of stock" (a disabled button), so nothing half-built is clickable. */
+function room12(shop) {
+  $('#shopTitle').textContent = shop.heading;
+  $('#shopNote').textContent = shop.note;
+  $('#shopGrid').append(...shop.items.map(it => {
+    const card = el('article', 'item'), pic = el('div', 'ph'), body = el('div', 'item-body');
+    pic.dataset.cap = it.title; pic.setAttribute('role', 'img'); pic.setAttribute('aria-label', it.alt);
+    body.append(el('h3', '', it.title), el('p', '', it.blurb));
+    if (it.price) body.append(el('p', 'price', it.price));
+    let buy;
+    if (/^https:\/\//.test(it.url)) {
+      buy = el('a', 'w95', it.button);
+      Object.assign(buy, { href: it.url, target: '_blank', rel: 'noopener noreferrer' });
+      buy.setAttribute('aria-label', it.title + ': ' + it.button + ' (opens in a new tab)');
+    } else {
+      buy = el('button', 'w95', it.soldOut);
+      Object.assign(buy, { type: 'button', disabled: true });
+    }
+    body.append(buy); card.append(pic, body);
+    return card;
+  }));
+}
+
+export function renderContent({ photos, quotes, shop }) {
   room03(photos); room04(photos); room06(photos); room07(photos); room09(photos);
   const q = n => quotes.find(x => x.room === n);
   quoteRoom(q(5), 'q1'); quoteRoom(q(8), 'q2');
+  if (shop) room12(shop);
 }

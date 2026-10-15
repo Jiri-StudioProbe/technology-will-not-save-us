@@ -19,7 +19,9 @@ The working list. Tick things off here, and keep `CLAUDE.md` ("Current state" an
 - [ ] **J** Artist's statement (Room 02): placeholder. Jiri writes or approves the real one.
 - [ ] **J** Room 04 "as advertised" image: a stock photo or a mock-up? Licensing needs settling.
 - [ ] **J** Room 10 CAPTCHA tiles are placeholders. Real photos, or keep them abstract?
-- [ ] **J** Review the draft copy I wrote: support agent (`content/support.json`), BIOS reboot lines (`reboot.html`), the 301 page, the offline screen ("Accepting it"), the 404 page, hero and room microcopy.
+- [ ] **J** Gift shop (Room 12): choose the dropshipping provider and set up the T-shirt and poster; supply mock-ups, prices and each item's `https://` address for `content/shop.json`. Until an address is set the card says "Out of stock".
+- [ ] **J** Tip me: the `monzo.me` address, hardcoded in `content/shop.json` (fine technically: it is a public pay-me link). Decide first what it reveals: the username is usually a name, and Monzo is UK-only, which hints at a location, against the no-personal-data rule.
+- [ ] **J** Review the draft copy I wrote: the gift shop (`content/shop.json`), the guest book page (`guestbook.html`), the support agent (`content/support.json`), BIOS reboot lines (`reboot.html`), the 301 page, the offline screen ("Accepting it"), the 404 page, hero and room microcopy.
 - [ ] **J** Song: confirm the licence of the tool that made it before any commercial use; supply the lyrics file (`content/song-lyrics.md`); decide whether to credit it on the page.
 
 ## 3. Decisions waiting on Jiri
@@ -27,7 +29,7 @@ The working list. Tick things off here, and keep `CLAUDE.md` ("Current state" an
 - [ ] **J** Final title and domain name (then add `CNAME`, update the `og:` URLs and the link-preview text).
 - [ ] **J** Final room list and order. The storyboard table does not exist yet (see 4).
 - [ ] **J** Which transitions go where (19 experiments in `vignettes/`, none used yet).
-- [ ] **J** The ending: colophon and call to action (mailing list, prints, zine, a gift shop, "buy me a coffee", a visitor wall). Plain outbound links keep the no-third-party-requests rule; embeds would break it. Decide what personal data any shop or coffee page would expose.
+- [ ] **J** Footer: what else goes under the Restart button and the Guest book link (colophon, credits, a mailing list?). Room 12 and the footer exist; this is only what is left to decide.
 - [ ] **J** Where else the offline dinosaur could live (for example a TV channel in Room 09), if anywhere.
 
 ## 4. Build
@@ -52,4 +54,4 @@ The working list. Tick things off here, and keep `CLAUDE.md` ("Current state" an
 
 ## Done recently
 
-The retro look is now the only look (colour look and switch removed); Sound toggle back on phones; cookie Reject dodges taps as well as the mouse; real QR code to the 301 page; fading stop code; Support agent; offline dinosaur; BIOS reboot screen, now behind the Restart button.
+The retro look is now the only look (colour look and switch removed); Sound toggle back on phones; gift shop (Room 12), footer and guest book built; cookie Reject dodges taps as well as the mouse; real QR code to the 301 page; fading stop code; Support agent; offline dinosaur; BIOS reboot screen, now behind the Restart button.

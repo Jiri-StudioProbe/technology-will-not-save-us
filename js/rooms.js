@@ -252,11 +252,15 @@ function room11() {
   drawQr();
   if (reduce) runBsod();
   else ScrollTrigger.create({ trigger: '#bsod', start: 'top 60%', once: true, onEnter: runBsod });
+}
+
+/* ============ FOOTER: restart (the guest book is a plain link) ============ */
+function footer() {
   /* Restart leaves for the BIOS start-up screen (reboot.html), which ends back at index.html and the loading dialog.
      replace, not assign: a restart should not add to the back-button history. */
   $('#restart').addEventListener('click', () => location.replace('reboot.html'));
 }
 
 export function initRooms() {
-  room02(); room03(); room04(); room05(); room06(); room07(); room08(); room09(); room10(); room11();
+  room02(); room03(); room04(); room05(); room06(); room07(); room08(); room09(); room10(); room11(); footer();
 }

@@ -27,7 +27,8 @@ index.html        the page: all rooms and overlays as markup
 404.html          the exhibition has stopped responding
 moved.html        a plain 301 page: where the Room 11 QR code leads (its link goes on to offline.html)
 offline.html      the offline dinosaur screen as a page
-reboot.html       a 1990s BIOS boot screen: where the Room 11 Restart button leads
+reboot.html       a 1990s BIOS boot screen: where the footer's Restart button leads
+guestbook.html    the guest book: unmoderated, every message becomes Lorem Ipsum
 TODO.md           everything still to finish
 css/main.css      all styles, sectioned by ROOM NN / OVERLAY X
 js/main.js        entry point: load content, build rooms, wire overlays
@@ -37,7 +38,7 @@ js/rooms.js       one function per room
 js/sound.js       the song: gesture-gated playback, fades, loop dip
 js/support.js     the support agent (Overlay D)
 js/offline.js     the offline screen and its dinosaur (Overlay E, js/dino.js)
-content/          photos.json, quotes.json, support.json (the only place content lives)
+content/          photos.json, quotes.json, support.json, shop.json (the only place content lives)
 audio/            the song (starts only after a click, behind the sound toggle)
 fonts/ vendor/    VT323 (reboot.html only); GSAP 3.15 with ScrollTrigger and Draggable
 vignettes/        19 standalone transition experiments (not used yet)

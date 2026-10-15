@@ -32,7 +32,7 @@
 
 <!-- ============ OVERLAY A: top bar (room label, battery) + low-battery toast ============ -->
 <div class="chrome">
-  <span id="roomName" aria-hidden="true">Room 1 of 11: The Entrance</span>
+  <span id="roomName" aria-hidden="true">Foyer</span>
   <span class="chrome-r">
     <button class="sound" id="sound" type="button" aria-pressed="false" aria-label="Sound" title="Sound off">
       <svg viewBox="0 0 22 16" aria-hidden="true"><path d="M1 5H5L10 1V15L5 11H1Z"/><path class="waves" d="M14 5H16V11H14M18 2H20V14H18"/><path class="cross" d="M14 5L20 11M20 5L14 11"/></svg>
@@ -68,8 +68,8 @@
 
 <main id="main">
 
-<!-- ============ ROOM 01: The Entrance (autocorrecting title) ============ -->
-<div class="room" id="room-01" data-n="01" data-room="The Entrance" data-bg="#DDD5BE" data-fg="#111111">
+<!-- ============ ROOM 01: Foyer (autocorrecting title) ============ -->
+<div class="room" id="room-01" data-n="01" data-room="Foyer" data-label="Foyer" data-bg="#DDD5BE" data-fg="#111111">
   <section class="hero">
     <h1 id="title" aria-label="Technology will not save us."><span class="wd">Technology</span> <span class="wd">will</span> <span class="wd not">not</span> <span class="wd">save</span> <span class="wd">us.</span></h1>
     <p class="hero-sub">A photo exhibition of machines, mid-failure.</p>
@@ -197,10 +197,10 @@
       <a class="qr" href="moved.html" aria-label="QR code. It leads to a page about this issue."><canvas id="qr" width="25" height="25" aria-hidden="true"></canvas></a>
       <div>
         <p>For more information about this issue and possible fixes, visit your-domain.example/technology</p>
-        <p>If you call a support person, give them this info:</p>
+        <p>If you message customer support, give them this error code:</p>
       </div>
     </div>
-    <p class="stopcode">Stop code: TECHNOLOGY_WILL_NOT_SAVE_US</p>
+    <p class="stopcode" id="stopCode">STOP: 0x0000007E (0xC0000005, 0xF86B5A89, 0xF8A1E0B8, 0xF8A1DDB4) TECHNOLOGY_WILL_NOT_SAVE_US</p>
   </section>
 </div>
 
@@ -236,7 +236,7 @@
       <button type="submit">Send</button>
     </form>
   </div>
-  <button class="sup-fab" id="supFab" type="button" aria-expanded="false" aria-controls="supPanel">Support<span class="sup-badge" id="supBadge" aria-hidden="true">1</span></button>
+  <button class="sup-fab" id="supFab" type="button" aria-expanded="false" aria-controls="supPanel" aria-label="Support" title="Support">?<span class="sup-badge" id="supBadge" aria-hidden="true">1</span></button>
 </aside>
 
 <!-- ============ OVERLAY C: cookie banner ============ -->

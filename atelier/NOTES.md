@@ -1,6 +1,6 @@
 # The atelier game: notes
 
-The game behind the exhibition's "private tour of behind the scenes of the gallery atelier". It was built in a separate Claude thread under the name Wirecrypt, as one file, `wirecrypt.html`; it is now called **Atelier**, and its welcome text is the artists-are-hungry line (the other in-game texts, such as "YOU DIED" and the crypt story, are still the original ones); the original handoff notes follow below the line. This section says what is different here.
+The game behind the exhibition's "private tour of behind the scenes of the gallery atelier". It was built in a separate Claude thread under the name Wirecrypt, as one file, `wirecrypt.html`; it is now called **Atelier**, and its welcome text is the artists-are-hungry line (the rest of the story text is rewritten on the same theme: the monsters are the hungry artists, the chest is their lunch chest, "YOU ARE LUNCH" and "TOUR COMPLETE" are the end screens; all of it is placeholder copy for Jiri to review); the original handoff notes follow below the line. This section says what is different here.
 
 ## In this repo
 

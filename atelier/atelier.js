@@ -765,7 +765,7 @@ function openChest(){
   chest.open=true;p.shells+=8;bump($('ammoNum'));gate.opening=true;portal.on=true;alarmT=5;shake=RM?0:1.4;
   [['crawler',10.5,11.6],['crawler',10.5,14.4],['spitter',13.5,14.4]].forEach(a=>{const m=mk(a[0],a[1],a[2],.9);m.awake=true;monsters.push(m)});
   sfx.chest();sfx.rumble();
-  toast('The vault shudders. +8 shells',3200);
+  toast('The lid creaks. They have noticed. +8 shells',3200);
 }
 function steer(m,ang,step,r){
   for(const off of [0,.6,-.6,1.2,-1.2]){
@@ -821,7 +821,7 @@ function update(dt){
     if(it.k==='med'){
       if(p.hp>=100){if(time-denyT>2){denyT=time;toast('Health already full',1400);sfx.deny()}continue}
       const g=Math.min(100,p.hp+30)-p.hp;p.hp+=g;
-      announce(it,'Medkit','+'+g+' health',ITEMC.med);bump($('hpNum'));bump($('hpFill'));sfx.med();
+      announce(it,'Emergency sandwich','+'+g+' health',ITEMC.med);bump($('hpNum'));bump($('hpFill'));sfx.med();
     }else if(it.k==='shells'){
       p.shells+=6;
       announce(it,'Shotgun shells','+6 shells · '+p.shells+' total'+(p.has?'':' · find a shotgun'),ITEMC.shells);bump($('ammoNum'));sfx.ammo();
@@ -839,7 +839,7 @@ function update(dt){
   }
   if(gate.opening){
     gate.p+=dt/1.5;
-    if(gate.p>=1){gate.p=1;gate.opening=false;gate.done=true;map[12][8]=0;map[13][8]=0;toast('The gate is open. Reach the portal',3000)}
+    if(gate.p>=1){gate.p=1;gate.opening=false;gate.done=true;map[12][8]=0;map[13][8]=0;toast('The studio door is open. Head for the exit',3000)}
   }
   if(alarmT>0){alarmT-=dt;alarmBeat-=dt;if(alarmBeat<=0){sfx.alarm();alarmBeat=.5}}
   if(portal.on&&gate.done&&Math.hypot(portal.x-p.x,portal.y-p.y)<.7){state='win';fireHeld=false;sfx.win();showOverlay('win')}
@@ -873,7 +873,7 @@ function syncHud(){
   setText($('wName'),'w',p.weapon?'SHOTGUN':'PISTOL');
   setText($('ammoNum'),'a',p.weapon?String(p.shells):'∞');
   setText($('killNum'),'k',String(kills));
-  setText($('obj'),'o',chest.open?(gate.done?'Reach the exit portal':'Survive the vault'):'Find the treasure chest');
+  setText($('obj'),'o',chest.open?(gate.done?'Reach the exit':'Survive the lunch rush'):'Find the artists\' lunch chest');
   const near=state==='play'&&nearChest();
   if(promptEl.hidden===near){promptEl.hidden=!near;promptEl.textContent=isTouch?'Tap USE to open':'Press E to open'}
 }
@@ -884,13 +884,13 @@ function showOverlay(kind){
   if(document.exitPointerLock)try{document.exitPointerLock()}catch(e){}
   $('ovK').textContent=isTouch?'Left thumb moves. Drag on the right to look. FIRE, USE and SWAP are at the lower right.':'WASD move · ←/→ or mouse turn · Space or click fire · E open · Q swap · M mute';
   if(kind==='title'){h.textContent='ATELIER';pp.textContent="Enjoy the private tour of the atelier and see the artists at work. Just be careful: times are hard, and this is the cost of living crisis. They're a little bit hungry!";st.hidden=true;b.textContent='ENTER'}
-  else if(kind==='dead'){h.textContent='YOU DIED';pp.textContent='The crypt keeps what it takes.';st.hidden=false;st.textContent='Kills '+kills+' · Time '+fmt(time);b.textContent='TRY AGAIN'}
-  else{h.textContent='VAULT CLEARED';pp.textContent='The portal swallows you. Whatever was in that chest is behind you now.';st.hidden=false;st.textContent='Kills '+kills+' · Time '+fmt(time);b.textContent='PLAY AGAIN'}
+  else if(kind==='dead'){h.textContent='YOU ARE LUNCH';pp.textContent='The artists thank you for your support. It was not enough.';st.hidden=false;st.textContent='Artists seen off '+kills+' · Time '+fmt(time);b.textContent='TRY AGAIN'}
+  else{h.textContent='TOUR COMPLETE';pp.textContent='You leave with your life and, regrettably, no lunch. The artists will wait for the next visitor.';st.hidden=false;st.textContent='Artists seen off '+kills+' · Time '+fmt(time);b.textContent='TAKE THE TOUR AGAIN'}
 }
 function startGame(){
   unlock();initLevel();state='play';$('overlay').hidden=true;pickEl.hidden=true;
   goFull();
-  toast('Something heavy glints in the north-east corner',3600);
+  toast('Something smells of sandwiches in the north-east corner',3600);
 }
 $('ovB').addEventListener('click',startGame);
 $('ovX').addEventListener('click',exitAtelier);

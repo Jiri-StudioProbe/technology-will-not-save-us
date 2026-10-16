@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#000000">
+<title>Atelier: private tour</title>
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="atelier.css">
+</head>
+<body>
+<!-- The exit bar sits outside the game, above every overlay: the visitor can always leave. -->
+<header id="bar">
+  <span class="t"><em>Atelier</em> · private tour</span>
+  <span id="lockNote" hidden>Esc shows the cursor</span>
+  <a id="exit" href="../index.html#skip&amp;room-11">&larr; Exit atelier</a>
+</header>
+<div id="stage">
+  <canvas id="view" aria-label="First-person view of the atelier. This part is a game and is not available to screen readers; Exit atelier is always at the top."></canvas>
+  <div id="hud">
+    <div class="row"><span class="k">HP</span><span class="bar"><i id="hpFill"></i></span><b id="hpNum">100</b></div>
+    <div class="row"><b id="wName">PISTOL</b><span class="k">AMMO</span><b id="ammoNum">∞</b><span class="k">KILLS</span><b id="killNum">0</b></div>
+    <div id="obj">Find the treasure chest</div>
+    <button id="mute" type="button">SOUND ON</button>
+  </div>
+  <div id="toast" hidden></div>
+  <div id="pick" hidden><canvas id="pickIcon" width="56" height="56"></canvas><div><b id="pickT"></b><span id="pickS"></span></div></div>
+  <div id="prompt" hidden></div>
+  <div id="legend">WASD move · ←/→ or mouse turn · Space or click fire · E open · Q swap · M mute</div>
+  <div id="pad">
+    <div id="joy"><i id="knob"></i></div>
+    <button class="tbtn" id="bSwap" type="button">SWAP</button>
+    <button class="tbtn" id="bUse" type="button">USE</button>
+    <button class="tbtn" id="bFire" type="button">FIRE</button>
+  </div>
+  <div id="overlay">
+    <div class="card">
+      <h1 id="ovH">WIRECRYPT</h1>
+      <p id="ovP">Cross the halls. Take the shotgun from the north-east corner. Open the chest in the south wing, then run for the exit.</p>
+      <p class="stats" id="ovS" hidden></p>
+      <p class="keys" id="ovK"></p>
+      <div class="btns"><button class="go" id="ovB" type="button">ENTER</button><button class="go alt" id="ovX" type="button">EXIT ATELIER</button></div>
+    </div>
+  </div>
+</div>
+<noscript><p style="position:fixed;inset:60px 0 0;display:grid;place-items:center;margin:0;color:#d8fff7;font:16px monospace">The atelier needs JavaScript. <a href="../index.html#skip&amp;room-11" style="color:#ffc23d">Exit atelier</a></p></noscript>
+<script src="atelier.js"></script>
+</body>
+</html>

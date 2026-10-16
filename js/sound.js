@@ -15,7 +15,7 @@ export function initSound() {
   const btn = $('#sound');
   const audio = new Audio(SRC);
   audio.loop = true; audio.preload = 'auto'; audio.volume = 0;
-  let wanted = true, loopFading = false;
+  let wanted = true, loopFading = false, hushed = false;
 
   const paint = () => {
     const playing = !audio.paused;
@@ -30,7 +30,7 @@ export function initSound() {
   const arm = () => GESTURES.forEach(g => addEventListener(g, retry, { capture: true, once: true }));
 
   function start() {
-    if (!wanted || !audio.paused) return;
+    if (!wanted || hushed || !audio.paused) return;
     audio.play().then(() => { loopFading = false; gsap.to(audio, { volume: VOLUME, duration: FADE_IN, ease: 'none', overwrite: true }); }).catch(arm);
   }
 
@@ -57,5 +57,9 @@ export function initSound() {
   });
 
   paint();
-  return { start };
+  /* The atelier (Overlay F) has its own sounds: the song waits while it is open, and carries on afterwards. */
+  function hush() { hushed = true; if (!audio.paused) { gsap.killTweensOf(audio); audio.pause(); } }
+  function unhush() { hushed = false; start(); }
+
+  return { start, hush, unhush };
 }

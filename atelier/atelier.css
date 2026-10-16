@@ -1,0 +1,73 @@
+/* Layout: full-bleed first-person view, HUD panel top-left, minimap top-right (drawn in canvas), touch pads over the lower corners. One committed dark vector look. */
+:root{
+  --bg:#03080b;
+  --ink:#d8fff7;
+  --ink-dim:#76aaa1;
+  --line:#3df2d0;
+  --danger:#ff4a36;
+  --gold:#ffc23d;
+  --panel:rgba(3,10,12,.76);
+  --panel-edge:rgba(61,242,208,.38);
+  --ui:ui-monospace,'SF Mono',Menlo,Consolas,'Courier New',monospace; /* no web font: the exhibition makes no third-party requests */
+  color-scheme:dark;
+}
+[hidden]{display:none!important} /* the game shows and hides things with the hidden attribute: keep this rule or its overlay never goes away */
+html{color-scheme:dark}
+html,body{height:100%}
+body{display:flex;flex-direction:column;margin:0;background:var(--bg);color:var(--ink);font-family:var(--ui);overflow:hidden;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;overscroll-behavior:none}
+#stage{position:relative;flex:1;min-height:0;width:100%;overflow:hidden;background:var(--bg)}
+canvas{display:block;width:100%;height:100%}
+#hud{position:absolute;top:10px;left:max(16px,env(safe-area-inset-left,0px));width:min(250px,56vw);box-sizing:border-box;display:flex;flex-direction:column;gap:6px;padding:8px 10px;background:var(--panel);border:1px solid var(--panel-edge);font-size:12px;letter-spacing:.08em;text-transform:uppercase;pointer-events:none}
+#hud .row{display:flex;align-items:center;gap:8px}
+.k{color:var(--ink-dim);font-size:10px}
+b{font-weight:700;font-variant-numeric:tabular-nums}
+.bar{flex:1;height:8px;border:1px solid var(--panel-edge);position:relative}
+.bar i{position:absolute;inset:0 auto 0 0;width:100%;background:var(--line)}
+.bar i.low{background:var(--danger)}
+#obj{color:var(--gold);font-size:11px;line-height:1.3}
+#mute{pointer-events:auto;align-self:flex-start;font:500 10px var(--ui);letter-spacing:.12em;color:var(--ink-dim);background:transparent;border:1px solid var(--panel-edge);padding:3px 6px;cursor:pointer}
+#hud b{display:inline-block;transform-origin:left center}
+.bump{animation:bump .7s ease-out}
+@keyframes bump{0%{transform:scale(1.45);color:var(--gold);text-shadow:0 0 10px var(--gold)}100%{transform:scale(1);text-shadow:none}}
+#pick{position:absolute;left:50%;top:36%;transform:translateX(-50%);max-width:88%;box-sizing:border-box;display:flex;align-items:center;gap:12px;padding:8px 18px 8px 10px;background:var(--panel);border:2px solid var(--c);box-shadow:0 0 26px var(--c);pointer-events:none}
+#pick.pop{animation:pop .45s cubic-bezier(.2,1.5,.4,1)}
+@keyframes pop{0%{transform:translateX(-50%) scale(.5);opacity:0}100%{transform:translateX(-50%) scale(1);opacity:1}}
+#pickIcon{width:56px;height:56px;flex:none;image-rendering:pixelated}
+#pickT{display:block;color:var(--c);font-size:16px;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap}
+#pickS{display:block;margin-top:2px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink)}
+@media (prefers-reduced-motion:reduce){.bump,#pick.pop{animation:none}}
+#toast{position:absolute;left:50%;top:24%;transform:translateX(-50%);max-width:82%;box-sizing:border-box;text-align:center;padding:8px 14px;background:var(--panel);border:1px solid var(--gold);color:var(--gold);font-size:13px;letter-spacing:.08em;text-transform:uppercase;pointer-events:none;text-wrap:balance}
+#prompt{position:absolute;left:50%;bottom:30%;transform:translateX(-50%);padding:6px 12px;background:var(--panel);border:1px solid var(--line);color:var(--line);font-size:13px;letter-spacing:.12em;text-transform:uppercase;pointer-events:none}
+#legend{position:absolute;left:0;right:0;bottom:8px;text-align:center;font-size:10px;letter-spacing:.12em;color:var(--ink-dim);text-transform:uppercase;pointer-events:none}
+body.touch #legend{display:none}
+#pad{display:none}
+body.touch #pad{display:block}
+#joy{position:absolute;left:max(24px,env(safe-area-inset-left,0px));bottom:36px;width:112px;height:112px;margin:0;border:2px solid rgba(61,242,208,.28);border-radius:50%;pointer-events:none}
+#joy.on{border-color:rgba(61,242,208,.6)}
+#knob{position:absolute;left:50%;top:50%;width:44px;height:44px;margin:-22px 0 0 -22px;border:2px solid var(--line);border-radius:50%;background:rgba(61,242,208,.12)}
+.tbtn{position:absolute;display:grid;place-items:center;padding:0;border:2px solid var(--line);border-radius:50%;background:rgba(3,10,12,.4);color:var(--line);font:700 12px var(--ui);letter-spacing:.1em;touch-action:none;pointer-events:auto}
+#bFire{width:88px;height:88px;right:max(20px,env(safe-area-inset-right,0px));bottom:34px;border-color:var(--danger);color:var(--danger)}
+#bUse{width:62px;height:62px;right:calc(max(20px,env(safe-area-inset-right,0px)) + 100px);bottom:40px}
+#bSwap{width:52px;height:52px;right:calc(max(20px,env(safe-area-inset-right,0px)) + 18px);bottom:136px;color:var(--gold);border-color:var(--gold)}
+#overlay{position:absolute;inset:0;z-index:5;display:grid;place-items:center;padding:16px;box-sizing:border-box;background:rgba(3,8,11,.8)}
+.card{width:100%;max-width:460px;box-sizing:border-box;padding:22px;background:var(--panel);border:1px solid var(--panel-edge)}
+h1{margin:0 0 12px;font:700 clamp(30px,9vw,54px)/1.05 var(--ui);letter-spacing:.06em;overflow-wrap:anywhere;color:transparent;-webkit-text-stroke:1.5px var(--line)}
+@supports not (-webkit-text-stroke:1px #000){h1{color:var(--line)}}
+.card p{margin:0 0 12px;font-size:15px;line-height:1.5;text-wrap:pretty}
+.card p.keys{font-size:12px;color:var(--ink-dim);letter-spacing:.06em}
+.card p.stats{color:var(--gold);letter-spacing:.1em}
+.go{font:700 15px var(--ui);letter-spacing:.2em;color:var(--line);background:transparent;border:2px solid var(--line);padding:12px 22px;cursor:pointer}
+.go:hover{background:rgba(61,242,208,.14)}
+button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+
+/* ---------- the exit bar: always on screen, above every overlay, so the visitor can leave at any moment ---------- */
+#bar{flex:none;display:flex;align-items:center;justify-content:space-between;gap:12px;box-sizing:border-box;min-height:46px;padding:max(4px,env(safe-area-inset-top,0px)) max(12px,env(safe-area-inset-right,0px)) 4px max(12px,env(safe-area-inset-left,0px));background:#000;border-bottom:1px solid var(--panel-edge);position:relative;z-index:20}
+#bar .t{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#bar .t em{font-style:normal;color:var(--line)}
+#lockNote{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-dim);white-space:nowrap}
+#exit{flex:none;display:inline-flex;align-items:center;gap:8px;min-height:38px;box-sizing:border-box;padding:0 14px;font:700 13px var(--ui);letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:var(--gold);background:rgba(255,194,61,.1);border:2px solid var(--gold);cursor:pointer}
+#exit:hover{background:rgba(255,194,61,.24)}
+.btns{display:flex;flex-wrap:wrap;gap:10px}
+.go.alt{color:var(--gold);border-color:var(--gold)}
+.go.alt:hover{background:rgba(255,194,61,.14)}
+@media (max-width:480px){.go{padding:12px 14px}#lockNote{display:none}}

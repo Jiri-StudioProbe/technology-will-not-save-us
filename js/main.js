@@ -7,6 +7,7 @@ import { initChrome, initBoot, initCookie } from './overlays.js';
 import { initSound } from './sound.js';
 import { initSupport } from './support.js';
 import { initOffline } from './offline.js';
+import { initAtelier } from './atelier.js';
 import { initRooms, heroPrep, heroIntro } from './rooms.js';
 
 history.scrollRestoration = 'manual'; /* always start at the entrance */
@@ -31,6 +32,7 @@ async function start() {
 
   const cookie = initCookie(), sound = initSound();
   initSupport(content.support);
+  if (content.support && content.support.atelier && content.support.atelier.enabled) initAtelier({ sound });
   const boot = initBoot({
     onStart: heroPrep,
     onGesture: sound.start,

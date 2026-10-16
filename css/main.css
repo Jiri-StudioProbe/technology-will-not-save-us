@@ -246,15 +246,15 @@ a.w95{display:inline-block;color:#000;text-decoration:none;text-align:center}
 /* ===== OVERLAY D: support agent ===== */
 .support{position:fixed;right:max(1rem,env(safe-area-inset-right));bottom:max(1rem,env(safe-area-inset-bottom));z-index:58;display:flex;flex-direction:column;align-items:flex-end;gap:.7rem;color:var(--ink);font:15px/1.35 var(--ui);transition:opacity .4s,bottom .4s}
 html.locked .support{opacity:0;visibility:hidden}
-@media (max-width:820px){ /* while the cookie banner is up it would cover the chat, so the chat rides above it */
-  html.cookie-up{--lift:calc(var(--cookie-h) + 1rem)}
-  html.cookie-up .support{bottom:calc(max(1rem,env(safe-area-inset-bottom)) + var(--lift))}
+@media (max-width:820px){ /* on a phone the Foyer is crowded enough: the chat waits until the cookie banner has gone */
+  .support{transition:opacity .4s,visibility .4s}
+  html.cookie-pending .support{opacity:0;visibility:hidden}
 }
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .sup-fab{position:relative;min-width:3.2rem;background:#c0c0c0;color:#000;border:2px solid;border-color:var(--bevel);box-shadow:1px 1px 0 #000;padding:.5rem .8rem;font:700 1.9rem/1 var(--sys);text-align:center}
 .sup-fab:active{border-color:#404040 #fff #fff #404040}
 .sup-badge{position:absolute;top:-.5rem;right:-.2rem;min-width:1.3rem;height:1.3rem;padding:0 .2rem;border-radius:999px;background:#e5251b;color:#fff;font:700 12px/1.3rem var(--ui);text-align:center}
-.sup-panel{width:min(22rem,calc(100vw - 2rem));max-height:min(30rem,calc(100svh - 7rem - var(--lift,0px)));display:flex;flex-direction:column;background:#c0c0c0;border:2px solid;border-color:var(--bevel);box-shadow:2px 2px 0 #000;padding:2px}
+.sup-panel{width:min(22rem,calc(100vw - 2rem));max-height:min(30rem,calc(100svh - 7rem));display:flex;flex-direction:column;background:#c0c0c0;border:2px solid;border-color:var(--bevel);box-shadow:2px 2px 0 #000;padding:2px}
 .sup-head{display:flex;align-items:center;justify-content:space-between;gap:.6rem;padding:.55rem .8rem;background:linear-gradient(90deg,#000080,#1084d0);color:#fff}
 .sup-head b{font:400 1.3rem/1 var(--sys)}
 .sup-head small{display:block;font:12px/1.2 var(--ui);opacity:.8}

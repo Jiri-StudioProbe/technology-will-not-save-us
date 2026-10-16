@@ -114,11 +114,11 @@ export function initCookie() {
   let flees = 0, closed = false, queued = false, assumed = false;
   gsap.set(cookie, { yPercent: 160, autoAlpha: 0 });
 
-  /* On narrow screens the banner would cover the support agent (Overlay D), so tell the stylesheet how tall it is. */
-  const lift = up => { root.classList.toggle('cookie-up', up); if (up) root.style.setProperty('--cookie-h', cookie.offsetHeight + 'px'); };
-  const open = () => { if (!closed) { lift(true); gsap.to(cookie, { yPercent: 0, autoAlpha: 1, duration: reduce ? 0 : .5, ease: 'power3.out' }); } };
+  /* On narrow screens the support agent (Overlay D) stays hidden until the banner has gone. */
+  root.classList.add('cookie-pending');
+  const open = () => { if (!closed) gsap.to(cookie, { yPercent: 0, autoAlpha: 1, duration: reduce ? 0 : .5, ease: 'power3.out' }); };
   function close() {
-    closed = true; lift(false);
+    closed = true; root.classList.remove('cookie-pending');
     gsap.to(cookie, { yPercent: 160, autoAlpha: 0, duration: reduce ? 0 : .4, ease: 'power3.in' });
   }
   $('#cookieYes').addEventListener('click', close);
@@ -157,7 +157,7 @@ export function initCookie() {
     assume() {
       if (closed || assumed || !queued) return; assumed = true;
       line.textContent = 'You kept scrolling. We are taking that as a yes.';
-      row.hidden = true; lift(true);
+      row.hidden = true;
       gsap.delayedCall(reduce ? 0 : 3, close);
     }
   };

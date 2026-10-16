@@ -12,7 +12,7 @@ The page loads `content/*.json` with `fetch`, so it needs to be served over http
 python3 -m http.server 8000
 ```
 
-Then open http://localhost:8000/. Handy URL flags: `#skip` (no loading dialog), `#rooms` (show room tags), `#room-07` (land in a room), `#offline` (show the offline dinosaur).
+Then open http://localhost:8000/. Handy URL flags: `#skip` (no loading dialog), `#rooms` (show room tags), `#room-07` (land in a room), `#offline` (show the offline dinosaur), `#atelier` (open the atelier game).
 
 ## Deploy
 
@@ -28,6 +28,7 @@ index.html        the page: all rooms and overlays as markup
 moved.html        a plain 301 page: where the Room 11 QR code leads (its link goes on to offline.html)
 offline.html      the offline dinosaur screen as a page
 reboot.html       a 1990s BIOS boot screen: where the footer's Restart button leads
+atelier/          the atelier game, kept apart (fetched only when entered): index.html, atelier.css, atelier.js, NOTES.md
 guestbook.html    the guest book: unmoderated, every message becomes Lorem Ipsum
 TODO.md           everything still to finish
 css/main.css      all styles, sectioned by ROOM NN / OVERLAY X
@@ -37,6 +38,7 @@ js/overlays.js    Overlay A (top bar), B (loading dialog), C (cookie banner)
 js/rooms.js       one function per room
 js/sound.js       the song: gesture-gated playback, fades, loop dip
 js/support.js     the support agent (Overlay D)
+js/atelier.js     opens the atelier game (Overlay F)
 js/offline.js     the offline screen and its dinosaur (Overlay E, js/dino.js)
 content/          photos.json, quotes.json, support.json, shop.json (the only place content lives)
 audio/            the song (starts only after a click, behind the sound toggle)

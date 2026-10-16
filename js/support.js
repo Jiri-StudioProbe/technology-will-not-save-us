@@ -34,13 +34,23 @@ export function initSupport(cfg) {
     t.remove(); say('agent', text);
   }
 
+  /* After the error code is accepted, the agent offers the private tour (Overlay F, js/atelier.js) as a button. A click is also the tap that lets the game go full screen. */
+  function offerAtelier(label) {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'sup-act'; b.textContent = label || 'Enter the atelier';
+    b.addEventListener('click', () => dispatchEvent(new CustomEvent('atelier')));
+    log.append(b); scroll();
+  }
+
   async function ask(text) {
     if (busy || !text.trim()) return;
     busy = true; chips.querySelectorAll('button').forEach(b => { b.disabled = true; });
     say('user', text);
     if (isErrorCode(text)) {
       /* The special experience attaches here: listen for the 'errorcode' event on window. For now the agent just takes the code. */
-      await agentSays(cfg.codeReply || 'Thank you. Please hold.', 1200);
+      const tour = !!(cfg.atelier && cfg.atelier.enabled); /* with the tour switched off, the agent just takes the code */
+      await agentSays((tour ? cfg.codeReply : cfg.codeReplyOff) || 'Thank you. Please hold.', 1200);
+      if (tour) offerAtelier(cfg.atelier.button);
       dispatchEvent(new CustomEvent('errorcode'));
     } else {
       await agentSays(cfg.refusal, 800);

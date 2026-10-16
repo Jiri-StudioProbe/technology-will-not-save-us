@@ -23,7 +23,8 @@ A tongue-in-cheek **web immersive exhibition** of Jiri's own photographs of "tec
 - **Everything content-like is still placeholder:** photos are gradient placeholders (`file: null`), the two quotes (Kranzberg, Douglas Adams) are unverified, the artist's statement and wall-label text are placeholders.
 - **The look is a beige PC:** MS-DOS, Norton Commander, early Windows. Times New Roman regular for display, Arial for body text, labels and dialog widgets, Courier New Bold for system bits (all the visitor's own fonts, nothing downloaded). Jiri chose it over the earlier colourful look, which has been removed along with the look switch. Details under Design principles.
 - **Support agent (Overlay D):** a "?" button (labelled "Support" for screen readers) bottom right, on screen from the end of the loading dialog onwards. Any question, typed or tapped, gets "I cannot let you do that, Dave.", then one of its own lines that run in circles. All copy is placeholder in `content/support.json`, for Jiri to review.
-- **Room 11:** the QR code is real and encodes `moved.html` (a plain "301 Moved Permanently" page whose "here" link leads to the offline dinosaur, `offline.html`). The error code under it (`#stopCode`) is set at the size of the message above, in the system font, long enough to run over two rows, and selects with one click. **If a visitor gives that code to the support agent** (pasted, retyped, or inside a sentence; case, spaces and punctuation ignored) the agent no longer refuses: it takes the code and fires an `errorcode` event on `window`. The special experience that follows is **still to come: Jiri will describe it**; for now the agent just says "Thank you. Please hold." (`codeReply` in `content/support.json`).
+- **Room 11:** the QR code is real and encodes `moved.html` (a plain "301 Moved Permanently" page whose "here" link leads to the offline dinosaur, `offline.html`). The error code under it (`#stopCode`) is set at the size of the message above, in the system font, long enough to run over two rows, and selects with one click. **If a visitor gives that code to the support agent** (pasted, retyped, or inside a sentence; case, spaces and punctuation ignored) the agent no longer refuses: it takes the code and fires an `errorcode` event on `window`. The special experience that follows is **still to come: Jiri will describe it**; the agent now replies with `codeReply` and offers an **"Enter the atelier"** button, which opens the private tour (see below).
+- **The atelier (Overlay F):** a private tour of behind the scenes of the gallery atelier: a small first-person shooter (Wirecrypt, built in another Claude thread) that opens **full screen** over the exhibition when a visitor accepts it from the support chat. It keeps its touch controls on phones, always shows an **"Exit atelier"** bar at the top, and offers restart or exit after dying or clearing the level. Deliberately kept apart from everything else: its files are in `atelier/` (`index.html`, `atelier.css`, `atelier.js`, `NOTES.md`), they are fetched only when it opens (in an iframe, so a crash cannot reach the exhibition), and `atelier.enabled` in `content/support.json` switches it off. `js/atelier.js` is the only exhibition-side code. Details and how to remove it: `atelier/NOTES.md`. Not themed: it is backstage.
 - **Offline easter egg (Overlay E):** a tribute to the browser's offline page. "You're offline" with a pixel dinosaur that starts running on its own, never makes the hole, then tries again (Space, up arrow or a tap makes it hop, which does not help). It appears over the exhibition if the visitor's connection really drops and goes when it returns; `#offline` in the URL shows it on demand. `offline.html` is the same screen as a page of its own, and the "here" link on `moved.html` leads to it. Deliberately not themed (it is the browser interrupting). Drawn with a plain canvas loop, no animation library. Where else it could live (for example a TV channel in Room 09) is undecided.
 - **Room 12, the gift shop** (plain white, `data-bg` `#FFFFFF`): three cards built from `content/shop.json` (T-shirt and poster, both to be dropshipped, and a "Tip me" card that will open a Monzo payment page). A card with no `https://` address yet shows as "Out of stock" with a disabled button, so nothing half-built is clickable; the links, prices and mock-ups are not supplied yet. All copy is placeholder. The old "Exit through the gift shop" line (with the zine joke) now lives here.
 - **Footer** (not a room, after Room 12): the "Restart exhibition" button and a link to the guest book. More may go here; undecided.
@@ -40,6 +41,7 @@ index.html      all rooms and overlays as markup (rooms are empty shells where J
 404.html        self-contained "exhibition stopped responding" page
 moved.html      self-contained "301 Moved Permanently" page, the target of the Room 11 QR code; its link leads to offline.html
 offline.html    the "You're offline" dinosaur screen as a page (also Overlay E)
+atelier/        the atelier game, kept apart: index.html, atelier.css, atelier.js, NOTES.md (fetched only when a visitor enters)
 guestbook.html  the guest book: unmoderated, and every message becomes Lorem Ipsum (linked from the footer)
 reboot.html     a 1990s BIOS boot screen: where the footer's Restart button leads, then on to index.html
 TODO.md         everything still to finish, by who needs to act
@@ -51,6 +53,7 @@ js/overlays.js  Overlay A (top bar, battery, toast), B (loading dialog), C (cook
 js/rooms.js     one function per room (ROOM 01 to 11), plus the footer
 js/sound.js     the song: gesture-gated, fades, loop dip, toggle
 js/support.js   Overlay D: the support agent
+js/atelier.js   Overlay F: opens the atelier game full screen in an iframe, mutes the song while it is open
 js/offline.js   Overlay E: "You're offline" screen, real offline detection, #offline
 js/dino.js      the dinosaur game loop on a canvas (runs itself, always falls in the hole)
 js/util.js      $, $$, reduce, fine, splitWords
@@ -65,10 +68,10 @@ og.png favicon.svg .nojekyll .github/workflows/pages.yml
 ## Vocabulary (use the same words Jiri does)
 
 - **Room N / RN:** a full section, numbered 01 to 12. The top bar shows "Room N of M", except Room 01, which is the **Foyer** and shows just "Foyer".
-- **Overlays A, B, C, D, E:** not rooms. A = top bar and battery (also holds the sound toggle, a speaker icon), B = fake loading dialog, C = cookie banner, D = support agent, E = "You're offline" dinosaur screen.
+- **Overlays A, B, C, D, E, F:** not rooms. A = top bar and battery (also holds the sound toggle, a speaker icon), B = fake loading dialog, C = cookie banner, D = support agent, E = "You're offline" dinosaur screen, F = the atelier (the game).
 - **Photo N:** stable id of a photo slot in `photos.json`. Never renumber; add new ones at the end.
 - **P01 to P10 / I01 to I09:** page and image transition vignettes.
-- Dev flags: press **N** or add **`#rooms`** to show room tags and outlines; **`#skip`** bypasses the loading dialog; **`#room-07`** lands in that room after the dialog; **`#offline`** shows the offline dinosaur screen.
+- Dev flags: press **N** or add **`#rooms`** to show room tags and outlines; **`#skip`** bypasses the loading dialog; **`#room-07`** lands in that room after the dialog; **`#offline`** shows the offline dinosaur screen; **`#atelier`** opens the atelier game.
 - Every room carries a `ROOM NN` comment in HTML, CSS and JS. Keep that convention. If you add, remove or reorder rooms, renumber `id`, `data-n` and comments and update `SECTIONS.md` in the same change.
 
 ## Design principles

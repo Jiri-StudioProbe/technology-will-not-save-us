@@ -260,13 +260,15 @@ html.locked .support{opacity:0;visibility:hidden}
 .sup-head small{display:block;font:12px/1.2 var(--ui);opacity:.8}
 .sup-x{background:#c0c0c0;border:2px solid;border-color:var(--bevel);color:#000;width:1.7rem;height:1.7rem;padding:0;font:1.1rem/1 var(--sys)}
 .sup-log{flex:1;min-height:9rem;overflow-y:auto;padding:.7rem;display:flex;flex-direction:column;gap:.5rem;background:#fff;border:2px solid;border-color:#808080 #fff #fff #808080}
-.sup-msg{max-width:85%;margin:0;padding:.5rem .7rem;border:1px solid #000}
+.sup-msg{max-width:85%;margin:0;padding:.5rem .7rem;border:1px solid #000;overflow-wrap:anywhere}
 .sup-msg.agent{align-self:flex-start;background:#fff}
 .sup-msg.user{align-self:flex-end;background:#000080;color:#fff}
 .sup-msg.typing i{display:inline-block;width:.4rem;height:.4rem;margin:0 .12rem;border-radius:50%;background:currentColor;animation:supdot 1s infinite}
 .sup-msg.typing i:nth-child(2){animation-delay:.2s}
 .sup-msg.typing i:nth-child(3){animation-delay:.4s}
 @keyframes supdot{0%,60%,100%{opacity:.25}30%{opacity:1}}
+.sup-act{align-self:flex-start;margin:.2rem 0 0;padding:.45rem .9rem;border:2px solid;border-color:var(--bevel);background:#c0c0c0;color:#000;font:700 14px var(--ui)}
+.sup-act:active{border-color:#404040 #fff #fff #404040}
 .sup-chips{display:flex;flex-wrap:wrap;gap:.4rem;padding:.6rem .7rem 0}
 .sup-chips button{border:2px solid;border-color:var(--bevel);background:#c0c0c0;color:#000;padding:.25rem .65rem;font:700 13px/1.3 var(--ui)}
 .sup-chips button:active,.sup-form button:active{border-color:#404040 #fff #fff #404040}
@@ -274,6 +276,14 @@ html.locked .support{opacity:0;visibility:hidden}
 .sup-form{display:flex;gap:.4rem;padding:.6rem .7rem .7rem}
 .sup-form input{flex:1;min-width:0;border:2px solid;border-color:#808080 #fff #fff #808080;border-radius:0;padding:.45rem .6rem;font:16px/1.2 var(--ui);background:#fff;color:var(--ink)}
 .sup-form button{flex:none;border:2px solid;border-color:var(--bevel);background:#c0c0c0;color:#000;padding:.45rem .9rem;font:700 14px var(--ui)}
+
+/* ===== OVERLAY F: atelier (a game in an iframe, opened from the support chat; the game's own files are in atelier/) ===== */
+html.atelier-open{overflow:hidden;overscroll-behavior:none}
+.atelier{position:fixed;inset:0;z-index:400;display:grid;place-items:center;background:#03080b;color:#3df2d0;font:1.4rem/1 var(--sys)}
+.atelier::before{content:"Entering the atelier...";letter-spacing:.08em}
+.atelier.ready::before{display:none}
+.atelier iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:#03080b;opacity:0}
+.atelier.ready iframe{opacity:1}
 
 /* ===== DEV: room number tags. Press N to toggle, or open the page with #rooms ===== */
 .room-tag{display:none;position:sticky;top:3.4rem;height:0;z-index:70;pointer-events:none}

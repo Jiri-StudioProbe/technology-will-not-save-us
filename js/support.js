@@ -40,6 +40,9 @@ export function initSupport(cfg) {
     b.type = 'button'; b.className = 'sup-act'; b.textContent = label || 'Enter the atelier';
     b.addEventListener('click', () => dispatchEvent(new CustomEvent('atelier')));
     log.append(b); scroll();
+    /* Nothing else to press while the tour is on offer: the suggested questions and the typing box go. */
+    chips.hidden = true; form.hidden = true;
+    b.focus({ preventScroll: true });
   }
 
   async function ask(text) {

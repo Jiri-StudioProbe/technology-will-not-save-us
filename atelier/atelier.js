@@ -1,4 +1,4 @@
-/* The atelier: a small first-person game (Wirecrypt), kept apart from the exhibition on purpose.
+/* The atelier: a small first-person game (originally called Wirecrypt), kept apart from the exhibition on purpose.
    Nothing here is shared with the rest of the site, and the exhibition fetches none of it until a visitor accepts the private tour.
    See NOTES.md for how the game works and how it is wired in. */
 (()=>{
@@ -883,7 +883,7 @@ function showOverlay(kind){
   const h=$('ovH'),pp=$('ovP'),st=$('ovS'),b=$('ovB');
   if(document.exitPointerLock)try{document.exitPointerLock()}catch(e){}
   $('ovK').textContent=isTouch?'Left thumb moves. Drag on the right to look. FIRE, USE and SWAP are at the lower right.':'WASD move · ←/→ or mouse turn · Space or click fire · E open · Q swap · M mute';
-  if(kind==='title'){h.textContent='WIRECRYPT';pp.textContent='Cross the halls. Take the shotgun from the north-east corner. Open the chest in the south wing, then run for the exit.';st.hidden=true;b.textContent='ENTER'}
+  if(kind==='title'){h.textContent='ATELIER';pp.textContent="Enjoy the private tour of the atelier and see the artists at work. Just be careful: times are hard, and this is the cost of living crisis. They're a little bit hungry!";st.hidden=true;b.textContent='ENTER'}
   else if(kind==='dead'){h.textContent='YOU DIED';pp.textContent='The crypt keeps what it takes.';st.hidden=false;st.textContent='Kills '+kills+' · Time '+fmt(time);b.textContent='TRY AGAIN'}
   else{h.textContent='VAULT CLEARED';pp.textContent='The portal swallows you. Whatever was in that chest is behind you now.';st.hidden=false;st.textContent='Kills '+kills+' · Time '+fmt(time);b.textContent='PLAY AGAIN'}
 }

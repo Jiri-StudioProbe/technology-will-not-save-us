@@ -1,6 +1,6 @@
-# The atelier (Wirecrypt): notes
+# The atelier game: notes
 
-The game behind the exhibition's "private tour of behind the scenes of the gallery atelier". It was built in a separate Claude thread as one file, `wirecrypt.html`; the original handoff notes follow below the line. This section says what is different here.
+The game behind the exhibition's "private tour of behind the scenes of the gallery atelier". It was built in a separate Claude thread under the name Wirecrypt, as one file, `wirecrypt.html`; it is now called **Atelier**, and its welcome text is the artists-are-hungry line (the other in-game texts, such as "YOU DIED" and the crypt story, are still the original ones); the original handoff notes follow below the line. This section says what is different here.
 
 ## In this repo
 
